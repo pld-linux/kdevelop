@@ -32,6 +32,7 @@ BuildRequires:	zlib-devel
 BuildRequires:	fam-devel
 BuildRequires:	db-devel
 BuildRequires:	libart_lgpl-devel
+BuildRequires:	pcre-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
