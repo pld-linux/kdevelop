@@ -1,9 +1,10 @@
 #
 # Conditional build:
+%bcond_without	ada	# don't build with ada
+#
 %define		_ver		3.0.4
 %define		_state		stable
 %define		_kde_ver	3.2.3
-
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
@@ -97,9 +98,10 @@ export UNSERMAKE=%{_datadir}/unsermake/unsermake
 %configure \
 	--disable-rpath \
 	--with-qt-libraries=%{_libdir} \
+	%{!?with_ada:--disable-ada} \
 	--enable-final
 
-%{__make} -C languages/ada genparser
+%{?with_ada:%{__make} -C languages/ada genparser}
 
 %{__make}
 
