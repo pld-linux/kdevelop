@@ -1,4 +1,5 @@
 Summary:	KDE Integrated Development Environment
+Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Name:		kdevelop
 %define		_kde_ver	2.2.2
 Version:	2.0.2
@@ -6,9 +7,10 @@ Release:	1
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
-Group:		X11/KDE/Development
-Group(de):	X11/KDE/Entwicklung
-Group(pl):	X11/KDE/Programowanie
+Group:		X11/Development/Tools
+Group(de):	X11/Entwicklung/Werkzeuge
+Group(fr):	X11/Development/Outils
+Group(pl):	X11/Programowanie/Narzêdzia
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
 URL:		http://www.kdevelop.org/
 BuildRequires:	kdelibs-devel >= 2.1
@@ -53,6 +55,10 @@ application by integrating KDbg; Editing of project-specific pixmaps
 with KIconEdit; The inclusion of any other program you need for
 development by adding it to the "Tools"-menu according to your
 individual needs.
+
+%description -l pt_BR
+KDevelop é um IDE (ou Ambiente Integrado de Desenvolvimento) para o
+KDE.
 
 %prep
 %setup -q
