@@ -13,17 +13,17 @@ Group(fr):	X11/Development/Outils
 Group(pl):	X11/Programowanie/Narzêdzia
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
 URL:		http://www.kdevelop.org/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	flex
+BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= 2.1
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
+BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	qt-devel >= 2.2
 BuildRequires:	zlib-devel
-BuildRequires:	libpng-devel
-BuildRequires:	libjpeg-devel
-BuildRequires:	gettext-devel
-BuildRequires:	flex
-BuildRequires:	automake
-BuildRequires:	autoconf
-BuildRequires:	libtool
 Requires:	kdoc
 Requires:	kdbg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
