@@ -25,6 +25,7 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	qt-devel >= 3.0.3
 BuildRequires:	zlib-devel
+Requires:	kdesdk-extractrc
 Requires:	kdoc
 Requires:	kdesdk-extractrc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
