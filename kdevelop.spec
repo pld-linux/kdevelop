@@ -4,7 +4,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Name:		kdevelop
 %define		_kde_ver	3.0.1
 Version:	2.1.1_for_KDE_3.0
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
@@ -25,6 +25,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	qt-devel >= 3.0.3
 BuildRequires:	zlib-devel
 Requires:	kdoc
+Requires:	kdesdk-extractrc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -99,6 +100,8 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
+mv $RPM_BUILD_ROOT%{_bindir}/extractrc `pwd`
+
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 %find_lang %{name} --with-kde
@@ -107,12 +110,15 @@ bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
+
 %postun	-p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
+%doc extractrc
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/*
+#%{_docdir}/extractrc.gz
 %{_applnkdir}/Development/*
 %{_datadir}/apps/kconf_update/*
 %{_datadir}/apps/kdevelop
