@@ -3,7 +3,7 @@
 %bcond_without	ada	# don't build with ada
 
 %define		_state		stable
-%define		_ver		3.1.1
+%define		_ver		3.1.2
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
@@ -11,13 +11,12 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	%{_ver}
-Release:	2
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/3.3.1/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	93224b9552ae6e5ab5c0c7e13943f9d3
-# Source0-size:	7911870
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/3.3.2/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	706dfcf25f013c544220a0ca69b74846
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 Patch0:		kde-common-PLD.patch
 Patch1:		kdevelop-am.patch
@@ -137,13 +136,15 @@ mv {lo,hi}color/16x16/actions/kdevelop_tip.png
 mv {lo,hi}color/32x32/actions/kdevelop_tip.png
 cd -
 
+%find_lang %{name} --with-kde --all-name
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc %{_libdir}/kdevbdb/docs/LICENSE
 %doc %{_libdir}/kdevbdb/docs/README
@@ -165,10 +166,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_desktopdir}/kde/*
-%{_iconsdir}/*/*/*/*
-%{_kdedocdir}/*
+%{_iconsdir}/hicolor/*/*/*
 %dir %{_libdir}/kdevbdb
 %dir %{_libdir}/kdevbdb/bin
+%dir %{_libdir}/kdevbdb/docs
 %attr(755,root,root) %{_libdir}/kdevbdb/bin/*
 %{_libdir}/kdevbdb/include
 %{_libdir}/kdevbdb/lib
