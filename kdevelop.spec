@@ -1,6 +1,6 @@
 
 %define		_ver		3.0.0
-%define 	_snap 		031024
+%define 	_snap 		031105
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
@@ -13,25 +13,24 @@ Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	4bb640f8b905cea20070f2a76586e252
+# Source0-md5:	b3a4b1798a73f9c4e14b0ae4fe8ac03f
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
-Requires:	kdebase-core >= 9:3.1.92.%{_snap}
+Requires:	kdebase-core >= 9:3.1.93.%{_snap}
 BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 9:3.1.92.%{_snap} 
+BuildRequires:	kdelibs-devel >= 9:3.1.93.%{_snap} 
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
+BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 BuildRequires:	fam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define         no_install_post_chrpath         1
 
 %description
 The KDevelop Integrated Development Environment provides many features
@@ -86,10 +85,9 @@ w³asnych potrzeb.
 
 %{__make} -f admin/Makefile.common cvs
 
-#%%configure --enable-final --with-pythondir=%{_usr}
-#sed -i -e "s,CVSSERVICE_SUBDIR\ =,\#CVSSERVICE_SUBDIR\ =," parts/Makefile
-
-%configure
+%configure \
+	--disable-rpath \
+	--enable-final
 
 %{__make} -C languages/ada genparser
 
@@ -101,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_appsdir=%{_applnkdir} \
-	kde_htmldir=%{_docdir}/kde/HTML
+	kde_htmldir=%{_kdedocdir}
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
 
