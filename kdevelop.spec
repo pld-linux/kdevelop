@@ -144,6 +144,7 @@ else
 	echo "No i18n sources found and building --with i18n. FIXIT!"
 	exit 1
 fi
+%endif
 
 %find_lang	%{name}		--with-kde
 %find_lang	kde_app_devel	--with-kde
