@@ -41,8 +41,3 @@ find . -type l | sed 's,^\.,\%attr(-\,root\,root) ,' >> $RPM_BUILD_DIR/file.list
 rm -rf $RPM_BUILD_ROOT
 
 %files -f ../file.list.%{name}
-
-%changelog
-* Sat Jul 10 1999 
-  []
-- based on spec written by Troy Engel <tengel@sonic.net>.
