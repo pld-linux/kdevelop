@@ -2,9 +2,9 @@ Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Name:		kdevelop
-%define		_kde_ver	3.0.2
-Version:	2.1.2
-Release:	1
+%define		_kde_ver	3.0.3
+Version:	2.1.3
+Release:	0.1
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
