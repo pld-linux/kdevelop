@@ -118,7 +118,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc extractrc
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/*
-#%{_docdir}/extractrc.gz
 %{_applnkdir}/Development/*
 %{_datadir}/apps/kconf_update/*
 %{_datadir}/apps/kdevelop
