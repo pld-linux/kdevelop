@@ -75,9 +75,9 @@ KDbg; edycjê ikon przy pomocy KIconEdit; do³±cznie innych programów
 potrzebnych do programowania przez dodanie ich do menu Tools wed³ug
 w³asnych potrzeb.
 
-%description -l pt_BR
-KDevelop é um IDE (ou Ambiente Integrado de Desenvolvimento) para o
-KDE.
+#%description -l pt_BR
+#KDevelop é um IDE (ou Ambiente Integrado de Desenvolvimento) para o
+#KDE.
 
 %prep
 %setup -q
