@@ -29,7 +29,7 @@ BuildRequires:	db-devel
 BuildRequires:	flex
 %{?with_ada:BuildRequires:gcc-ada}
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel  >= 9:3.3.0
+BuildRequires:	kdelibs-devel >= 9:3.3.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
