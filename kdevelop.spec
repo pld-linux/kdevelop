@@ -1,19 +1,24 @@
-
 # TODO:
 #  - Sb. check %%find_lang section.
+
+%define snap 030530
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++¼¯³É¿ª·¢»·¾³
 Name:		kdevelop
-Version:	3.0a3
-Release:	0.1
+#Version:	3.0a4a
+Version:	3.0
+
+Release:	0.%{snap}.1
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/unstable/%{name}-3.0-alpha3/src/%{name}-%{version}.tar.bz2
+# http://download.kde.org/unstable/kdevelop-3.0-alpha4a/src/kdevelop-3.0a4a.tar.bz2
+#Source0:	http://download.kde.org/unstable/%{name}-3.0-alpha4a/src/%{name}-%{version}.tar.bz2
+Source0:        http://download.kde.org/unstable/snapshots/%{name}-%{snap}.tar.bz2
 #Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
@@ -30,7 +35,10 @@ BuildRequires:	zlib-devel
 BuildRequires:	fam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define         _prefix /usr/X11R6
 %define         _htmldir        /usr/share/doc/kde/HTML
+%define         no_install_post_chrpath         1
+
 
 %description
 The KDevelop Integrated Development Environment provides many features
@@ -82,12 +90,14 @@ w³asnych potrzeb.
 #KDevelop é um IDE (ou Ambiente Integrado de Desenvolvimento) para o
 #KDE.
 
-%prep
-%setup -q
+%prep 
+%setup -q -n %{name}-%{snap}
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
+kde_appsdir="%{_applnkdir}"; export kde_appsdir
+
 
 %configure
 #	--enable-final
