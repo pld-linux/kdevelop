@@ -20,7 +20,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 3.1 
+BuildRequires:	kdelibs-devel >= 9:3.1.90.030726 
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
