@@ -1,9 +1,6 @@
 #
 # Conditional build:
-%bcond_without	i18n	# don't build i18n subpackage
-#
-%define		_ver		3.0.3
-%define		_kde_ver	3.2.2
+%define		_ver		3.0.4
 %define		_state		stable
 
 Summary:	KDE Integrated Development Environment
@@ -12,17 +9,13 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++¼¯³É¿ª·¢»·¾³
 Name:		kdevelop
 Version:	%{_ver}
-Release:	1
+Release:	0.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 # Source0-md5:	c362e32f793f30ba4cedcdc0a914328d
-#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-%if %{with i18n}
-Source1:        kde-i18n-%{name}-%{_kde_ver}.tar.bz2
-# Source1-md5:	bb594287097425f3bffe3cb3bf013bd7
-%endif
 URL:		http://www.kdevelop.org/
 BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
@@ -38,6 +31,7 @@ BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
+BuildRequires:	unsermake >= 040511
 Requires:	kdebase-core >= 9:3.1.94.%{_snap}
 Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -88,24 +82,15 @@ KDbg; edycjê ikon przy pomocy KIconEdit; do³±czanie innych programów
 potrzebnych do programowania przez dodanie ich do menu Tools wed³ug
 w³asnych potrzeb.
 
-%package i18n
-Summary:	Internationalization and localization files for kdevelop
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdevelopa
-Group:  	X11/Applications
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	kdelibs-i18n >= 9:%{version}
-
-%description i18n
-Internationalization and localization files for kdevelop.
-
-%description i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kdevelopa.
 
 %prep
 %setup -q
 
 %build
-cp /usr/share/automake/config.sub admin
+cp %{_datadir}/automake/config.sub admin
+export kde_htmldir=%{_kdedocdir}
+export kde_libs_htmldir=%{_kdedocdir}
+export UNSERMAKE=%{_datadir}/unsermake/unsermake
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
@@ -122,7 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_appsdir=%{_applnkdir} \
+	kde_libs_htmldir=%{_kdedocdir} \
 	kde_htmldir=%{_kdedocdir}
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
@@ -134,54 +119,11 @@ mv {lo,hi}color/16x16/actions/kdevelop_tip.png
 mv {lo,hi}color/32x32/actions/kdevelop_tip.png
 cd -
 
-%if %{with i18n}
-if [ -f "%{SOURCE1}" ] ; then
-	bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
-	for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
-		if [ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] ; then
-			rm -f $f
-		fi
-	done
-else
-	echo "No i18n sources found and building --with i18n. FIXIT!"
-	exit 1
-fi
-%endif
-
-%find_lang	%{name}		--with-kde
-%find_lang	kde_app_devel	--with-kde
-
-cat kde_app_devel.lang >> %{name}.lang
-
-%if %{with i18n}
-plikes="kdevtipofday \
-qeditor"
-for i in $plikes;
-do
-	%find_lang $i	--with-kde
-	cat $i.lang >> %{name}.lang
-done
-%endif
-
-##for i in $files; do
-i="%{name}"
-
-	> ${i}_en.lang
-	echo "%defattr(644,root,root,755)" > ${i}_en.lang
-	grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
-	grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
-	mv ${i}.lang.1 ${i}.lang
-##done
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
-
-%if %{with i18n}
-%files i18n -f %{name}.lang
-%endif
 
 %files -f %{name}_en.lang
 %defattr(644,root,root,755)
@@ -201,3 +143,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/servicetypes/*
 %{_desktopdir}/kde/*
 %{_iconsdir}/*/*/*/*
+%{_kdedocdir}/kdevelop
