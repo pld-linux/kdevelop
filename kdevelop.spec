@@ -1,25 +1,17 @@
-# TODO:
-#  - Sb. check %%find_lang section.
 
-%define snap 030530
+%define 	snap 	030602
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++¼¯³É¿ª·¢»·¾³
 Name:		kdevelop
-#Version:	3.0a4a
 Version:	3.0
-
 Release:	0.%{snap}.1
 Epoch:		7
 License:	GPL
-Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
-# http://download.kde.org/unstable/kdevelop-3.0-alpha4a/src/kdevelop-3.0a4a.tar.bz2
-#Source0:	http://download.kde.org/unstable/%{name}-3.0-alpha4a/src/%{name}-%{version}.tar.bz2
-Source0:        http://download.kde.org/unstable/snapshots/%{name}-%{snap}.tar.bz2
-#Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
+Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{snap}.tar.bz2
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
 BuildRequires:	autoconf
@@ -35,10 +27,8 @@ BuildRequires:	zlib-devel
 BuildRequires:	fam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         _prefix /usr/X11R6
-%define         _htmldir        /usr/share/doc/kde/HTML
+%define         _htmldir        %{_docdir}/kde/HTML
 %define         no_install_post_chrpath         1
-
 
 %description
 The KDevelop Integrated Development Environment provides many features
@@ -86,10 +76,6 @@ KDbg; edycjê ikon przy pomocy KIconEdit; do³±cznie innych programów
 potrzebnych do programowania przez dodanie ich do menu Tools wed³ug
 w³asnych potrzeb.
 
-#%description -l pt_BR
-#KDevelop é um IDE (ou Ambiente Integrado de Desenvolvimento) para o
-#KDE.
-
 %prep 
 %setup -q -n %{name}-%{snap}
 
@@ -100,42 +86,44 @@ kde_appsdir="%{_applnkdir}"; export kde_appsdir
 
 
 %configure
-#	--enable-final
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
+install -d $RPM_BUILD_ROOT%{_desktopdir}
+
+mv $RPM_BUILD_ROOT{%{_applnkdir}/Development/*,%{_desktopdir}}
+
 cd $RPM_BUILD_ROOT%{_pixmapsdir}
-#mv {locolor,crystalsvg}/16x16/actions/kdevelop_tip.png
-#mv {locolor,crystalsvg}/32x32/actions/kdevelop_tip.png
+mv {lo,hi}color/16x16/actions/kdevelop_tip.png
+mv {lo,hi}color/32x32/actions/kdevelop_tip.png
 cd -
 
-#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
-
-%find_lang %{name}	--with-kde
-# %%find_lang kde2book	--with-kde TODO: I don't understand idea of find_lang so I just commented it out. 
-# %%find_lang kdearch	--with-kde
-# %%find_lang libc		--with-kde
-# cat {kde2book,kdearch,libc}.lang >> %{name}.lang 
+%find_lang	%{name}		--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %{_includedir}/*
-%attr(755,root,root) %{_libdir}/[!k]*
-%attr(755,root,root) %{_libdir}/kde3/*
+%{_libdir}/*.la
+%{_libdir}/*.so
+%attr(755,root,root) %{_libdir}/*.so.*.*.*
+%{_libdir}/kde3/*.la
+%attr(755,root,root) %{_libdir}/kde3/*.so
 %{_datadir}/apps/*
 %{_datadir}/config/*
 %{_datadir}/mimelnk/application/*
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
-%{_applnkdir}/Development/*
-%{_pixmapsdir}/*/*/actions/[!mpr]*
-%{_pixmapsdir}/*/*/actions/m[!a]*
-%{_pixmapsdir}/*/*/apps/*
-%{_pixmapsdir}/*/*/mimetypes/*
+%{_desktopdir}/*
+%{_pixmapsdir}/*/*/*/*
