@@ -1,6 +1,6 @@
 
 %define		_ver		3.0.0
-%define 	_snap 		031114
+%define 	_snap 		031208
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
@@ -12,7 +12,7 @@ Release:	0.%{_snap}.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+Source0:	http://ostrow-wlkp.net/~zytek/PLD/%{name}-%{_snap}.tar.bz2
 # Source0-md5:	43eb91dd9b5c14cbe60894af7027a5d4
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
@@ -30,6 +30,8 @@ BuildRequires:	openssl-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 BuildRequires:	fam-devel
+BuildRequires:	db-devel
+BuildRequires:	libart_lgpl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
