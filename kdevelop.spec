@@ -2,27 +2,25 @@
 # Conditional build:
 %bcond_without	i18n	# don't build i18n subpackage
 #
+%define		_state		snapshots
 %define		_ver		3.0.1
-##%define 	_snap 		040110
-%define		_state		stable
+%define 	_snap 		040220
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	%{_ver}
-Release:	2
+Version:	%{_ver}.%{_snap}
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	http://www.kdevelop.org/3.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	918a463159a78b5a13c574dfe2c4e3c7
-#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-%if %{with i18n}
-Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-3.2.0.tar.bz2
-# Source1-md5:	a82df9d4aee85107766b0b8db6abeaec
-%endif
+#Source0:	http://www.kdevelop.org/3.0/%{name}-%{version}.tar.bz2
+##%% Source0-md5:	918a463159a78b5a13c574dfe2c4e3c7
+Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
+#Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-3.2.0.tar.bz2
+##%% Source1-md5:	a82df9d4aee85107766b0b8db6abeaec
 URL:		http://www.kdevelop.org/
 BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
@@ -37,6 +35,7 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	unsermake
 BuildRequires:	zlib-devel
 Requires:	kdebase-core >= 9:3.1.94.%{_snap}
 Requires:	kdoc
@@ -102,16 +101,19 @@ Internationalization and localization files for kdevelop.
 Pliki umi阣zynarodawiaj眂e dla kdevelopa.
 
 %prep
-%setup -q
+%setup -q -n %{name}
 
 %build
 cp /usr/share/automake/config.sub admin
+
+export UNSERMAKE=/usr/share/unsermake/unsermake
+
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--disable-rpath \
-	--with-qt-libraries=%{_libdir} \
-	--enable-final
+	--enable-final \
+	--with-qt-libraries=%{_libdir}
 
 %{__make} -C languages/ada genparser
 
