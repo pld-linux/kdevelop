@@ -13,7 +13,8 @@ Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	bd5ac2486b3b896dc8c1500ad0f6de65
+# Source0-md5:	096607839308a2d84f1d6b938140cf90
+Patch0:		%{name}-install_gideon_kdevelop.patch
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
 Requires:	kdebase-core >= 9:3.1.92.%{_snap}
@@ -80,6 +81,7 @@ w³asnych potrzeb.
 
 %prep 
 %setup -q -n %{name}-%{_snap}
+%patch0 -p1
 
 %build
 
@@ -125,6 +127,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/*
 %{_datadir}/config/*
 %{_datadir}/mimelnk/application/*
+%{_datadir}/mimelnk/text/x-fortran.desktop
+# Conflicts with kdelibs
+#%{_datadir}/mimelnk/text/x-pascal.desktop
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_desktopdir}/kde/*
