@@ -38,6 +38,7 @@ BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
+BuildRequires:	subversion-devel
 Requires:	kdebase-core >= 9:3.2.0
 Requires:	kdesdk-libcvsservice >= 3:3.3.0
 Requires:	kdoc
@@ -108,7 +109,9 @@ export UNSERMAKE=%{_datadir}/unsermake/unsermake
 	--disable-rpath \
 	--with-qt-libraries=%{_libdir} \
 	%{!?with_ada:--disable-ada} \
-	--enable-final
+	--enable-final \
+	--enable-svnsupport \
+	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full}
 
 %{?with_ada:%{__make} -C languages/ada genparser}
 
