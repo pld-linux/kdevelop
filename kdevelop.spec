@@ -17,10 +17,9 @@ Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
 Requires:	kdebase-core >= 9:3.1.93.%{_snap}
-# BuildRequires:	antlr >= 2.7.3
+BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	pccts-antlr
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= 9:3.1.93.%{_snap} 
