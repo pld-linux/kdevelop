@@ -3,30 +3,29 @@ Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-%define		_kde_ver	3.0.4
-Version:	2.1.4
+%define		_kde_ver	3.1
+Version:	2.1.5
 Release:	1
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kde_ver}/src/%{name}-%{version}_for_KDE_3.0.tar.bz2
-Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
+Source0:	http://ftp.du.se/pub/mirrors/kde/stable/%{name}-%{version}/src/%{name}-%{version}_for_KDE_3.1.tar.bz2
+#Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
 URL:		http://www.kdevelop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel = %{_kde_ver}
+BuildRequires:	kdelibs-devel >= %{_kde_ver}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	zlib-devel
-Requires:	kdesdk-extractrc
+Requires:	kdesdk-scripts-extractrc
 Requires:	kdoc
-Requires:	kdesdk-extractrc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _htmldir        /usr/share/doc/kde/HTML
@@ -82,9 +81,10 @@ w砤snych potrzeb.
 #KDE.
 
 %prep
-%setup -q -n %{name}-%{version}_for_KDE_3.0
+%setup -q -n %{name}-%{version}_for_KDE_3.1
 
 %build
+kde_appsdir="%{_applnkdir}"; export kde_appsdir 
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
