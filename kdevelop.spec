@@ -21,7 +21,7 @@ BuildRequires:	kdelibs-devel = %{_kde_ver}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.6m
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	zlib-devel
 Requires:	kdesdk-extractrc
