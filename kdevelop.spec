@@ -11,6 +11,7 @@ Release:	0.%{snap}.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
+# Source0-md5:	d1691519fcd00f16dfdc1a738be8584b
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{snap}.tar.bz2
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
@@ -83,7 +84,6 @@ w³asnych potrzeb.
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
-
 
 %configure
 
