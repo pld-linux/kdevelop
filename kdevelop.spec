@@ -1,35 +1,37 @@
+
+%define		_ver		3.0.0
+%define 	_snap 		030930
+
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++¼¯³É¿ª·¢»·¾³
 Name:		kdevelop
-%define		_kde_ver	3.1
-Version:	2.1.5
-Release:	1
-Epoch:		8
+Version:	%{_ver}
+Release:	0.%{_snap}.1
+Epoch:		7
 License:	GPL
-Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
-Source0:	http://ftp.du.se/pub/mirrors/kde/stable/%{name}-%{version}/src/%{name}-%{version}_for_KDE_3.1.tar.bz2
-# Source0-md5:	8953caa03c22aabe6707ca494a0d4a41
-#Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
+Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	096607839308a2d84f1d6b938140cf90
+Patch0:		%{name}-install_gideon_kdevelop.patch
 URL:		http://www.kdevelop.org/
+Requires:	kdoc
+Requires:	kdebase-core >= 9:3.1.92.%{_snap}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= %{_kde_ver}
+BuildRequires:	kdelibs-devel >= 9:3.1.92.%{_snap} 
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
-BuildRequires:	openssl-devel >= 0.9.7c
-BuildRequires:	qt-devel >= 3.0.5
+BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
-Requires:	kdesdk-scripts-extractrc
-Requires:	kdoc
+BuildRequires:	fam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         _htmldir        /usr/share/doc/kde/HTML
+%define         no_install_post_chrpath         1
 
 %description
 The KDevelop Integrated Development Environment provides many features
@@ -77,46 +79,58 @@ KDbg; edycjê ikon przy pomocy KIconEdit; do³±cznie innych programów
 potrzebnych do programowania przez dodanie ich do menu Tools wed³ug
 w³asnych potrzeb.
 
-#%description -l pt_BR
-#KDevelop é um IDE (ou Ambiente Integrado de Desenvolvimento) para o
-#KDE.
-
-%prep
-%setup -q -n %{name}-%{version}_for_KDE_3.1
+%prep 
+%setup -q -n %{name}-%{_snap}
+%patch0 -p1
 
 %build
-kde_appsdir="%{_applnkdir}"; export kde_appsdir
-kde_htmldir="%{_htmldir}"; export kde_htmldir
-kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%configure \
-	--enable-final
+%{__make} -f admin/Makefile.common cvs
+
+%configure
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-mv $RPM_BUILD_ROOT%{_bindir}/extractrc `pwd`
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_appsdir=%{_applnkdir} \
+	kde_htmldir=%{_docdir}/kde/HTML
 
-bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
 
-%find_lang %{name} --with-kde
+mv $RPM_BUILD_ROOT{%{_applnkdir}/Development/*,%{_desktopdir}/kde}
+
+cd $RPM_BUILD_ROOT%{_iconsdir}
+mv {lo,hi}color/16x16/actions/kdevelop_tip.png
+mv {lo,hi}color/32x32/actions/kdevelop_tip.png
+cd -
+
+%find_lang	%{name}		--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
-
 %postun	-p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc extractrc
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/*
-%{_applnkdir}/Development/*
-%{_datadir}/apps/kconf_update/*
-%{_datadir}/apps/kdevelop
+%{_includedir}/*
+%{_libdir}/*.so
+%attr(755,root,root) %{_libdir}/*.so.*.*.*
+%{_libdir}/kde3/*.la
+%attr(755,root,root) %{_libdir}/kde3/*.so
+%{_datadir}/apps/*
+%{_datadir}/config/*
 %{_datadir}/mimelnk/application/*
-%{_pixmapsdir}/*/*/*/*
+%{_datadir}/mimelnk/text/x-fortran.desktop
+# Conflicts with kdelibs
+#%{_datadir}/mimelnk/text/x-pascal.desktop
+%{_datadir}/services/*
+%{_datadir}/servicetypes/*
+%{_desktopdir}/kde/*
+%{_iconsdir}/*/*/*/*
