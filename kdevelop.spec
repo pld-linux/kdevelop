@@ -26,6 +26,7 @@ Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 %define         _htmldir        /usr/share/doc/kde/HTML
 
 %description
@@ -86,8 +87,8 @@ w³asnych potrzeb.
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-aclocal
-autoconf
+#aclocal
+#autoconf
 %configure \
 	--enable-final
 %{__make}
