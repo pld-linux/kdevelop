@@ -71,6 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/*
 %{_applnkdir}/Development/*
 %{_datadir}/apps/*
 %{_datadir}/mimelnk/application/*
