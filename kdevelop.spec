@@ -11,7 +11,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
