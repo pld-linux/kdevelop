@@ -60,7 +60,7 @@ do programów typu gdb, kompilator C/C++ oraz make.
 
 KDevelop obs³uguje lub zawiera: wszystkie narzêdzia programistyczne
 potrzebne do programowania w C++ jak kompilator, linker, automake,
-autoconf; KAppWizard, generuj±cy kompletne, gotowe do uruchomienia,
+%{__autoconf}; KAppWizard, generuj±cy kompletne, gotowe do uruchomienia,
 proste aplikacje; Classgenerator do tworzenia nowych klas i w³±czania
 ich do projektu; zarz±dzanie plikami ¼ród³owymi, nag³ówkowymi,
 dokumentacj± itp.; tworzenie podrêczników u¿ytkownika pisanych w SGML
