@@ -30,7 +30,7 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install
+%{__make} install
 
 cd $RPM_BUILD_ROOT
 find . -type d | sed '1,2d;s,^\.,\%attr(-\,root\,root) \%dir ,' > $RPM_BUILD_DIR/file.list.%{name}
