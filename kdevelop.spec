@@ -11,6 +11,7 @@ License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
 Source0:	http://ftp.du.se/pub/mirrors/kde/stable/%{name}-%{version}/src/%{name}-%{version}_for_KDE_3.1.tar.bz2
+# Source0-md5:	8953caa03c22aabe6707ca494a0d4a41
 #Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
 URL:		http://www.kdevelop.org/
 BuildRequires:	autoconf
