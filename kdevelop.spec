@@ -1,43 +1,47 @@
 Summary:	KDE Integrated Development Environment
 Name:		kdevelop
-Version:	0.4
+Version:	1.4.1
 Release:	1
 Group:		X11/KDE/Development
 Copyright:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
-Source:		%{name}-%{version}.tar.gz
-Patch:		%{name}-%{version}.patch
-URL:		http://www.cs.uni-potsdam.de/~smeier/kdevelop/
-BuildRequires:	qt-devel >= 1.30
-BuildRequires:	kdelibs
+Source:		ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/src/KDevelop/%{name}-%{version}.tar.bz2
+URL:		http://www.kdevelop.org
+BuildRequires:	qt-devel >= 2.2
+BuildRequires:	kdelibs >= 2.1
+Requires:	kdelibs >= 2.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_prefix		/usr/X11R6
+%define		_htmldir	%{_datadir}/doc/kde/HTML
+
 %description
-KDevelop is an easy to use IDE (Intergrated Development Enviroment) for
-KDE/Unix/X11. At the moment there are only unstable alpha-versions.
+KDevelop is an easy to use IDE (Intergrated Development Enviroment) for KDE.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
-if [ -z "$KDEDIR" ]; then
-	export KDEDIR=%{prefix}
-fi
-CXXFLAGS="$RPM_OPT_FLAGS" CFLAGS="$RPM_OPT_FLAGS" ./configure \
-	--prefix=$KDEDIR --with-install-root=$RPM_BUILD_ROOT
+kde_htmldir="%{_htmldir}"; export kde_htmldir
+kde_icondir="%{_pixmapsdir}"; export kde_icondir
+
+%configure \
+	--with-final
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install
+%{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-cd $RPM_BUILD_ROOT
-find . -type d | sed '1,2d;s,^\.,\%attr(-\,root\,root) \%dir ,' > $RPM_BUILD_DIR/file.list.%{name}
-find . -type f | sed 's,^\.,\%attr(-\,root\,root) ,' >> $RPM_BUILD_DIR/file.list.%{name}
-find . -type l | sed 's,^\.,\%attr(-\,root\,root) ,' >> $RPM_BUILD_DIR/file.list.%{name}
+%find_lang %{name} --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f ../file.list.%{name}
+%files -f %{name}.lang
+%defattr (644,root,root,755)
+%attr(755,root,root) %{_bindir}
+%{_applnkdir}
+%{_datadir}/apps
+%{_datadir}/mimelnk
+%{_pixmapsdir}
