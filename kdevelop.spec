@@ -4,7 +4,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Name:		kdevelop
 %define		_kde_ver	2.2.2
 Version:	2.0.2
-Release:	4
+Release:	5
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
@@ -109,6 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/*
 %{_applnkdir}/Development/*
-%{_datadir}/apps/*
+%{_datadir}/apps/kconf_update/*
+%{_datadir}/apps/kdevelop
 %{_datadir}/mimelnk/application/*
 %{_pixmapsdir}/*/*/*/*
