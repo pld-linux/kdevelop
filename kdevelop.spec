@@ -3,6 +3,7 @@
 %bcond_without	i18n	# don't build i18n subpackage
 #
 %define		_ver		3.0.3
+%define		_kde_ver	3.2.2
 %define		_state		stable
 
 Summary:	KDE Integrated Development Environment
@@ -15,11 +16,11 @@ Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	http://www.kdevelop.org/3.0/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	c362e32f793f30ba4cedcdc0a914328d
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 %if %{with i18n}
-Source1:        kde-i18n-%{name}-3.2.2.tar.bz2
+Source1:        kde-i18n-%{name}-%{_kde_ver}.tar.bz2
 # Source1-md5:	bb594287097425f3bffe3cb3bf013bd7
 %endif
 URL:		http://www.kdevelop.org/
