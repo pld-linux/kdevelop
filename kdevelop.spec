@@ -93,7 +93,7 @@ w³asnych potrzeb.
 %patch0 -p1
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
-	-e 's/\(^Categories=.*$\)/\1;/'
+	-e 's/\(^Categories=.*$\)/\1;/' \
 	kdevelop.desktop
 
 %build
@@ -108,7 +108,6 @@ export UNSERMAKE=%{_datadir}/unsermake/unsermake
 	--enable-final
 
 %{?with_ada:%{__make} -C languages/ada genparser}
-
 
 %{__make}
 
