@@ -12,7 +12,7 @@ Release:	0.%{_snap}.2
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 # Source0-md5:	b3a4b1798a73f9c4e14b0ae4fe8ac03f
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
@@ -22,7 +22,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 9:3.1.93.%{_snap} 
+BuildRequires:	kdelibs-devel >= 9:3.1.93.%{_snap}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
@@ -78,7 +78,7 @@ KDbg; edycjê ikon przy pomocy KIconEdit; do³±cznie innych programów
 potrzebnych do programowania przez dodanie ich do menu Tools wed³ug
 w³asnych potrzeb.
 
-%prep 
+%prep
 %setup -q -n %{name}-%{_snap}
 
 %build
