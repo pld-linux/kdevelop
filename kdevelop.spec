@@ -2,8 +2,7 @@
 # Conditional build:
 %bcond_without	i18n	# don't build i18n subpackage
 #
-%define		_ver		3.0.1
-##%define 	_snap 		040110
+%define		_ver		3.0.3
 %define		_state		stable
 
 Summary:	KDE Integrated Development Environment
@@ -12,16 +11,16 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	%{_ver}
-Release:	2
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	http://www.kdevelop.org/3.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	918a463159a78b5a13c574dfe2c4e3c7
+# Source0-md5:	c362e32f793f30ba4cedcdc0a914328d
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 %if %{with i18n}
 Source1:        kde-i18n-%{name}-3.2.1.tar.bz2
-# Source1-md5:	2abb9aad57d831096fc1d12a0cebbedf
+# Source1-md5:	bb594287097425f3bffe3cb3bf013bd7
 %endif
 URL:		http://www.kdevelop.org/
 BuildRequires:	antlr >= 2.7.3
