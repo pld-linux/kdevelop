@@ -27,6 +27,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
+BuildRequires:	fam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 
