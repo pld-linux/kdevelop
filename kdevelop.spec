@@ -105,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 #%find_lang %{name} --with-kde
 
 %clean
-#rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 
