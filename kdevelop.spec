@@ -1,6 +1,6 @@
 
 %define		_ver		3.0.0
-%define 	_snap 		030726
+%define 	_snap 		030918
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
@@ -13,7 +13,7 @@ Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	359b7e7be9f5de5eeb626428792cefa0
+# Source0-md5:	bd5ac2486b3b896dc8c1500ad0f6de65
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
 BuildRequires:	autoconf
@@ -28,9 +28,6 @@ BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRequires:	fam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define         _htmldir        %{_docdir}/kde/HTML
-%define         _icondir        %{_datadir}/icons
 
 %define         no_install_post_chrpath         1
 
@@ -85,6 +82,8 @@ w³asnych potrzeb.
 
 %build
 
+%{__make} -f admin/Makefile.common cvs
+
 %configure
 
 %{__make}
@@ -94,14 +93,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-    	kde_appsdir=%{_applnkdir} \
-	kde_htmldir=%{_htmldir}
+	kde_htmldir=%{_docdir}/kde/HTML
 
-install -d $RPM_BUILD_ROOT%{_desktopdir}
+install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
 
-mv $RPM_BUILD_ROOT{%{_applnkdir}/Development/*,%{_desktopdir}}
+mv $RPM_BUILD_ROOT{%{_applnkdir}/Development/*,%{_desktopdir}/kde}
 
-cd $RPM_BUILD_ROOT%{_icondir}
+cd $RPM_BUILD_ROOT%{_iconsdir}
 mv {lo,hi}color/16x16/actions/kdevelop_tip.png
 mv {lo,hi}color/32x32/actions/kdevelop_tip.png
 cd -
@@ -111,11 +109,8 @@ cd -
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/ldconfig
-
-%postun
-/sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -130,5 +125,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk/application/*
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
-%{_desktopdir}/*
-%{_icondir}/*/*/*/*
+%{_desktopdir}/kde/*
+%{_iconsdir}/*/*/*/*
