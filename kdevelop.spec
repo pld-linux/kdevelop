@@ -3,27 +3,26 @@ Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-%define		_kde_ver	3.0.1
-Version:	2.1.1_for_KDE_3.0
+%define		_kde_ver	3.0.3
+Version:	2.1.3
 Release:	2
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
-Source0:	ftp://sunsite.icm.edu.pl/pub/Linux/kde/stable/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
-# generated from kde-i18n
+Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kde_ver}/src/%{name}-%{version}_for_KDE_3.0.tar.bz2
 Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
 URL:		http://www.kdevelop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 3.0
+BuildRequires:	kdelibs-devel = %{_kde_ver}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
-BuildRequires:	qt-devel >= 3.0.3
+BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	zlib-devel
 Requires:	kdesdk-extractrc
 Requires:	kdoc
@@ -85,14 +84,12 @@ w砤snych potrzeb.
 #KDE.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}_for_KDE_3.0
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-#aclocal
-#autoconf
 %configure \
 	--enable-final
 %{__make}
