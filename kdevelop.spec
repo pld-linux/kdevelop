@@ -13,7 +13,7 @@ Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	http://ostrow-wlkp.net/~zytek/PLD/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	43eb91dd9b5c14cbe60894af7027a5d4
+# Source0-md5:	c2403e807695ef207bd79243ae6330ba
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
 Requires:	kdebase-core >= 9:3.1.93.%{_snap}
