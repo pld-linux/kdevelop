@@ -6,7 +6,7 @@ Name:		kdevelop
 %define		_kde_ver	3.1
 Version:	2.1.5
 Release:	1
-Epoch:		7
+Epoch:		8
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
