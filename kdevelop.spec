@@ -1,8 +1,7 @@
 
 %define		_state		snapshots
-%define		_ver		3.0.90
-%define 	_snap 		040526
-%define		_packager	adgor		
+%define		_ver		3.0.91
+%define 	_snap 		040704
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
@@ -14,10 +13,8 @@ Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-#Source0:	http://www.kdevelop.org/3.0/%{name}-%{version}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
-##%% Source0-md5:	918a463159a78b5a13c574dfe2c4e3c7
-Patch0:		kde-common-QTDOCDIR.patch
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
+Patch0:		kde-common-PLD.patch
 URL:		http://www.kdevelop.org/
 #BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
@@ -136,7 +133,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
 %{_libdir}/kde3/*.la
 %attr(755,root,root) %{_libdir}/kde3/*.so*
+%dir %{_libdir}/kde3/plugins/kdevdesigner
+%{_libdir}/kde3/plugins/kdevdesigner/libkdevdesigner_lang.la
+%attr(755,root,root) %{_libdir}/kde3/plugins/kdevdesigner/libkdevdesigner_lang.so
 %{_includedir}/kdevelop
+%{_includedir}/kinterfacedesigner
 %{_datadir}/apps/*
 %{_datadir}/config/*
 %{_datadir}/mimelnk/application/*
@@ -145,3 +146,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/servicetypes/*
 %{_desktopdir}/kde/*
 %{_iconsdir}/*/*/*/*
+#TODO!
+%dir %{_prefix}/kdevbdb
+%dir %{_prefix}/kdevbdb/bin
+%attr(755,root,root) %{_prefix}/kdevbdb/bin/*
+%{_prefix}/kdevbdb/docs
+%{_prefix}/kdevbdb/include
+%{_prefix}/kdevbdb/lib
