@@ -93,8 +93,8 @@ w³asnych potrzeb.
 %patch0 -p1
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
+	-e 's/\(^Categories=.*$\)/\1;/'
 	kdevelop.desktop
-
 
 %build
 cp -f /usr/share/automake/config.sub admin
