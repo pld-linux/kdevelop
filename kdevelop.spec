@@ -11,6 +11,7 @@ Release:	0.%{snap}.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
+# Source0-md5:	d1691519fcd00f16dfdc1a738be8584b
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{snap}.tar.bz2
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
@@ -85,7 +86,6 @@ kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 
-
 %configure
 
 %{__make}
@@ -112,7 +112,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %{_includedir}/*
-%{_libdir}/*.la
 %{_libdir}/*.so
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
 %{_libdir}/kde3/*.la
