@@ -2,25 +2,25 @@ Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Name:		kdevelop
-%define		_kde_ver	2.2.2
-Version:	2.0.2
-Release:	5
+%define		_kde_ver	3.0
+Version:	2.1_for_KDE_3.0
+Release:	1
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://sunsite.icm.edu.pl/pub/Linux/kde/stable/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
 URL:		http://www.kdevelop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 2.1
+BuildRequires:	kdelibs-devel >= 3.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
-BuildRequires:	qt-devel >= 2.2
+BuildRequires:	qt-devel >= 3.0.3
 BuildRequires:	zlib-devel
 Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
