@@ -9,9 +9,6 @@ Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
-Group(de):	X11/Entwicklung/Werkzeuge
-Group(fr):	X11/Development/Outils
-Group(pl):	X11/Programowanie/Narzêdzia
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
 URL:		http://www.kdevelop.org/
 BuildRequires:	autoconf
