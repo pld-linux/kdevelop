@@ -87,8 +87,8 @@ w³asnych potrzeb.
 
 %{__make} -f admin/Makefile.common cvs
 
-%configure
-
+%configure --enable-final --with-pythondir=%{_usr}
+sed -i -e "s,CVSSERVICE_SUBDIR\ =,\#CVSSERVICE_SUBDIR\ =," parts/Makefile
 %{__make}
 
 %install
