@@ -88,6 +88,7 @@ w³asnych potrzeb.
 %setup -q
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
+	-e 's/\(^Categories=.*$\)/\1;/'
 	kdevelop.desktop
 
 %build
