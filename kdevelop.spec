@@ -23,7 +23,6 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
-BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
