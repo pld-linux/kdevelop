@@ -11,7 +11,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	%{_ver}
-Release:	0.1
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
@@ -102,7 +102,7 @@ w砤snych potrzeb.
 
 %build
 cp -f /usr/share/automake/config.sub admin
-export UNSERMAKE=%{_datadir}/unsermake/unsermake
+#export UNSERMAKE=%{_datadir}/unsermake/unsermake
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
@@ -145,6 +145,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc %{_libdir}/kdevbdb/docs/LICENSE
+%doc %{_libdir}/kdevbdb/docs/README
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/*.la
 %attr(755,root,root) %{_libdir}/*.so
@@ -165,10 +167,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/*
 %{_iconsdir}/*/*/*/*
 %{_kdedocdir}/*
-# WTF?
-#%dir %{_prefix}/kdevbdb
-#%dir %{_prefix}/kdevbdb/bin
-#%attr(755,root,root) %{_prefix}/kdevbdb/bin/*
-#%{_prefix}/kdevbdb/docs
-#%{_prefix}/kdevbdb/include
-#%{_prefix}/kdevbdb/lib
+%dir %{_libdir}/kdevbdb
+%dir %{_libdir}/kdevbdb/bin
+%attr(755,root,root) %{_libdir}/kdevbdb/bin/*
+%{_libdir}/kdevbdb/include
+%{_libdir}/kdevbdb/lib
