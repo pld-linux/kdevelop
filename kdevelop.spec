@@ -2,13 +2,14 @@ Summary:	KDE Integrated Development Environment
 Name:		kdevelop
 Version:	1.4.1
 Release:	1
+Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/KDE/Development
 Group(de):	X11/KDE/Entwicklung
 Group(pl):	X11/KDE/Programowanie
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/src/KDevelop/%{name}-%{version}.tar.bz2
-URL:		http://www.kdevelop.org
+URL:		http://www.kdevelop.org/
 BuildRequires:	kdelibs-devel >= 2.1
 BuildRequires:	openssl-devel
 BuildRequires:	qt-devel >= 2.2
@@ -18,8 +19,29 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_htmldir	%{_datadir}/doc/kde/HTML
 
 %description
-KDevelop is an easy to use IDE (Intergrated Development Enviroment)
-for KDE.
+The KDevelop Integrated Development Environment provides many features
+that developers need as well as providing a unified interface to
+programs like gdb, the C/C++ compiler, and make. KDevelop manages or
+provides:
+
+All development tools needed for C++ programming like Compiler,
+Linker, automake and autoconf; KAppWizard, which generates complete,
+ready-to-go sample applications; Classgenerator, for creating new
+classes and integrating them into the current project; File management
+for sources, headers, documentation etc. to be included in the
+project; The creation of User-Handbooks written with SGML and the
+automatic generation of HTML-output with the KDE look and feel;
+Automatic HTML-based API-documentation for your project's classes with
+cross-references to the used libraries; Internationalization support
+for your application, allowing translators to easily add their target
+language to a project;
+
+KDevelop also includes WYSIWYG (What you see is what you get)-creation
+of user interfaces with a built-in dialog editor; Debugging your
+application by integrating KDbg; Editing of project-specific pixmaps
+with KIconEdit; The inclusion of any other program you need for
+development by adding it to the "Tools"-menu according to your
+individual needs.
 
 %prep
 %setup -q
