@@ -155,8 +155,7 @@ cat kde_app_devel.lang >> %{name}.lang
 
 %if %{with i18n}
 plikes="kdevtipofday \
-qeditor \
-desktop_kdevelop"
+qeditor"
 for i in $plikes;
 do
 	%find_lang $i	--with-kde
