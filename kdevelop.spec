@@ -105,10 +105,12 @@ Pliki umiêdzynarodawiaj±ce dla kdevelopa.
 %setup -q
 
 %build
+cp /usr/share/automake/config.sub admin
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--disable-rpath \
+	--with-qt-libraries=%{_libdir} \
 	--enable-final
 
 %{__make} -C languages/ada genparser
