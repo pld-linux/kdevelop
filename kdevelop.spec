@@ -15,7 +15,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel %{_kde_ver}
+BuildRequires:	kdelibs-devel = %{_kde_ver}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
