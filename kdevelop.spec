@@ -1,6 +1,7 @@
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
+Summary(zh_CN):	KDE C/C++¼¯³É¿ª·¢»·¾³
 Name:		kdevelop
 %define		_kde_ver	3.0.1
 Version:	2.1.1_for_KDE_3.0
@@ -63,15 +64,14 @@ do programów typu gdb, kompilator C/C++ oraz make.
 
 KDevelop obs³uguje lub zawiera: wszystkie narzêdzia programistyczne
 potrzebne do programowania w C++ jak kompilator, linker, automake,
-%{__autoconf}; KAppWizard, generuj±cy kompletne, gotowe do uruchomienia,
+autoconf; KAppWizard, generuj±cy kompletne, gotowe do uruchomienia,
 proste aplikacje; Classgenerator do tworzenia nowych klas i w³±czania
 ich do projektu; zarz±dzanie plikami ¼ród³owymi, nag³ówkowymi,
 dokumentacj± itp.; tworzenie podrêczników u¿ytkownika pisanych w SGML
 i automatyczne generowanie wyj¶cia HTML pasuj±cego do KDE;
 automatyczne tworzenie dokumentacji API w HTML do klas projektu z
-odniesieniami do u¿ywanych bibliotek; wsparcie dla
-internacjonalizacji, pozwalaj±ce t³umaczom ³atwo dodawaæ pliki z
-t³umaczeniami do projektu.
+odniesieniami do u¿ywanych bibliotek; wsparcie dla internacjonalizacji,
+ pozwalaj±ce t³umaczom ³atwo dodawaæ pliki z t³umaczeniami do projektu.
 
 KDevelop ma tak¿e tworzenie interfejsów u¿ytkownika przy u¿yciu
 edytora dialogów WYSIWYG; odpluskwianie aplikacji poprzez integracjê z
