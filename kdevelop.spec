@@ -3,9 +3,9 @@ Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-%define		_kde_ver	3.0.3
-Version:	2.1.3
-Release:	2
+%define		_kde_ver	3.0.4
+Version:	2.1.4
+Release:	1
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
