@@ -4,7 +4,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Name:		kdevelop
 %define		_kde_ver	3.0.3
 Version:	2.1.3
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
@@ -23,6 +23,7 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	zlib-devel
+Requires:	kdesdk-extractrc
 Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -97,6 +98,8 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
+mv $RPM_BUILD_ROOT%{_bindir}/extractrc `pwd`
+
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 %find_lang %{name} --with-kde
@@ -109,6 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
+%doc extractrc
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/*
 %{_applnkdir}/Development/*
