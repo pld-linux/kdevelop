@@ -5,13 +5,12 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	3.0a2
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
-#Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kde_ver}/src/%{name}-%{version}_for_KDE_3.0.tar.bz2
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/unstable/%{name}-3.0-alpha2/src/%{name}-%{version}.tar.bz2
 #Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
@@ -19,12 +18,12 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 3.1
+BuildRequires:	kdelibs-devel >= 3.1 
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
-BuildRequires:	qt-devel >= 3.1
+BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -90,7 +89,7 @@ w砤snych potrzeb.
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%configure 
+%configure
 #	--enable-final
 %{__make}
 
@@ -98,23 +97,35 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-rm -rf $RPM_BUILD_ROOT/%{_pixmapsdir}/crystalsvg/*/actions/{make_kdevelop,project_open,rebuild,reload_page}.png
+cd $RPM_BUILD_ROOT%{_pixmapsdir}
+mv {locolor,crystalsvg}/16x16/actions/kdevelop_tip.png
+mv {locolor,crystalsvg}/32x32/actions/kdevelop_tip.png
+cd -
 
 #bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-%find_lang %{name} --with-kde
+%find_lang %{name}	--with-kde
+%find_lang kde2book	--with-kde
+%find_lang kdearch	--with-kde
+%find_lang libc		--with-kde
+cat {kde2book,kdearch,libc}.lang >> %{name}.lang 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-
-%postun	-p /sbin/ldconfig
-
 %files -f %{name}.lang
-#%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %{_includedir}/*
-%attr(755,root,root) %{_libdir}/*
-%{_datadir}/*
+%attr(755,root,root) %{_libdir}/[!k]*
+%attr(755,root,root) %{_libdir}/kde3/*
+%{_datadir}/apps/*
+%{_datadir}/config/*
+%{_datadir}/mimelnk/application/*
+%{_datadir}/services/*
+%{_datadir}/servicetypes/*
+%{_applnkdir}/Development/*
+%{_pixmapsdir}/*/*/actions/[!mpr]*
+%{_pixmapsdir}/*/*/actions/m[!a]*
+%{_pixmapsdir}/*/*/apps/*
+%{_pixmapsdir}/*/*/mimetypes/*
