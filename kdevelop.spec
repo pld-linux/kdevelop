@@ -110,7 +110,7 @@ export UNSERMAKE=%{_datadir}/unsermake/unsermake
 	--with-qt-libraries=%{_libdir} \
 	%{!?with_ada:--disable-ada} \
 	--enable-final \
-%ifarch amd64
+%if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
 %endif
 	--enable-svnsupport \
