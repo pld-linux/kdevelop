@@ -3,7 +3,7 @@
 %bcond_without	ada	# don't build with ada
 
 %define		_state		stable
-%define		_ver		3.1.0
+%define		_ver		3.1.1
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
@@ -15,10 +15,12 @@ Release:	0.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/3.3/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	a08e2792f895d4c96723edec17617567
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/3.3.1/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	93224b9552ae6e5ab5c0c7e13943f9d3
+# Source0-size:	7911870
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 Patch0:		kde-common-PLD.patch
+Patch1:		kdevelop-am.patch
 URL:		http://www.kdevelop.org/
 BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
@@ -91,6 +93,7 @@ w³asnych potrzeb.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	-e 's/\(^Categories=.*$\)/\1;/' \
@@ -128,15 +131,13 @@ mv {lo,hi}color/16x16/actions/kdevelop_tip.png
 mv {lo,hi}color/32x32/actions/kdevelop_tip.png
 cd -
 
-%find_lang	%{name}			--with-kde
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/*.la
@@ -144,9 +145,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
 %{_libdir}/kde3/*.la
 %attr(755,root,root) %{_libdir}/kde3/*.so*
-%dir %{_libdir}/kde3/plugins/kdevdesigner
-%{_libdir}/kde3/plugins/kdevdesigner/libkdevdesigner_lang.la
-%attr(755,root,root) %{_libdir}/kde3/plugins/kdevdesigner/libkdevdesigner_lang.so
+#dir %{_libdir}/kde3/plugins/kdevdesigner
+#{_libdir}/kde3/plugins/kdevdesigner/libkdevdesigner_lang.la
+#attr(755,root,root) %{_libdir}/kde3/plugins/kdevdesigner/libkdevdesigner_lang.so
 %{_includedir}/kdevelop
 %{_includedir}/kinterfacedesigner
 %{_datadir}/apps/*
