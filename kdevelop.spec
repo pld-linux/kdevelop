@@ -4,7 +4,7 @@ Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.0a1
+Version:	3.0a2
 Release:	1
 Epoch:		7
 License:	GPL
@@ -19,12 +19,12 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 3.0.8 
+BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
-BuildRequires:	qt-devel >= 3.0.5
+BuildRequires:	qt-devel >= 3.1
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -98,11 +98,11 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-
+rm -rf $RPM_BUILD_ROOT/%{_pixmapsdir}/crystalsvg/*/actions/{make_kdevelop,project_open,rebuild,reload_page}.png
 
 #bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-#%find_lang %{name} --with-kde
+%find_lang %{name} --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -111,8 +111,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun	-p /sbin/ldconfig
 
-#%files -f %{name}.lang
-%files
+%files -f %{name}.lang
+#%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %{_includedir}/*
