@@ -11,7 +11,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++¼¯³É¿ª·¢»·¾³
 Name:		kdevelop
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
@@ -84,9 +84,11 @@ KDbg; edycjê ikon przy pomocy KIconEdit; do³±czanie innych programów
 potrzebnych do programowania przez dodanie ich do menu Tools wed³ug
 w³asnych potrzeb.
 
-
 %prep
 %setup -q
+
+%{__sed} -i -e 's/Terminal=0/Terminal=false/' \
+	kdevelop.desktop
 
 %build
 cp %{_datadir}/automake/config.sub admin
