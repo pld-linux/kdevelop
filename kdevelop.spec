@@ -24,7 +24,7 @@ BuildRequires:	automake
 BuildRequires:	db-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 9:3.1.94.%{_snap}
+BuildRequires:	kdelibs-devel  >= 9:3.2.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
@@ -33,7 +33,7 @@ BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
 BuildRequires:	unsermake >= 040511
-Requires:	kdebase-core >= 9:3.1.94.%{_snap}
+Requires:	kdebase-core >= 9:3.2.0
 Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
