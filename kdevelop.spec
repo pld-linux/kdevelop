@@ -8,7 +8,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	%{_ver}
-Release:	0.%{_snap}.0.1
+Release:	0.%{_snap}.0.2
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
@@ -17,6 +17,7 @@ Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
 Requires:	kdebase-core >= 9:3.1.92.%{_snap}
+BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
@@ -85,8 +86,13 @@ w砤snych potrzeb.
 
 %{__make} -f admin/Makefile.common cvs
 
-%configure --enable-final --with-pythondir=%{_usr}
-sed -i -e "s,CVSSERVICE_SUBDIR\ =,\#CVSSERVICE_SUBDIR\ =," parts/Makefile
+#%%configure --enable-final --with-pythondir=%{_usr}
+#sed -i -e "s,CVSSERVICE_SUBDIR\ =,\#CVSSERVICE_SUBDIR\ =," parts/Makefile
+
+%configure
+
+%{__make} -C languages/ada genparser
+
 %{__make}
 
 %install
