@@ -13,7 +13,7 @@ Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	2e392c3e4314b0bbfea47eedd00a0ae7
+# Source0-md5:	201705c25d880754bc81b753f6f0d74b
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
 Requires:	kdebase-core >= 9:3.1.92.%{_snap}
