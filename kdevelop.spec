@@ -1,6 +1,6 @@
 
 %define		_ver		3.0.0
-%define 	_snap 		030918
+%define 	_snap 		030930
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
@@ -8,7 +8,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	%{_ver}
-Release:	0.%{_snap}.2
+Release:	0.%{_snap}.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
@@ -16,11 +16,12 @@ Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 # Source0-md5:	bd5ac2486b3b896dc8c1500ad0f6de65
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
+Requires:	kdebase-core >= 9:3.1.92.%{_snap}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 9:3.1.90.030726 
+BuildRequires:	kdelibs-devel >= 9:3.1.92.%{_snap} 
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
