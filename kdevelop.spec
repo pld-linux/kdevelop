@@ -1,9 +1,9 @@
+
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-
 Version:	3.0a1
 Release:	1
 Epoch:		7
@@ -12,7 +12,7 @@ Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
 #Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kde_ver}/src/%{name}-%{version}_for_KDE_3.0.tar.bz2
 Source0:	%{name}-%{version}.tar.bz2
-Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
+#Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
 BuildRequires:	autoconf
@@ -100,18 +100,19 @@ rm -rf $RPM_BUILD_ROOT
 
 
 
-bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-%find_lang %{name} --with-kde
+#%find_lang %{name} --with-kde
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+#rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 
 %postun	-p /sbin/ldconfig
 
-%files -f %{name}.lang
+#%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %{_includedir}/*
