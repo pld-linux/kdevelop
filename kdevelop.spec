@@ -4,7 +4,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Name:		kdevelop
 %define		_kde_ver	3.0.3
 Version:	2.1.3
-Release:	0.1
+Release:	1
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
@@ -20,7 +20,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
-BuildRequires:	qt-devel >= 3
+BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	zlib-devel
 Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
