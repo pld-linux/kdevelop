@@ -1,6 +1,7 @@
 Summary:	KDE Integrated Development Environment
 Name:		kdevelop
-Version:	2.0.1
+%define		_kde_ver	2.2.2
+Version:	2.0.2
 Release:	1
 Epoch:		7
 License:	GPL
@@ -8,7 +9,7 @@ Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/KDE/Development
 Group(de):	X11/KDE/Entwicklung
 Group(pl):	X11/KDE/Programowanie
-Source0:	ftp://ftp.kde.org/pub/kde/stable/2.2.1/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
 URL:		http://www.kdevelop.org/
 BuildRequires:	kdelibs-devel >= 2.1
 BuildRequires:	openssl-devel
@@ -21,6 +22,8 @@ BuildRequires:	flex
 BuildRequires:	automake
 BuildRequires:	autoconf
 BuildRequires:	libtool
+Requires:	kdoc
+Requires:	kdbg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
