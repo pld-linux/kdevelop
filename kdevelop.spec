@@ -8,12 +8,12 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	%{_ver}
-Release:	0.%{_snap}.0.1
+Release:	0.%{_snap}.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-#&&# Source0-md5:	c2403e807695ef207bd79243ae6330ba
+# Source0-md5:	45947a7e01b5941956e154311f268cdc
 URL:		http://www.kdevelop.org/
 BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
