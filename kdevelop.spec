@@ -2,14 +2,16 @@ Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Name:		kdevelop
-%define		_kde_ver	3.0
-Version:	2.1_for_KDE_3.0
+%define		_kde_ver	3.0.1
+Version:	2.1.1_for_KDE_3.0
 Release:	1
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
 Source0:	ftp://sunsite.icm.edu.pl/pub/Linux/kde/stable/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
+# generated from kde-i18n
+Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
 URL:		http://www.kdevelop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -96,6 +98,8 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
+
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 %find_lang %{name} --with-kde
 
