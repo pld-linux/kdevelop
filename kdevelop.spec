@@ -13,6 +13,11 @@ URL:		http://www.kdevelop.org/
 BuildRequires:	kdelibs-devel >= 2.1
 BuildRequires:	openssl-devel
 BuildRequires:	qt-devel >= 2.2
+BuildRequires:	zlib-devel
+BuildRequires:	libpng-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	gettext-devel
+BuildRequires:	flex
 BuildRequires:	automake
 BuildRequires:	autoconf
 BuildRequires:	libtool
