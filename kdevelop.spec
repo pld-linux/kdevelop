@@ -27,6 +27,7 @@ BuildRequires:	zlib-devel
 BuildRequires:	fam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define         _prefix		/usr/X11R6
 %define         _htmldir        %{_docdir}/kde/HTML
 %define         no_install_post_chrpath         1
 
@@ -94,10 +95,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-install -d $RPM_BUILD_ROOT%{_desktopdir}
-
-mv $RPM_BUILD_ROOT{%{_applnkdir}/Development/*,%{_desktopdir}}
-
 cd $RPM_BUILD_ROOT%{_pixmapsdir}
 mv {lo,hi}color/16x16/actions/kdevelop_tip.png
 mv {lo,hi}color/32x32/actions/kdevelop_tip.png
@@ -125,5 +122,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk/application/*
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
-%{_desktopdir}/*
+%{_applnkdir}/Development/*
 %{_pixmapsdir}/*/*/*/*
