@@ -1,7 +1,7 @@
 
 %define		_state		snapshots
 %define		_ver		3.0.90
-%define 	_snap 		040518
+%define 	_snap 		040526
 %define		_packager	adgor		
 
 Summary:	KDE Integrated Development Environment
@@ -91,7 +91,7 @@ w³asnych potrzeb.
 %build
 cp /usr/share/automake/config.sub admin
 
-export UNSERMAKE=/usr/share/unsermake/unsermake
+#export UNSERMAKE=/usr/share/unsermake/unsermake
 
 %{__make} -f admin/Makefile.common cvs
 
@@ -99,8 +99,6 @@ export UNSERMAKE=/usr/share/unsermake/unsermake
 	--disable-rpath \
 	--enable-final \
 	--with-qt-libraries=%{_libdir}
-
-#%%{__make} -C languages/ada genparser
 
 %{__make}
 
