@@ -1,6 +1,6 @@
 Summary:	KDE Integrated Development Environment
 Name:		kdevelop
-Version:	1.4.1
+Version:	2.0.1
 Release:	1
 Epoch:		7
 License:	GPL
@@ -8,11 +8,14 @@ Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/KDE/Development
 Group(de):	X11/KDE/Entwicklung
 Group(pl):	X11/KDE/Programowanie
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/src/KDevelop/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/stable/2.2.1/src/%{name}-%{version}.tar.bz2
 URL:		http://www.kdevelop.org/
 BuildRequires:	kdelibs-devel >= 2.1
 BuildRequires:	openssl-devel
 BuildRequires:	qt-devel >= 2.2
+BuildRequires:	automake
+BuildRequires:	autoconf
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -50,6 +53,8 @@ individual needs.
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
+aclocal
+autoconf
 %configure \
 	--enable-final
 %{__make}
