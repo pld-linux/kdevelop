@@ -1,6 +1,6 @@
 
 %define		_ver		3.0.0
-%define 	_snap 		031208
+%define 	_snap 		031204
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
@@ -8,31 +8,31 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	%{_ver}
-Release:	0.%{_snap}.1
+Release:	0.%{_snap}.0.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	http://ostrow-wlkp.net/~zytek/PLD/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	c2403e807695ef207bd79243ae6330ba
+Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+#&&# Source0-md5:	c2403e807695ef207bd79243ae6330ba
 URL:		http://www.kdevelop.org/
-Requires:	kdoc
-Requires:	kdebase-core >= 9:3.1.93.%{_snap}
 BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	db-devel
+BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 9:3.1.93.%{_snap}
+BuildRequires:	kdelibs-devel >= 9:3.1.94.%{_snap}
+BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
+BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	zlib-devel
-BuildRequires:	fam-devel
-BuildRequires:	db-devel
-BuildRequires:	libart_lgpl-devel
-BuildRequires:	pcre-devel
+Requires:	kdebase-core >= 9:3.1.94.%{_snap}
+Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
