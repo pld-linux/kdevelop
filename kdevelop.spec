@@ -8,7 +8,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	%{_ver}
-Release:	0.%{_snap}.1
+Release:	0.%{_snap}.2
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
@@ -93,6 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
+	kde_appsdir=%{_applnkdir} \
 	kde_htmldir=%{_docdir}/kde/HTML
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
