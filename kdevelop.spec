@@ -3,7 +3,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Name:		kdevelop
 %define		_kde_ver	2.2.2
 Version:	2.0.2
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
@@ -25,7 +25,6 @@ BuildRequires:	openssl-devel
 BuildRequires:	qt-devel >= 2.2
 BuildRequires:	zlib-devel
 Requires:	kdoc
-Requires:	kdbg
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
