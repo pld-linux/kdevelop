@@ -1,23 +1,24 @@
 #
 # Conditional build:
 %bcond_without	ada	# don't build with ada
-#
-%define		_ver		3.0.4
+
 %define		_state		stable
-%define		_kde_ver	3.2.3
+%define		_ver		3.1.0
+
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++¼¯³É¿ª·¢»·¾³
 Name:		kdevelop
 Version:	%{_ver}
-Release:	1
+Release:	0.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	c4a84b34927e6f1c7fb2bfb9a74b5b34
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/3.3/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	a08e2792f895d4c96723edec17617567
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
+Patch0:		kde-common-PLD.patch
 URL:		http://www.kdevelop.org/
 BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
@@ -25,16 +26,19 @@ BuildRequires:	automake
 BuildRequires:	db-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel  >= 9:3.2.0
+BuildRequires:	kdelibs-devel  >= 9:3.3.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
 BuildRequires:	unsermake >= 040511
+%{?with_ada:BuildRequires:gcc-ada}
 Requires:	kdebase-core >= 9:3.2.0
+Requires:	kdesdk-libcvsservice >= 3:3.3.0
 Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -75,8 +79,9 @@ ich do projektu; zarz±dzanie plikami ¼ród³owymi, nag³ówkowymi,
 dokumentacj± itp.; tworzenie podrêczników u¿ytkownika pisanych w SGML
 i automatyczne generowanie wyj¶cia HTML pasuj±cego do KDE;
 automatyczne tworzenie dokumentacji API w HTML do klas projektu z
-odniesieniami do u¿ywanych bibliotek; wsparcie dla internacjonalizacji,
- pozwalaj±ce t³umaczom ³atwo dodawaæ pliki z t³umaczeniami do projektu.
+odniesieniami do u¿ywanych bibliotek; wsparcie dla
+internacjonalizacji, pozwalaj±ce t³umaczom ³atwo dodawaæ pliki z
+t³umaczeniami do projektu.
 
 KDevelop ma tak¿e tworzenie interfejsów u¿ytkownika przy u¿yciu
 edytora dialogów WYSIWYG; odpluskwianie aplikacji poprzez integracjê z
@@ -84,15 +89,14 @@ KDbg; edycjê ikon przy pomocy KIconEdit; do³±czanie innych programów
 potrzebnych do programowania przez dodanie ich do menu Tools wed³ug
 w³asnych potrzeb.
 
-
 %prep
-%setup -q
+%setup -q -n %{name}-%{_snap}
+%patch0 -p1
 
 %build
 cp %{_datadir}/automake/config.sub admin
-export kde_htmldir=%{_kdedocdir}
-export kde_libs_htmldir=%{_kdedocdir}
 export UNSERMAKE=%{_datadir}/unsermake/unsermake
+cp %{_datadir}/automake/config.sub admin
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
@@ -102,6 +106,7 @@ export UNSERMAKE=%{_datadir}/unsermake/unsermake
 	--enable-final
 
 %{?with_ada:%{__make} -C languages/ada genparser}
+
 
 %{__make}
 
@@ -122,28 +127,40 @@ mv {lo,hi}color/16x16/actions/kdevelop_tip.png
 mv {lo,hi}color/32x32/actions/kdevelop_tip.png
 cd -
 
+%find_lang	%{name}			--with-kde
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files 
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/*.so.*.*.*
+%{_libdir}/*.la
 %attr(755,root,root) %{_libdir}/*.so
+%attr(755,root,root) %{_libdir}/*.so.*.*.*
 %{_libdir}/kde3/*.la
-%attr(755,root,root) %{_libdir}/kde3/*.so
+%attr(755,root,root) %{_libdir}/kde3/*.so*
+%dir %{_libdir}/kde3/plugins/kdevdesigner
+%{_libdir}/kde3/plugins/kdevdesigner/libkdevdesigner_lang.la
+%attr(755,root,root) %{_libdir}/kde3/plugins/kdevdesigner/libkdevdesigner_lang.so
 %{_includedir}/kdevelop
+%{_includedir}/kinterfacedesigner
 %{_datadir}/apps/*
 %{_datadir}/config/*
 %{_datadir}/mimelnk/application/*
 %{_datadir}/mimelnk/text/x-fortran.desktop
-# Conflicts with kdelibs
-#%{_datadir}/mimelnk/text/x-pascal.desktop
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_desktopdir}/kde/*
 %{_iconsdir}/*/*/*/*
 %{_kdedocdir}/*
+# WTF?
+%dir %{_prefix}/kdevbdb
+%dir %{_prefix}/kdevbdb/bin
+%attr(755,root,root) %{_prefix}/kdevbdb/bin/*
+%{_prefix}/kdevbdb/docs
+%{_prefix}/kdevbdb/include
+%{_prefix}/kdevbdb/lib
