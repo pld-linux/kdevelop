@@ -8,8 +8,8 @@ Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Source:		%{name}-%{version}.tar.gz
 Patch:		%{name}-%{version}.patch
 URL:		http://www.cs.uni-potsdam.de/~smeier/kdevelop/
-BuildPrereq:	qt-devel >= 1.30
-BuildPrereq:	kdelibs
+BuildRequires:	qt-devel >= 1.30
+BuildRequires:	kdelibs
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
