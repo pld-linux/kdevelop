@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	i18n	# don't build i18n subpackage
 #
-%define		_ver		3.0.0
+%define		_ver		3.0.1
 ##%define 	_snap 		040110
 %define		_state		stable
 
@@ -16,9 +16,9 @@ Release:	2
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/3.2/src/%{name}-%{version}.tar.bz2
+Source0:	http://www.kdevelop.org/3.0/%{name}-%{version}.tar.bz2
+# Source0-md5:	918a463159a78b5a13c574dfe2c4e3c7
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-# Source0-md5:	fa823d9fa2444938ecafb97949500c27
 %if %{with i18n}
 Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-3.2.0.tar.bz2
 # Source1-md5:	a82df9d4aee85107766b0b8db6abeaec
