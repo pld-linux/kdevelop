@@ -1,5 +1,7 @@
-%bcond_without  i18n    # dont build i18n subpackage
-
+#
+# Conditional build:
+%bcond_without	i18n	# don't build i18n subpackage
+#
 %define		_ver		3.0.0
 ##%define 	_snap 		040110
 %define		_state		stable
@@ -23,15 +25,12 @@ Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-3.2
 %endif
 URL:		http://www.kdevelop.org/
 BuildRequires:	antlr >= 2.7.3
-BuildRequires:	artsc-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	db-devel
-BuildRequires:	fam-devel
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= 9:3.1.94.%{_snap}
-BuildRequires:	libart_lgpl-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
@@ -85,28 +84,27 @@ odniesieniami do u¿ywanych bibliotek; wsparcie dla internacjonalizacji,
 
 KDevelop ma tak¿e tworzenie interfejsów u¿ytkownika przy u¿yciu
 edytora dialogów WYSIWYG; odpluskwianie aplikacji poprzez integracjê z
-KDbg; edycjê ikon przy pomocy KIconEdit; do³±cznie innych programów
+KDbg; edycjê ikon przy pomocy KIconEdit; do³±czanie innych programów
 potrzebnych do programowania przez dodanie ich do menu Tools wed³ug
 w³asnych potrzeb.
 
 %package i18n
-Summary:        Internationalization and localization files for kdevelop
-Summary(pl):    Pliki umiêdzynarodawiaj±ce dla kdevelop
+Summary:	Internationalization and localization files for kdevelop
+Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdevelopa
 Group:  	X11/Applications
-Requires:       kdevelop = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	kdelibs-i18n >= 9:%{version}
 
 %description i18n
 Internationalization and localization files for kdevelop.
 
-%description -l pl i18n
-Pliki umiêdzynarodawiaj±ce dla kdevelop.
+%description i18n -l pl
+Pliki umiêdzynarodawiaj±ce dla kdevelopa.
 
 %prep
 %setup -q
 
 %build
-
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
@@ -147,8 +145,6 @@ else
 	exit 1
 fi
 
-##%endif
-
 %find_lang	%{name}		--with-kde
 %find_lang	kde_app_devel	--with-kde
 
@@ -183,17 +179,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %if %{with i18n}
 %files i18n -f %{name}.lang
-
 %endif
 
 %files -f %{name}_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%{_includedir}/*
-%{_libdir}/*.so
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
+%attr(755,root,root) %{_libdir}/*.so
 %{_libdir}/kde3/*.la
 %attr(755,root,root) %{_libdir}/kde3/*.so
+%{_includedir}/kdevelop
 %{_datadir}/apps/*
 %{_datadir}/config/*
 %{_datadir}/mimelnk/application/*
