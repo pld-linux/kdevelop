@@ -1,16 +1,19 @@
 
+# TODO:
+#  - Sb. check %%find_lang section.
+
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.0a2
-Release:	2
+Version:	3.0a3
+Release:	0.1
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/unstable/%{name}-3.0-alpha2/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/unstable/%{name}-3.0-alpha3/src/%{name}-%{version}.tar.bz2
 #Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
@@ -97,17 +100,17 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
 cd $RPM_BUILD_ROOT%{_pixmapsdir}
-mv {locolor,crystalsvg}/16x16/actions/kdevelop_tip.png
-mv {locolor,crystalsvg}/32x32/actions/kdevelop_tip.png
+#mv {locolor,crystalsvg}/16x16/actions/kdevelop_tip.png
+#mv {locolor,crystalsvg}/32x32/actions/kdevelop_tip.png
 cd -
 
 #bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 %find_lang %{name}	--with-kde
-%find_lang kde2book	--with-kde
-%find_lang kdearch	--with-kde
-%find_lang libc		--with-kde
-cat {kde2book,kdearch,libc}.lang >> %{name}.lang 
+# %%find_lang kde2book	--with-kde TODO: I don't understand idea of find_lang so I just commented it out. 
+# %%find_lang kdearch	--with-kde
+# %%find_lang libc		--with-kde
+# cat {kde2book,kdearch,libc}.lang >> %{name}.lang 
 
 %clean
 rm -rf $RPM_BUILD_ROOT
