@@ -19,7 +19,7 @@ Source0:	http://www.kdevelop.org/3.0/%{name}-%{version}.tar.bz2
 # Source0-md5:	c362e32f793f30ba4cedcdc0a914328d
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 %if %{with i18n}
-Source1:        kde-i18n-%{name}-3.2.1.tar.bz2
+Source1:        kde-i18n-%{name}-3.2.2.tar.bz2
 # Source1-md5:	bb594287097425f3bffe3cb3bf013bd7
 %endif
 URL:		http://www.kdevelop.org/
