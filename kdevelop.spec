@@ -1,18 +1,19 @@
 
-%define 	snap 	030602
+%define		_ver		3.0.0
+%define 	_snap 		030618
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.0
-Release:	0.%{snap}.1
+Version:	%{_ver}
+Release:	0.%{_snap}.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-# Source0-md5:	d1691519fcd00f16dfdc1a738be8584b
-Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{snap}.tar.bz2
+Source0:        http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	e7c52cfc1fde497eec48824e4daf059c
 URL:		http://www.kdevelop.org/
 Requires:	kdoc
 BuildRequires:	autoconf
@@ -29,6 +30,8 @@ BuildRequires:	fam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _htmldir        %{_docdir}/kde/HTML
+%define         _icondir        %{_datadir}/icons
+
 %define         no_install_post_chrpath         1
 
 %description
@@ -78,12 +81,9 @@ potrzebnych do programowania przez dodanie ich do menu Tools wed硊g
 w砤snych potrzeb.
 
 %prep 
-%setup -q -n %{name}-%{snap}
+%setup -q -n %{name}-%{_snap}
 
 %build
-kde_htmldir="%{_htmldir}"; export kde_htmldir
-kde_icondir="%{_pixmapsdir}"; export kde_icondir
-kde_appsdir="%{_applnkdir}"; export kde_appsdir
 
 %configure
 
@@ -92,13 +92,16 @@ kde_appsdir="%{_applnkdir}"; export kde_appsdir
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+    	kde_appsdir=%{_applnkdir} \
+	kde_htmldir=%{_htmldir}
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}
 
 mv $RPM_BUILD_ROOT{%{_applnkdir}/Development/*,%{_desktopdir}}
 
-cd $RPM_BUILD_ROOT%{_pixmapsdir}
+cd $RPM_BUILD_ROOT%{_icondir}
 mv {lo,hi}color/16x16/actions/kdevelop_tip.png
 mv {lo,hi}color/32x32/actions/kdevelop_tip.png
 cd -
@@ -125,4 +128,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_desktopdir}/*
-%{_pixmapsdir}/*/*/*/*
+%{_icondir}/*/*/*/*
