@@ -1,33 +1,36 @@
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
+Summary(zh_CN):	KDE C/C++¼¯³É¿ª·¢»·¾³
 Name:		kdevelop
-%define		_kde_ver	3.0.3
-Version:	2.1.3
-Release:	2
+
+Version:	3.0a1
+Release:	1
 Epoch:		7
 License:	GPL
 Vendor:		Sandy Meier <smeier@rz.uni-potsdam.de>
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kde_ver}/src/%{name}-%{version}_for_KDE_3.0.tar.bz2
+#Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kde_ver}/src/%{name}-%{version}_for_KDE_3.0.tar.bz2
+Source0:	%{name}-%{version}.tar.bz2
 Source1:	kde-i18n-%{name}-%{_kde_ver}.tar.bz2
 URL:		http://www.kdevelop.org/
+Requires:	kdoc
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel = %{_kde_ver}
+BuildRequires:	kdelibs-devel >= 3.0.8 
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	qt-devel >= 3.0.5
 BuildRequires:	zlib-devel
-Requires:	kdesdk-extractrc
-Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+
 %define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 %define         _htmldir        /usr/share/doc/kde/HTML
 
 %description
@@ -67,9 +70,8 @@ ich do projektu; zarz±dzanie plikami ¼ród³owymi, nag³ówkowymi,
 dokumentacj± itp.; tworzenie podrêczników u¿ytkownika pisanych w SGML
 i automatyczne generowanie wyj¶cia HTML pasuj±cego do KDE;
 automatyczne tworzenie dokumentacji API w HTML do klas projektu z
-odniesieniami do u¿ywanych bibliotek; wsparcie dla
-internacjonalizacji, pozwalaj±ce t³umaczom ³atwo dodawaæ pliki z
-t³umaczeniami do projektu.
+odniesieniami do u¿ywanych bibliotek; wsparcie dla internacjonalizacji,
+ pozwalaj±ce t³umaczom ³atwo dodawaæ pliki z t³umaczeniami do projektu.
 
 KDevelop ma tak¿e tworzenie interfejsów u¿ytkownika przy u¿yciu
 edytora dialogów WYSIWYG; odpluskwianie aplikacji poprzez integracjê z
@@ -82,23 +84,21 @@ w³asnych potrzeb.
 #KDE.
 
 %prep
-%setup -q -n %{name}-%{version}_for_KDE_3.0
+%setup -q
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-#aclocal
-#autoconf
-%configure \
-	--enable-final
+%configure 
+#	--enable-final
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-mv $RPM_BUILD_ROOT%{_bindir}/extractrc `pwd`
+
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
@@ -108,15 +108,12 @@ bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %post	-p /sbin/ldconfig
+
 %postun	-p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc extractrc
 %attr(755,root,root) %{_bindir}/*
+%{_includedir}/*
 %attr(755,root,root) %{_libdir}/*
-%{_applnkdir}/Development/*
-%{_datadir}/apps/kconf_update/*
-%{_datadir}/apps/kdevelop
-%{_datadir}/mimelnk/application/*
-%{_pixmapsdir}/*/*/*/*
+%{_datadir}/*
