@@ -85,7 +85,7 @@ w³asnych potrzeb.
 %setup -q -n %{name}-%{version}_for_KDE_3.1
 
 %build
-kde_appsdir="%{_applnkdir}"; export kde_appsdir 
+kde_appsdir="%{_applnkdir}"; export kde_appsdir
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
