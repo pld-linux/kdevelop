@@ -25,6 +25,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	db-devel
 BuildRequires:	flex
+%{?with_ada:BuildRequires:gcc-ada}
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel  >= 9:3.3.0
 BuildRequires:	libjpeg-devel
@@ -35,8 +36,6 @@ BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
-BuildRequires:	unsermake >= 040511
-%{?with_ada:BuildRequires:gcc-ada}
 Requires:	kdebase-core >= 9:3.2.0
 Requires:	kdesdk-libcvsservice >= 3:3.3.0
 Requires:	kdoc
@@ -94,9 +93,8 @@ w³asnych potrzeb.
 %patch0 -p1
 
 %build
-cp %{_datadir}/automake/config.sub admin
+cp -f /usr/share/automake/config.sub admin
 export UNSERMAKE=%{_datadir}/unsermake/unsermake
-cp %{_datadir}/automake/config.sub admin
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
@@ -158,9 +156,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/*/*
 %{_kdedocdir}/*
 # WTF?
-%dir %{_prefix}/kdevbdb
-%dir %{_prefix}/kdevbdb/bin
-%attr(755,root,root) %{_prefix}/kdevbdb/bin/*
-%{_prefix}/kdevbdb/docs
-%{_prefix}/kdevbdb/include
-%{_prefix}/kdevbdb/lib
+#%dir %{_prefix}/kdevbdb
+#%dir %{_prefix}/kdevbdb/bin
+#%attr(755,root,root) %{_prefix}/kdevbdb/bin/*
+#%{_prefix}/kdevbdb/docs
+#%{_prefix}/kdevbdb/include
+#%{_prefix}/kdevbdb/lib
