@@ -9,8 +9,9 @@ Group(de):	X11/KDE/Entwicklung
 Group(pl):	X11/KDE/Programowanie
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/src/KDevelop/%{name}-%{version}.tar.bz2
 URL:		http://www.kdevelop.org
-BuildRequires:	qt-devel >= 2.2
 BuildRequires:	kdelibs-devel >= 2.1
+BuildRequires:	openssl-devel
+BuildRequires:	qt-devel >= 2.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -43,7 +44,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%{_applnkdir}/*
+%{_applnkdir}/Development/*
 %{_datadir}/apps/*
-%{_datadir}/mimelnk/*
-%{_pixmapsdir}/*
+%{_datadir}/mimelnk/application/*
+%{_pixmapsdir}/*/*/*/*
