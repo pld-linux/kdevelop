@@ -16,6 +16,7 @@ Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 # Source0-md5:	45947a7e01b5941956e154311f268cdc
 URL:		http://www.kdevelop.org/
 BuildRequires:	antlr >= 2.7.3
+BuildRequires:	artsc-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	db-devel
