@@ -1,0 +1,78 @@
+--- kdevelop-3.1.1/kdevelop.m4.in.orig	2004-06-22 19:28:00.000000000 +0200
++++ kdevelop-3.1.1/kdevelop.m4.in	2004-10-31 00:30:20.990147072 +0200
+@@ -18,14 +18,9 @@
+ dnl
+ dnl not currently used
+ dnl
+-qt_docdirs="/usr/doc/qt-doc/html /usr/local/qt/html /usr/local/lib/qt/html /usr/lib/qt/doc/html /usr/X11/lib/qt/html /usr/X11/lib/qt/doc/html /usr/X11R6/share/doc/qt/html /usr/share/doc/packages/qt/html"
+-test -n "$QTDIR" && qt_docdirs="$QTDIR/html $QTDIR/doc/html $QTDIR/doc $qt_docdirs"
+-qt_docdirs="$ac_qt_docdirs $qt_docdirs"
+-AC_FIND_FILE(classes.html, $qt_docdirs, qt_docdir)
++qt_docdirs="/usr/share/doc/qt-doc/html"
++qt_docdir="/usr/share/doc/qt-doc/html"
+ AC_MSG_RESULT($qt_docdir)
+-if test "$qt_docdir" = NO; then
+-  qt_docdir=""
+-fi
+ AC_DEFINE_UNQUOTED(QT_DOCDIR, "$qt_docdir", [Where the Qt documentation is installed])
+ ])
+ 
+@@ -46,19 +41,10 @@
+   ac_kdelibs_doxydirs=$withval
+ ],
+ )
+-
+-if test "${prefix}" = NONE; then
+-  ac_kde_htmldir="$ac_default_prefix"/share/doc/HTML
+-else
+-  ac_kde_htmldir="$prefix"/share/doc/HTML
+-fi
+-
+-kdelibs_doxydirs="$ac_kdelibs_doxydirs $ac_kde_htmldir/default/kdelibs-apidocs $ac_kde_htmldir/en/kdelibs-apidocs"
+-AC_FIND_FILE(kdecore/html/classKApplication.html, $kdelibs_doxydirs, kdelibs_doxydir)
++ac_kde_htmldir="/usr/share/doc/kde/HTML/kdelibs-api"
++kdelibs_doxydirs="/usr/share/doc/kde/HTML/kdelibs-api"
++kdelibs_doxydir="/usr/share/doc/kde/HTML/kdelibs-api"
+ AC_MSG_RESULT($kdelibs_doxydir)
+-if test "$kdelibs_doxydir" = NO; then
+-  kdelibs_doxydir=""
+-fi
+ AC_DEFINE_UNQUOTED(KDELIBS_DOXYDIR, "$kdelibs_doxydir", [where KDE documentation is installed])
+ ])
+ AC_SUBST(kdelibs_doxydir)
+@@ -81,22 +67,11 @@
+ ],
+ )
+ 
+-if test "${prefix}" = NONE; then
+-  ac_kde_htmldir="$ac_default_prefix"/share/doc/HTML
+-else
+-  ac_kde_htmldir="$prefix"/share/doc/HTML
+-fi
+-
+-kdelibs_docdirs="/usr/doc/kdelibs-doc/html"
+-if test "$ac_kde_htmldir" != ""; then
+- kdelibs_docdirs="$kdelibs_docdirs $ac_kde_htmldir/default/kdelibs $ac_kde_htmldir/en/kdelibs"
+-fi
+-kdelibs_docdirs="$ac_kdelibs_docdirs $kdelibs_docdirs"
+-AC_FIND_FILE(kdecore/index.html, $kdelibs_docdirs, kdelibs_docdir)
++ac_kde_htmldir="/usr/share/doc/kde/HTML"
++kdelibs_docdirs="/usr/share/doc/kde/HTML"
++kdelibs_docdir="/usr/share/doc/kde/HTML"
+ AC_MSG_RESULT($kdelibs_docdir)
+-if test "$kdelibs_docdir" = NO; then
+-  kdelibs_docdir=""
+-fi
++
+ AC_DEFINE_UNQUOTED(KDELIBS_DOCDIR, "$kdelibs_docdir", [where KDE documentation is installed])
+ ])
+ 
+@@ -603,7 +568,7 @@
+ AC_PROG_LN_S
+ echo "CONFIGURING FOR BERKELEY DB"
+ bdb=bdb
+-bdb_conf_flags="--prefix=$prefix/kdevbdb"
++bdb_conf_flags="--prefix=$libdir/kdevbdb"
+ if test "$kde_use_debug_code" != "no";
+ then
+     bdb_conf_flags="$bdb_conf_flags --enable-debug --enable-diagnostic"
