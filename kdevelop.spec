@@ -2,6 +2,7 @@
 # Conditional build:
 %define		_ver		3.0.4
 %define		_state		stable
+%define		_kde_ver	3.2.3
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
@@ -13,9 +14,9 @@ Release:	0.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	c4a84b34927e6f1c7fb2bfb9a74b5b34
+#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 URL:		http://www.kdevelop.org/
 BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
