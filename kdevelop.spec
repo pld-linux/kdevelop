@@ -15,7 +15,7 @@ License:	GPL
 Group:		X11/Development/Tools
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kde_ver}/src/%{name}-%{version}.tar.bz2
 Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-# Source0-md5:	c362e32f793f30ba4cedcdc0a914328d
+# Source0-md5:	c4a84b34927e6f1c7fb2bfb9a74b5b34
 URL:		http://www.kdevelop.org/
 BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
@@ -143,4 +143,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/servicetypes/*
 %{_desktopdir}/kde/*
 %{_iconsdir}/*/*/*/*
-%{_kdedocdir}/kdevelop
+%{_kdedocdir}/*
