@@ -1,9 +1,9 @@
 #
 # Conditional build:
 %bcond_without	ada	# don't build with ada
-
+#
 %define		_state		stable
-%define		_ver		3.1.2
+%define		_kdever		3.4
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
@@ -11,13 +11,13 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung f黵 KDE
 Name:		kdevelop
-Version:	%{_ver}
+Version:	3.2.0
 Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/3.3.2/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	706dfcf25f013c544220a0ca69b74846
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	37352d6f5496849d5704e1503ab0273a
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
@@ -26,21 +26,22 @@ BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	db-devel
+BuildRequires:	doxygen
 BuildRequires:	flex
 %{?with_ada:BuildRequires:gcc-ada}
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 9:3.3.0
+BuildRequires:	kdelibs-devel >= 9:%{_kdever}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	unsermake >= 040511
-BuildRequires:	zlib-devel
 BuildRequires:	subversion-devel
-Requires:	kdebase-core >= 9:3.2.0
-Requires:	kdesdk-libcvsservice >= 3:3.3.0
+#BuildRequires:	unsermake >= 040511
+BuildRequires:	zlib-devel
+Requires:	kdebase-core >= 9:%{_kdever}
+Requires:	kdesdk-libcvsservice >= 3:%{_kdever}
 Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -137,10 +138,6 @@ rm -rf $RPM_BUILD_ROOT
 	kde_libs_htmldir=%{_kdedocdir} \
 	kde_htmldir=%{_kdedocdir}
 
-install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
-
-mv $RPM_BUILD_ROOT{%{_datadir}/applnk/Development/*,%{_desktopdir}/kde}
-
 cd $RPM_BUILD_ROOT%{_iconsdir}
 mv {lo,hi}color/16x16/actions/kdevelop_tip.png
 mv {lo,hi}color/32x32/actions/kdevelop_tip.png
@@ -164,19 +161,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
 %{_libdir}/kde3/*.la
 %attr(755,root,root) %{_libdir}/kde3/*.so*
-#dir %{_libdir}/kde3/plugins/kdevdesigner
-#{_libdir}/kde3/plugins/kdevdesigner/libkdevdesigner_lang.la
-#attr(755,root,root) %{_libdir}/kde3/plugins/kdevdesigner/libkdevdesigner_lang.so
-%{_includedir}/kdevelop
-%{_includedir}/kinterfacedesigner
 %{_datadir}/apps/*
 %{_datadir}/config/*
+%{_datadir}/desktop-directories/kde-development-kdevelop.directory
 %{_datadir}/mimelnk/application/*
 %{_datadir}/mimelnk/text/x-fortran.desktop
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_desktopdir}/kde/*
 %{_iconsdir}/hicolor/*/*/*
+%{_includedir}/kdevelop
+%{_includedir}/kinterfacedesigner
 %dir %{_libdir}/kdevbdb
 %dir %{_libdir}/kdevbdb/bin
 %dir %{_libdir}/kdevbdb/docs
