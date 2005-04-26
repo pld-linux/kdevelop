@@ -12,7 +12,7 @@ Summary(zh_CN):	KDE C/C++集成开发环境
 Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung f黵 KDE
 Name:		kdevelop
 Version:	3.2.0
-Release:	1
+Release:	1.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
@@ -111,6 +111,11 @@ u. a. Qt-, KDE-, GNOME-, C++- und C-Projekte.
 	kdevelop.desktop
 
 %build
+%ifarch alpha
+# some nptl/tls glibc problems on alpha, force old glibc
+LD_ASSUME_KERNEL=2.4.20; export LD_ASSUME_KERNEL
+%endif
+
 cp -f /usr/share/automake/config.sub admin
 #export UNSERMAKE=%{_datadir}/unsermake/unsermake
 %{__make} -f admin/Makefile.common cvs
