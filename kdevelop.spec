@@ -131,7 +131,7 @@ cp -f /usr/share/automake/config.sub admin
 	--enable-svnsupport \
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full}
 
-%{?with_ada:%{__make} -C languages/ada genparser}
+#%{?with_ada:%{__make} -C languages/ada genparser}
 
 %{__make}
 
