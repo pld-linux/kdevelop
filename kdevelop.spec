@@ -22,7 +22,8 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.t
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 URL:		http://www.kdevelop.org/
-BuildRequires:	antlr >= 2.7.3
+# disabled, breaks with this new antlr
+# BuildRequires:	antlr >= 2.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	db-devel
@@ -111,11 +112,6 @@ u. a. Qt-, KDE-, GNOME-, C++- und C-Projekte.
 	kdevelop.desktop
 
 %build
-%ifarch alpha
-# some nptl/tls glibc problems on alpha, force old glibc
-LD_ASSUME_KERNEL=2.4.20; export LD_ASSUME_KERNEL
-%endif
-
 cp -f /usr/share/automake/config.sub admin
 #export UNSERMAKE=%{_datadir}/unsermake/unsermake
 %{__make} -f admin/Makefile.common cvs
@@ -131,7 +127,8 @@ cp -f /usr/share/automake/config.sub admin
 	--enable-svnsupport \
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full}
 
-#%{?with_ada:%{__make} -C languages/ada genparser}
+# disabled, breaks with new antlr
+# %{?with_ada:%{__make} -C languages/ada genparser}
 
 %{__make}
 
