@@ -12,7 +12,7 @@ Summary(zh_CN):	KDE C/C++集成开发环境
 Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung f黵 KDE
 Name:		kdevelop
 Version:	3.2.1
-Release:	0.1
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
