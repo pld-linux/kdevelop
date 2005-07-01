@@ -3,7 +3,7 @@
 %bcond_without	ada	# don't build with ada
 #
 %define		_state		stable
-%define		_kdever		3.4.1
+%define		_kdever		3.4.89
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
@@ -12,13 +12,11 @@ Summary(zh_CN):	KDE C/C++集成开发环境
 Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung f黵 KDE
 Name:		kdevelop
 Version:	3.2.1
-Release:	1
+Release:	0.050701.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	7a5e9f2fb8a9539a41541dba566a234a
-#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
+Source0:        ziew.tar.bz2
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 URL:		http://www.kdevelop.org/
@@ -42,7 +40,7 @@ BuildRequires:	subversion-devel
 #BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
 Requires:	kdebase-core >= 9:%{_kdever}
-Requires:	kdesdk-libcvsservice >= 3:%{_kdever}
+Requires:	kdesdk-libcvsservice
 Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -103,7 +101,8 @@ die KDevelop-IDE 鰂fentlich unter der GPL erh鋖tlich und unterst黷zt
 u. a. Qt-, KDE-, GNOME-, C++- und C-Projekte.
 
 %prep
-%setup -q
+%setup -q -n %{name} -T -D
+#%patch100 -p1
 %patch0 -p1
 %patch1 -p1
 
@@ -111,16 +110,17 @@ u. a. Qt-, KDE-, GNOME-, C++- und C-Projekte.
 	-e 's/\(^Categories=.*$\)/\1;/' \
 	kdevelop.desktop
 
-%build
-cp -f /usr/share/automake/config.sub admin
-#export UNSERMAKE=%{_datadir}/unsermake/unsermake
+cp %{_datadir}/automake/config.sub admin
+export kde_htmldir=%{_kdedocdir}
+export kde_libs_htmldir=%{_kdedocdir}
 %{__make} -f admin/Makefile.common cvs
+
+%build
 
 %configure \
 	--disable-rpath \
 	--with-qt-libraries=%{_libdir} \
 	%{!?with_ada:--disable-ada} \
-	--enable-final \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
 %endif
@@ -163,6 +163,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
 %{_libdir}/kde3/*.la
 %attr(755,root,root) %{_libdir}/kde3/*.so*
+%{_libdir}/kconf_update_bin/kdev-gen-settings-kconf_update
 %{_datadir}/apps/*
 %{_datadir}/config/*
 %{_datadir}/desktop-directories/kde-development-kdevelop.directory
