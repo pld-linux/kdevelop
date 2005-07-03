@@ -12,7 +12,7 @@ Summary(zh_CN):	KDE C/C++集成开发环境
 Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung f黵 KDE
 Name:		kdevelop
 Version:	3.2.1
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
@@ -38,7 +38,7 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	subversion-devel
+BuildRequires:	subversion-devel >= 1.2.0-4
 #BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
 Requires:	kdebase-core >= 9:%{_kdever}
@@ -124,7 +124,10 @@ cp -f /usr/share/automake/config.sub admin
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
 %endif
-	--enable-svnsupport \
+	--with-apr-config=%{_bindir}/apr-1-config \
+	--with-apu-config=%{_bindir}/apu-1-config \
+	--with-svn-include=%{_includedir}/subversion \
+	--with-svn-lib=%{_libdir} \
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full}
 
 # disabled, breaks with new antlr
