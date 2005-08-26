@@ -41,6 +41,7 @@ BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	subversion-devel >= 1.2.0-4
 #BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
+BuildConflicts:	star
 Requires:	kdebase-core >= 9:%{_kdever}
 Requires:	kdesdk-libcvsservice >= 3:%{_kdever}
 Requires:	kdoc
