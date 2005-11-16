@@ -67,12 +67,4 @@
  AC_DEFINE_UNQUOTED(KDELIBS_DOCDIR, "$kdelibs_docdir", [where KDE documentation is installed])
  ])
  
-@@ -603,7 +568,7 @@
- AC_PROG_LN_S
- echo "CONFIGURING FOR BERKELEY DB"
- bdb=bdb
--bdb_conf_flags="--prefix=$prefix/kdevbdb"
-+bdb_conf_flags="--prefix=$libdir/kdevbdb"
- if test "$kde_use_debug_code" != "no";
- then
-     bdb_conf_flags="$bdb_conf_flags --enable-debug --enable-diagnostic"
+
