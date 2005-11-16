@@ -3,7 +3,7 @@
 %bcond_without	ada	# don't build with ada
 #
 %define		_state		stable
-%define		_kdever		3.4.3
+%define		_kdever		3.5
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
@@ -11,13 +11,13 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung f黵 KDE
 Name:		kdevelop
-Version:	3.2.3
-Release:	1
+Version:	3.3.0
+Release:	0.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	7dfae96e274c6dcb4748419452ebdf35
+# Source0-md5:	0a8fc5efb3fa27d346fed5bd2b2a8f05
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 URL:		http://www.kdevelop.org/
@@ -158,8 +158,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc %{_libdir}/kdevbdb/docs/LICENSE
-%doc %{_libdir}/kdevbdb/docs/README
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/*.la
 %attr(755,root,root) %{_libdir}/*.so
@@ -177,9 +175,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/*/*
 %{_includedir}/kdevelop
 %{_includedir}/kinterfacedesigner
-%dir %{_libdir}/kdevbdb
-%dir %{_libdir}/kdevbdb/bin
-%dir %{_libdir}/kdevbdb/docs
-%attr(755,root,root) %{_libdir}/kdevbdb/bin/*
-%{_libdir}/kdevbdb/include
-%{_libdir}/kdevbdb/lib
