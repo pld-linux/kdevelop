@@ -12,7 +12,7 @@ Summary(zh_CN):	KDE C/C++集成开发环境
 Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung f黵 KDE
 Name:		kdevelop
 Version:	3.3.0
-Release:	0.1
+Release:	0.2
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
@@ -164,6 +164,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
 %{_libdir}/kde3/*.la
 %attr(755,root,root) %{_libdir}/kde3/*.so*
+%{_libdir}/kconf_update_bin/kdev-gen-settings-kconf_update
 %{_datadir}/apps/*
 %{_datadir}/config/*
 %{_datadir}/desktop-directories/kde-development-kdevelop.directory
