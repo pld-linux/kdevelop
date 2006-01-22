@@ -3,7 +3,7 @@
 %bcond_without	ada	# don't build with ada
 #
 %define		_state		stable
-%define		_kdever		3.5
+%define		_kdever		3.5.1
 
 Summary:	KDE Integrated Development Environment
 Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
@@ -11,13 +11,13 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung f黵 KDE
 Name:		kdevelop
-Version:	3.3.0
+Version:	3.3.1
 Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	1048c89c1aad0daf6581bb04e15206c4
+# Source0-md5:	e5e3d3ce60a0dcafb99721f6304f87ef
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 URL:		http://www.kdevelop.org/
