@@ -6,10 +6,10 @@
 %define		_kdever		3.5.1
 
 Summary:	KDE Integrated Development Environment
+Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung für KDE
 Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++¼¯³É¿ª·¢»·¾³
-Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung für KDE
 Name:		kdevelop
 Version:	3.3.1
 Release:	1
@@ -70,6 +70,15 @@ with KIconEdit; The inclusion of any other program you need for
 development by adding it to the "Tools"-menu according to your
 individual needs.
 
+%description -l de
+KDevelop ist eine grafische Entwicklungsumgebung für KDE.
+
+Das KDevelop-Projekt wurde 1998 begonnen, um eine einfach zu
+bedienende grafische (integrierte Entwicklungsumgebung) für C++ und C
+auf Unix-basierten Betriebssystemen bereitzustellen. Seit damals ist
+die KDevelop-IDE öffentlich unter der GPL erhältlich und unterstützt
+u. a. Qt-, KDE-, GNOME-, C++- und C-Projekte.
+
 %description -l pl
 KDevelop to zintegrowane ¶rodowisko programistyczne dla KDE, daj±ce
 wiele mo¿liwo¶ci przydatnych programistom oraz zunifikowany interfejs
@@ -92,15 +101,6 @@ edytora dialogów WYSIWYG; odpluskwianie aplikacji poprzez integracjê z
 KDbg; edycjê ikon przy pomocy KIconEdit; do³±czanie innych programów
 potrzebnych do programowania przez dodanie ich do menu Tools wed³ug
 w³asnych potrzeb.
-
-%description -l de
-KDevelop ist eine grafische Entwicklungsumgebung für KDE.
-
-Das KDevelop-Projekt wurde 1998 begonnen, um eine einfach zu
-bedienende grafische (integrierte Entwicklungsumgebung) für C++ und C
-auf Unix-basierten Betriebssystemen bereitzustellen. Seit damals ist
-die KDevelop-IDE öffentlich unter der GPL erhältlich und unterstützt
-u. a. Qt-, KDE-, GNOME-, C++- und C-Projekte.
 
 %prep
 %setup -q
