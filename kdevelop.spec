@@ -120,7 +120,7 @@ cp -f /usr/share/automake/config.sub admin
 	--disable-rpath \
 	--with-qt-libraries=%{_libdir} \
 	%{!?with_ada:--disable-ada} \
-	--enable-final \
+	--disable-final \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
 %endif
