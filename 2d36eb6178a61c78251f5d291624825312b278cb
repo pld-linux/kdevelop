@@ -1,0 +1,2 @@
+- fix what might cause kde not to work on amd64 (reported by undefine)
+  PLEASE add it to all KDE specs
