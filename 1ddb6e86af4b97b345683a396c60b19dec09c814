@@ -1,0 +1,8 @@
+- added `BuildConflicts: star'. gnutar (which belongs to star pkg) breaks
+  builds:
+   gnutar -cf gnu.tar -C ./gnu AUTHORS  COPYING \
+   ChangeLog  INSTALL  NEWS  README  TODO
+   No such file or directory. Cannot stat 'ChangeLog'.
+   gnutar: No such file or directory. Cannot stat 'INSTALL'.
+   [...]
+   with gtar (tar pkg) everything goes OK.
