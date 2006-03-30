@@ -3,7 +3,7 @@
 %bcond_without	ada	# don't build with ada
 #
 %define		_state		stable
-%define		_kdever		3.5.1
+%define		_kdever		3.5.2
 
 Summary:	KDE Integrated Development Environment
 Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung f黵 KDE
@@ -11,13 +11,13 @@ Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.3.1
+Version:	3.3.2
 Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	e5e3d3ce60a0dcafb99721f6304f87ef
+# Source0-md5:	494c9320a5f8681b67a3a06fa0ce18b7
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 URL:		http://www.kdevelop.org/
@@ -38,7 +38,6 @@ BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	subversion-devel >= 1.2.0-4
-#BuildRequires:	unsermake >= 040511
 BuildRequires:	zlib-devel
 BuildConflicts:	star
 Requires:	kdebase-core >= 9:%{_kdever}
@@ -113,9 +112,7 @@ w砤snych potrzeb.
 
 %build
 cp -f /usr/share/automake/config.sub admin
-#export UNSERMAKE=%{_datadir}/unsermake/unsermake
 %{__make} -f admin/Makefile.common cvs
-
 %configure \
 	--disable-rpath \
 	--with-qt-libraries=%{_libdir} \
@@ -143,12 +140,11 @@ rm -rf $RPM_BUILD_ROOT
 	kde_libs_htmldir=%{_kdedocdir} \
 	kde_htmldir=%{_kdedocdir}
 
+%find_lang %{name} --with-kde --all-name
+
 cd $RPM_BUILD_ROOT%{_iconsdir}
 mv {lo,hi}color/16x16/actions/kdevelop_tip.png
 mv {lo,hi}color/32x32/actions/kdevelop_tip.png
-cd -
-
-%find_lang %{name} --with-kde --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
