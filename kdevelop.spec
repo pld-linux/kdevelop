@@ -4,6 +4,8 @@
 #
 %define		_state		stable
 %define		_kdever		3.5.2
+%define		_minbaseevr	9:%{_kdever}
+%define		_minkdesdkevr	3:%{_kdever}
 
 Summary:	KDE Integrated Development Environment
 Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung für KDE
@@ -30,7 +32,7 @@ BuildRequires:	doxygen
 BuildRequires:	flex
 %{?with_ada:BuildRequires:gcc-ada}
 BuildRequires:	gettext-devel
-BuildRequires:	kdelibs-devel >= 9:%{_kdever}
+BuildRequires:	kdelibs-devel >= %{_minbaseevr}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
@@ -40,8 +42,8 @@ BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	subversion-devel >= 1.2.0-4
 BuildRequires:	zlib-devel
 BuildConflicts:	star
-Requires:	kdebase-core >= 9:%{_kdever}
-Requires:	kdesdk-libcvsservice >= 3:%{_kdever}
+Requires:	kdebase-core >= %{_minbaseevr}
+Requires:	kdesdk-libcvsservice >= %{_minkdesdkevr}
 Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
