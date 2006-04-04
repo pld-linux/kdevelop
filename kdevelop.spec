@@ -38,6 +38,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pcre-devel
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	subversion-devel >= 1.2.0-4
 BuildRequires:	zlib-devel
