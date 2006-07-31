@@ -13,13 +13,13 @@ Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.3.4
+Version:	3.3.91
 Release:	0.beta1.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-Source0:	ftp://ftp.kde.org/pub/kde/unstable/apps/KDE3.x/ide/%{name}-3.3.91.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/unstable/apps/KDE3.x/ide/%{name}-%{version}.tar.bz2
 # Source0-md5:	b87274bd331bb81077c1c51f5cc1b5da
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
@@ -106,7 +106,7 @@ potrzebnych do programowania przez dodanie ich do menu Tools wed硊g
 w砤snych potrzeb.
 
 %prep
-%setup -q -n kdevelop-3.3.91
+%setup -q
 %patch0 -p1
 %patch1 -p1
 
