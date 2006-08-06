@@ -168,7 +168,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/*
 %{_datadir}/config/*
 %{_datadir}/desktop-directories/kde-development-kdevelop.directory
-%{_datadir}/mimelnk/application/*
+%{_datadir}/mimelnk/application/x-kdevelop.desktop
 %{_datadir}/mimelnk/text/x-fortran.desktop
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
