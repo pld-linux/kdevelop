@@ -3,7 +3,7 @@
 %bcond_without	ada	# don't build with ada
 #
 %define		_state		stable
-%define		_kdever		3.5.3
+%define		_kdever		3.5.4
 %define		_minbaseevr	9:%{_kdever}
 %define		_minkdesdkevr	3:%{_kdever}
 
@@ -13,13 +13,13 @@ Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.3.3
+Version:	3.3.4
 Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	89f3ad2b3e97e92bd9421f0d9ae8e427
+# Source0-md5:	e5278e37468bda7fdf6d019f84aeed16
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 URL:		http://www.kdevelop.org/
@@ -167,7 +167,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/*
 %{_datadir}/config/*
 %{_datadir}/desktop-directories/kde-development-kdevelop.directory
-%{_datadir}/mimelnk/application/*
+%{_datadir}/mimelnk/application/x-kdevelop.desktop
 %{_datadir}/mimelnk/text/x-fortran.desktop
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
