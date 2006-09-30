@@ -23,6 +23,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/unstable/apps/KDE3.x/ide/%{name}-%{version}.t
 # Source0-md5:	246cbf761a9248217ad3166ce0160af8
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
+Patch2:		kde-ac260-lt.patch
 URL:		http://www.kdevelop.org/
 # disabled, breaks with this new antlr
 # BuildRequires:	antlr >= 2.7.3
@@ -109,6 +110,7 @@ w³asnych potrzeb.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	-e 's/\(^Categories=.*$\)/\1;/' \
