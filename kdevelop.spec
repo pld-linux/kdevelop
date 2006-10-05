@@ -165,6 +165,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/*.so*
 %{_libdir}/kconf_update_bin/kdev-gen-settings-kconf_update
 %{_datadir}/apps/*
+%exclude %dir %{_datadir}/apps/kconf_update
 %{_datadir}/config/*
 %{_datadir}/desktop-directories/kde-development-kdevelop.directory
 %{_datadir}/mimelnk/application/x-kdevelop.desktop
