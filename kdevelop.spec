@@ -3,7 +3,7 @@
 %bcond_without	ada	# don't build with ada
 #
 %define		_state		stable
-%define		_kdever		3.5.4
+%define		_kdever		3.5.5
 %define		_minbaseevr	9:%{_kdever}
 %define		_minkdesdkevr	3:%{_kdever}
 
@@ -13,15 +13,16 @@ Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.3.4
-Release:	1
+Version:	3.3.5
+Release:	0.1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	e5278e37468bda7fdf6d019f84aeed16
+# Source0-md5:	e1bb5566c79022c20d534efae386cfa2
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
+Patch2:		kde-ac260-lt.patch
 URL:		http://www.kdevelop.org/
 # disabled, breaks with this new antlr
 # BuildRequires:	antlr >= 2.7.3
@@ -108,6 +109,7 @@ w砤snych potrzeb.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	-e 's/\(^Categories=.*$\)/\1;/' \
