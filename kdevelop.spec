@@ -50,6 +50,8 @@ Requires:	kdesdk-libcvsservice >= %{_minkdesdkevr}
 Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define         _noautoreq      libtool(.*)
+
 %description
 The KDevelop Integrated Development Environment provides many features
 that developers need as well as providing a unified interface to
