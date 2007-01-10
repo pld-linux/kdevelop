@@ -3,7 +3,7 @@
 %bcond_without	ada	# don't build with ada
 #
 %define		_state		stable
-%define		_kdever		3.5.4
+%define		_kdever		3.5.5
 %define		_minbaseevr	9:%{_kdever}
 %define		_minkdesdkevr	3:%{_kdever}
 
@@ -13,14 +13,14 @@ Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.3.92
-Release:	0.1
+Version:	3.3.94
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
 Source0:	ftp://ftp.kde.org/pub/kde/unstable/apps/KDE3.x/ide/%{name}-%{version}.tar.bz2
-# Source0-md5:	246cbf761a9248217ad3166ce0160af8
+# Source0-md5:	5b7b7775f06c944822f58ada29e93576
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 Patch2:		kde-ac260-lt.patch
@@ -49,8 +49,6 @@ Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	kdesdk-libcvsservice >= %{_minkdesdkevr}
 Requires:	kdoc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define         _noautoreq      libtool(.*)
 
 %description
 The KDevelop Integrated Development Environment provides many features
@@ -154,6 +152,8 @@ cd $RPM_BUILD_ROOT%{_iconsdir}
 mv {lo,hi}color/16x16/actions/kdevelop_tip.png
 mv {lo,hi}color/32x32/actions/kdevelop_tip.png
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -163,10 +163,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%{_libdir}/*.la
 %attr(755,root,root) %{_libdir}/*.so
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
-%{_libdir}/kde3/*.la
 %attr(755,root,root) %{_libdir}/kde3/*.so*
 %{_libdir}/kconf_update_bin/kdev-gen-settings-kconf_update
 %{_datadir}/apps/*
