@@ -14,12 +14,12 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	3.4.0
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	80d7557dca281eaafd798fd8d194622d
+# Source0-md5:	9cf367c89329acf23738e23c0b663ee9
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 Patch2:		kde-ac260-lt.patch
