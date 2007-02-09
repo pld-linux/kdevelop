@@ -14,7 +14,7 @@ Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	3.4.0
-Release:	2
+Release:	3
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
@@ -23,6 +23,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}/src/%{name}-%{ve
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 Patch2:		kde-ac260-lt.patch
+Patch3:		%{name}-qmake_parser.patch
 URL:		http://www.kdevelop.org/
 # disabled, breaks with this new antlr
 # BuildRequires:	antlr >= 2.7.3
@@ -110,6 +111,7 @@ w砤snych potrzeb.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	-e 's/\(^Categories=.*$\)/\1;/' \
