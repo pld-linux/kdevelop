@@ -8,10 +8,10 @@
 %define		_minkdesdkevr	3:%{_kdever}
 
 Summary:	KDE Integrated Development Environment
-Summary(de):	KDevelop ist eine grafische Entwicklungsumgebung für KDE
-Summary(pl):	Zintegrowane ¶rodowisko programisty dla KDE
-Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
-Summary(zh_CN):	KDE C/C++¼¯³É¿ª·¢»·¾³
+Summary(de.UTF-8):   KDevelop ist eine grafische Entwicklungsumgebung fÃ¼r KDE
+Summary(pl.UTF-8):   Zintegrowane Å›rodowisko programisty dla KDE
+Summary(pt_BR.UTF-8):   Ambiente Integrado de Desenvolvimento para o KDE
+Summary(zh_CN.UTF-8):   KDE C/C++é›†æˆå¼€å‘ç¯å¢ƒ
 Name:		kdevelop
 Version:	3.4.0
 Release:	3
@@ -74,37 +74,37 @@ with KIconEdit; The inclusion of any other program you need for
 development by adding it to the "Tools"-menu according to your
 individual needs.
 
-%description -l de
-KDevelop ist eine grafische Entwicklungsumgebung für KDE.
+%description -l de.UTF-8
+KDevelop ist eine grafische Entwicklungsumgebung fÃ¼r KDE.
 
 Das KDevelop-Projekt wurde 1998 begonnen, um eine einfach zu
-bedienende grafische (integrierte Entwicklungsumgebung) für C++ und C
+bedienende grafische (integrierte Entwicklungsumgebung) fÃ¼r C++ und C
 auf Unix-basierten Betriebssystemen bereitzustellen. Seit damals ist
-die KDevelop-IDE öffentlich unter der GPL erhältlich und unterstützt
+die KDevelop-IDE Ã¶ffentlich unter der GPL erhÃ¤ltlich und unterstÃ¼tzt
 u. a. Qt-, KDE-, GNOME-, C++- und C-Projekte.
 
-%description -l pl
-KDevelop to zintegrowane ¶rodowisko programistyczne dla KDE, daj±ce
-wiele mo¿liwo¶ci przydatnych programistom oraz zunifikowany interfejs
-do programów typu gdb, kompilator C/C++ oraz make.
+%description -l pl.UTF-8
+KDevelop to zintegrowane Å›rodowisko programistyczne dla KDE, dajÄ…ce
+wiele moÅ¼liwoÅ›ci przydatnych programistom oraz zunifikowany interfejs
+do programÃ³w typu gdb, kompilator C/C++ oraz make.
 
-KDevelop obs³uguje lub zawiera: wszystkie narzêdzia programistyczne
+KDevelop obsÅ‚uguje lub zawiera: wszystkie narzÄ™dzia programistyczne
 potrzebne do programowania w C++ jak kompilator, linker, automake,
-autoconf; KAppWizard, generuj±cy kompletne, gotowe do uruchomienia,
-proste aplikacje; Classgenerator do tworzenia nowych klas i w³±czania
-ich do projektu; zarz±dzanie plikami ¼ród³owymi, nag³ówkowymi,
-dokumentacj± itp.; tworzenie podrêczników u¿ytkownika pisanych w SGML
-i automatyczne generowanie wyj¶cia HTML pasuj±cego do KDE;
+autoconf; KAppWizard, generujÄ…cy kompletne, gotowe do uruchomienia,
+proste aplikacje; Classgenerator do tworzenia nowych klas i wÅ‚Ä…czania
+ich do projektu; zarzÄ…dzanie plikami ÅºrÃ³dÅ‚owymi, nagÅ‚Ã³wkowymi,
+dokumentacjÄ… itp.; tworzenie podrÄ™cznikÃ³w uÅ¼ytkownika pisanych w SGML
+i automatyczne generowanie wyjÅ›cia HTML pasujÄ…cego do KDE;
 automatyczne tworzenie dokumentacji API w HTML do klas projektu z
-odniesieniami do u¿ywanych bibliotek; wsparcie dla
-internacjonalizacji, pozwalaj±ce t³umaczom ³atwo dodawaæ pliki z
-t³umaczeniami do projektu.
+odniesieniami do uÅ¼ywanych bibliotek; wsparcie dla
+internacjonalizacji, pozwalajÄ…ce tÅ‚umaczom Å‚atwo dodawaÄ‡ pliki z
+tÅ‚umaczeniami do projektu.
 
-KDevelop ma tak¿e tworzenie interfejsów u¿ytkownika przy u¿yciu
-edytora dialogów WYSIWYG; odpluskwianie aplikacji poprzez integracjê z
-KDbg; edycjê ikon przy pomocy KIconEdit; do³±czanie innych programów
-potrzebnych do programowania przez dodanie ich do menu Tools wed³ug
-w³asnych potrzeb.
+KDevelop ma takÅ¼e tworzenie interfejsÃ³w uÅ¼ytkownika przy uÅ¼yciu
+edytora dialogÃ³w WYSIWYG; odpluskwianie aplikacji poprzez integracjÄ™ z
+KDbg; edycjÄ™ ikon przy pomocy KIconEdit; doÅ‚Ä…czanie innych programÃ³w
+potrzebnych do programowania przez dodanie ich do menu Tools wedÅ‚ug
+wÅ‚asnych potrzeb.
 
 %prep
 %setup -q
