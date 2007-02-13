@@ -8,10 +8,10 @@
 %define		_minkdesdkevr	3:%{_kdever}
 
 Summary:	KDE Integrated Development Environment
-Summary(de.UTF-8):   KDevelop ist eine grafische Entwicklungsumgebung für KDE
-Summary(pl.UTF-8):   Zintegrowane środowisko programisty dla KDE
-Summary(pt_BR.UTF-8):   Ambiente Integrado de Desenvolvimento para o KDE
-Summary(zh_CN.UTF-8):   KDE C/C++集成开发环境
+Summary(de.UTF-8):	KDevelop ist eine grafische Entwicklungsumgebung für KDE
+Summary(pl.UTF-8):	Zintegrowane środowisko programisty dla KDE
+Summary(pt_BR.UTF-8):	Ambiente Integrado de Desenvolvimento para o KDE
+Summary(zh_CN.UTF-8):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	3.4.0
 Release:	3
