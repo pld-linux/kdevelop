@@ -3,7 +3,7 @@
 %bcond_without	ada	# don't build with ada
 #
 %define		_state		stable
-%define		_kdever		3.5.5
+%define		_kdever		3.5.6
 %define		_minbaseevr	9:%{_kdever}
 %define		_minkdesdkevr	3:%{_kdever}
 
