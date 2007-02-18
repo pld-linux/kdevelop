@@ -13,16 +13,17 @@ Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.3.6
-Release:	1
+Version:	3.4.0
+Release:	3
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	0de7c7d82c176456f2adff48981f5d40
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	9cf367c89329acf23738e23c0b663ee9
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 Patch2:		kde-ac260-lt.patch
+Patch3:		%{name}-qmake_parser.patch
 URL:		http://www.kdevelop.org/
 # disabled, breaks with this new antlr
 # BuildRequires:	antlr >= 2.7.3
@@ -110,6 +111,7 @@ w砤snych potrzeb.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	-e 's/\(^Categories=.*$\)/\1;/' \
@@ -167,7 +169,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/*.so*
 %{_libdir}/kconf_update_bin/kdev-gen-settings-kconf_update
 %{_datadir}/apps/*
-%exclude %dir %{_datadir}/apps/kconf_update
 %{_datadir}/config/*
 %{_datadir}/desktop-directories/kde-development-kdevelop.directory
 %{_datadir}/mimelnk/application/x-kdevelop.desktop
