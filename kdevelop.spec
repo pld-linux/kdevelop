@@ -3,7 +3,7 @@
 %bcond_without	ada	# don't build with ada
 #
 %define		_state		stable
-%define		_kdever		3.5.6
+%define		_kdever		3.5.7
 %define		_minbaseevr	9:%{_kdever}
 %define		_minkdesdkevr	3:%{_kdever}
 
@@ -13,17 +13,16 @@ Summary(pl):	Zintegrowane 秗odowisko programisty dla KDE
 Summary(pt_BR):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.4.0
-Release:	3
+Version:	3.4.1
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	9cf367c89329acf23738e23c0b663ee9
+# Source0-md5:	abc6cc2831ad4c0f4da9fba9e38edce1
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 Patch2:		kde-ac260-lt.patch
-Patch3:		%{name}-qmake_parser.patch
 URL:		http://www.kdevelop.org/
 # disabled, breaks with this new antlr
 # BuildRequires:	antlr >= 2.7.3
@@ -111,7 +110,6 @@ w砤snych potrzeb.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	-e 's/\(^Categories=.*$\)/\1;/' \
@@ -130,7 +128,7 @@ cp -f /usr/share/automake/config.sub admin
 %endif
 	--with-apr-config=%{_bindir}/apr-1-config \
 	--with-apu-config=%{_bindir}/apu-1-config \
-	--with-svn-include=%{_includedir}/subversion \
+	--with-svn-include=%{_includedir}/subversion-1 \
 	--with-svn-lib=%{_libdir} \
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full}
 
