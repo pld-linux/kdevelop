@@ -18,7 +18,7 @@ Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	1101077b3a0164da463f60cad4f13e25
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
@@ -151,6 +151,8 @@ cd $RPM_BUILD_ROOT%{_iconsdir}
 mv {lo,hi}color/16x16/actions/kdevelop_tip.png
 mv {lo,hi}color/32x32/actions/kdevelop_tip.png
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -160,10 +162,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%{_libdir}/*.la
 %attr(755,root,root) %{_libdir}/*.so
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
-%{_libdir}/kde3/*.la
 %attr(755,root,root) %{_libdir}/kde3/*.so*
 %{_libdir}/kconf_update_bin/kdev-gen-settings-kconf_update
 %{_datadir}/apps/*
