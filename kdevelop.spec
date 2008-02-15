@@ -1,9 +1,8 @@
-#
 # Conditional build:
 %bcond_without	ada	# don't build with ada
 #
 %define		_state		stable
-%define		_kdever		3.5.8
+%define		_kdever		3.5.9
 %define		_minbaseevr	9:%{_kdever}
 %define		_minkdesdkevr	3:%{_kdever}
 
@@ -13,13 +12,13 @@ Summary(pl.UTF-8):	Zintegrowane środowisko programisty dla KDE
 Summary(pt_BR.UTF-8):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN.UTF-8):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.5.0
+Version:	3.5.1
 Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	1101077b3a0164da463f60cad4f13e25
+# Source0-md5:	80d2216a0089fe142735d34ae8de6a0c
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 Patch2:		kde-ac260-lt.patch
@@ -138,20 +137,29 @@ cp -f /usr/share/automake/config.sub admin
 %{__make}
 
 %install
-rm -rf $RPM_BUILD_ROOT
+if [ ! -f makeinstall.stamp -o ! -d $RPM_BUILD_ROOT ]; then
+	rm -rf makeinstall.stamp installed.stamp $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	kde_libs_htmldir=%{_kdedocdir} \
-	kde_htmldir=%{_kdedocdir}
+	%{__make} install \
+		DESTDIR=$RPM_BUILD_ROOT \
+		kde_libs_htmldir=%{_kdedocdir} \
+		kde_htmldir=%{_kdedocdir}
+
+	touch makeinstall.stamp
+fi
+
+if [ ! -f installed.stamp ]; then
+	mv $RPM_BUILD_ROOT%{_iconsdir}/{lo,hi}color/16x16/actions/kdevelop_tip.png
+	mv $RPM_BUILD_ROOT%{_iconsdir}/{lo,hi}color/32x32/actions/kdevelop_tip.png
+
+	rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+	rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+
+	touch installed.stamp
+fi
 
 %find_lang %{name} --with-kde --all-name
 
-cd $RPM_BUILD_ROOT%{_iconsdir}
-mv {lo,hi}color/16x16/actions/kdevelop_tip.png
-mv {lo,hi}color/32x32/actions/kdevelop_tip.png
-
-rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -164,8 +172,26 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/*.so
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libd.so.0
+%attr(755,root,root) %ghost %{_libdir}/libdesignerintegration.so.0
+%attr(755,root,root) %ghost %{_libdir}/libdocumentation_interfaces.so.0
+%attr(755,root,root) %ghost %{_libdir}/libgdbmi_parser.so.0
+%attr(755,root,root) %ghost %{_libdir}/libkdevbuildbase.so.0
+%attr(755,root,root) %ghost %{_libdir}/libkdevbuildtoolswidgets.so.0
+%attr(755,root,root) %ghost %{_libdir}/libkdevcatalog.so.0
+%attr(755,root,root) %ghost %{_libdir}/libkdevcppparser.so.0
+%attr(755,root,root) %ghost %{_libdir}/libkdevelop.so.1
+%attr(755,root,root) %ghost %{_libdir}/libkdevextras.so.0
+%attr(755,root,root) %ghost %{_libdir}/libkdevpropertyeditor.so.0
+%attr(755,root,root) %ghost %{_libdir}/libkdevqmakeparser.so.0
+%attr(755,root,root) %ghost %{_libdir}/libkdevshell.so.0
+%attr(755,root,root) %ghost %{_libdir}/libkdevwidgets.so.0
+%attr(755,root,root) %ghost %{_libdir}/libkinterfacedesigner.so.0
+%attr(755,root,root) %ghost %{_libdir}/liblang_debugger.so.0
+%attr(755,root,root) %ghost %{_libdir}/liblang_interfaces.so.0
+%attr(755,root,root) %ghost %{_libdir}/libprofileengine.so.0
 %attr(755,root,root) %{_libdir}/kde3/*.so*
-%{_libdir}/kconf_update_bin/kdev-gen-settings-kconf_update
+%attr(755,root,root) %{_libdir}/kconf_update_bin/kdev-gen-settings-kconf_update
 %{_datadir}/apps/*
 %{_datadir}/config/*
 %{_datadir}/desktop-directories/kde-development-kdevelop.directory
