@@ -17,7 +17,7 @@ Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/kdevelop-%{version}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	80d2216a0089fe142735d34ae8de6a0c
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
@@ -169,7 +169,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/kdevassistant
+%attr(755,root,root) %{_bindir}/kdevdesigner
+%attr(755,root,root) %{_bindir}/kdevelop
+%attr(755,root,root) %{_bindir}/kdevelop-htdig
+%attr(755,root,root) %{_bindir}/kdevprj2kdevelop
+%attr(755,root,root) %{_bindir}/kdevprofileeditor
 %attr(755,root,root) %{_libdir}/*.so
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libd.so.0
@@ -190,16 +195,80 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/liblang_debugger.so.0
 %attr(755,root,root) %ghost %{_libdir}/liblang_interfaces.so.0
 %attr(755,root,root) %ghost %{_libdir}/libprofileengine.so.0
-%attr(755,root,root) %{_libdir}/kde3/*.so*
+%attr(755,root,root) %{_libdir}/kde3/*.so
 %attr(755,root,root) %{_libdir}/kconf_update_bin/kdev-gen-settings-kconf_update
-%{_datadir}/apps/*
-%{_datadir}/config/*
+%{_datadir}/apps/kconf_update/kdev-gen-settings.upd
+%{_datadir}/apps/kdevabbrev
+%{_datadir}/apps/kdevadaproject
+%{_datadir}/apps/kdevadasupport
+%{_datadir}/apps/kdevantproject
+%{_datadir}/apps/kdevappoutputview
+%{_datadir}/apps/kdevappwizard
+%{_datadir}/apps/kdevassistant
+%{_datadir}/apps/kdevastyle
+%{_datadir}/apps/kdevautoproject
+%{_datadir}/apps/kdevbashsupport
+%{_datadir}/apps/kdevclassview
+%{_datadir}/apps/kdevcppsupport
+%{_datadir}/apps/kdevcsharpsupport
+%{_datadir}/apps/kdevctags2
+%{_datadir}/apps/kdevcustomproject
+%{_datadir}/apps/kdevcvsservice
+%{_datadir}/apps/kdevdebugger
+%{_datadir}/apps/kdevdesigner
+%{_datadir}/apps/kdevdesignerpart
+%{_datadir}/apps/kdevdiff
+%{_datadir}/apps/kdevdistpart
+%{_datadir}/apps/kdevdocumentation
+%{_datadir}/apps/kdevdoxygen
+%{_datadir}/apps/kdevelop
+%{_datadir}/apps/kdevfilecreate
+%{_datadir}/apps/kdevfilelist
+%{_datadir}/apps/kdevfilter
+%{_datadir}/apps/kdevfortransupport
+%{_datadir}/apps/kdevfullscreen
+%{_datadir}/apps/kdevgrepview
+%{_datadir}/apps/kdevjavasupport
+%{_datadir}/apps/kdevmakeview
+%{_datadir}/apps/kdevpartexplorer
+%{_datadir}/apps/kdevpascalproject
+%{_datadir}/apps/kdevpascalsupport
+%{_datadir}/apps/kdevperlsupport
+%{_datadir}/apps/kdevphpsupport
+%{_datadir}/apps/kdevpythonsupport
+%{_datadir}/apps/kdevquickopen
+%{_datadir}/apps/kdevrbdebugger
+%{_datadir}/apps/kdevregexptest
+%{_datadir}/apps/kdevreplace
+%{_datadir}/apps/kdevrubysupport
+%{_datadir}/apps/kdevscripting
+%{_datadir}/apps/kdevscriptproject
+%{_datadir}/apps/kdevsnippet
+%{_datadir}/apps/kdevsqlsupport
+%{_datadir}/apps/kdevtipofday
+%{_datadir}/apps/kdevtools
+%{_datadir}/apps/kdevtrollproject
+%{_datadir}/apps/kdevvalgrind
+%{_datadir}/apps/kio_pydoc
+%{_datadir}/config/kdevassistantrc
+%{_datadir}/config/kdeveloprc
 %{_datadir}/desktop-directories/kde-development-kdevelop.directory
 %{_datadir}/mimelnk/application/x-kdevelop.desktop
 %{_datadir}/mimelnk/text/x-fortran.desktop
-%{_datadir}/services/*
-%{_datadir}/servicetypes/*
-%{_desktopdir}/kde/*
-%{_iconsdir}/hicolor/*/*/*
+%{_datadir}/services/*.desktop
+%{_datadir}/services/*.protocol
+%{_datadir}/services/kded/kdevsvnd.desktop
+%{_datadir}/servicetypes/*.desktop
+%{_desktopdir}/kde/*.desktop
+%{_iconsdir}/hicolor/*/actions/breakpoint_add.png
+%{_iconsdir}/hicolor/*/actions/breakpoint_delete.png
+%{_iconsdir}/hicolor/*/actions/breakpoint_delete_all.png
+%{_iconsdir}/hicolor/*/actions/breakpoint_edit.png
+%{_iconsdir}/hicolor/*/actions/kdevelop_tip.png
+%{_iconsdir}/hicolor/*/actions/ktip.png
+%{_iconsdir}/hicolor/*/apps/kdevassistant.png
+%{_iconsdir}/hicolor/*/apps/kdevdesigner.png
+%{_iconsdir}/hicolor/*/apps/kdevelop.png
+
 %{_includedir}/kdevelop
 %{_includedir}/kinterfacedesigner
