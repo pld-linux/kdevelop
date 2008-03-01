@@ -13,12 +13,13 @@ Summary(pt_BR.UTF-8):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN.UTF-8):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	3.5.1
-Release:	2
+Release:	3
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/kdevelop-%{version}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	80d2216a0089fe142735d34ae8de6a0c
+Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 Patch2:		kde-ac260-lt.patch
@@ -106,6 +107,7 @@ własnych potrzeb.
 
 %prep
 %setup -q
+%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
