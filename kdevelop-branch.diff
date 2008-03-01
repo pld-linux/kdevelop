@@ -1,0 +1,92 @@
+Index: buildtools/qmake/projectconfigurationdlg.cpp
+===================================================================
+--- buildtools/qmake/projectconfigurationdlg.cpp	(.../tags/KDE/3.5.9/kdevelop)	(wersja 781012)
++++ buildtools/qmake/projectconfigurationdlg.cpp	(.../branches/KDE/3.5/kdevelop)	(wersja 781012)
+@@ -319,8 +319,8 @@
+     }
+     else
+     {
+-        myProjectItem->addValue( "CONFIG", "warn_on" );
+-        myProjectItem->removeValue( "CONFIG", "warn_off" );
++        myProjectItem->addValue( "CONFIG", "warn_off" );
++        myProjectItem->removeValue( "CONFIG", "warn_on" );
+     }
+     if ( checkWindows->isChecked() )
+         myProjectItem->addValue( "CONFIG", "windows" );
+Index: parts/documentation/kdevdocumentation.desktop
+===================================================================
+--- parts/documentation/kdevdocumentation.desktop	(.../tags/KDE/3.5.9/kdevelop)	(wersja 781012)
++++ parts/documentation/kdevdocumentation.desktop	(.../branches/KDE/3.5/kdevelop)	(wersja 781012)
+@@ -15,6 +15,7 @@
+ Comment[gl]=A extensión de documentación ofrece navegación e búsqueda en documentación local e en liña con soporte para múltiples sistemas de documentación.
+ Comment[hu]=Dokumentációmegjelenítő elem helyi és távoli dokumentáció böngészéséhez, keresési lehetőséggel. Többféle formátumot támogat.
+ Comment[it]=Il plugin di documentazione offre navigazione e ricerca in locale e documentazione in linea con supporto per sistemi di documentazione multipla.
++Comment[ms]=Plugin dokumentasi menawarkan pelungsuran dan pencarian dalam dokumentasi tempatan dan dalam talian dengan sokongan untuk pelbagai sistem dokumentasi.
+ Comment[nds]=Mit dat Dokmentatschoon-Moduul kannst Du lokale un Tokoppel-Dokmentatschoon dörkieken un -söken, mehr Dokmentatschoonsystemen warrt ünnerstütt.
+ Comment[ne]=मिसिलीकरण प्लगइनले बहुविध मिसिलीकरण प्रणालीको समर्थनसँग अनलाइन मिसिलीकरण र स्थानीय रूपमा ब्राउज र खोजी गर्न दिन्छ ।
+ Comment[nl]=De documentatieplugin welke het mogelijk maakt om door lokale documentatie en documentatie op afstand te bladeren en te zoeken. Met ondersteuning voor verschillende documentatiesystemen.
+@@ -55,6 +56,7 @@
+ GenericName[hu]=Dokumentáció
+ GenericName[it]=Documentazione
+ GenericName[ja]=ドキュメンテーション
++GenericName[ms]=Dokumentasi
+ GenericName[nds]=Dokmentatschoon
+ GenericName[ne]=मिसिलीकरण
+ GenericName[nl]=Documentatie
+Index: parts/outputviews/makewidget.cpp
+===================================================================
+--- parts/outputviews/makewidget.cpp	(.../tags/KDE/3.5.9/kdevelop)	(wersja 781012)
++++ parts/outputviews/makewidget.cpp	(.../branches/KDE/3.5/kdevelop)	(wersja 781012)
+@@ -532,28 +532,31 @@
+ {
+     QString sline;
+     bool forceCLocale = KConfigGroup( kapp->config(), "MakeOutputWidget" ).readBoolEntry( "ForceCLocale", true );
++    
+     if( forceCLocale )
+         sline = QString::fromAscii( stdoutbuf+line );
+     else
+         sline = QString::fromLocal8Bit( stdoutbuf+line );
+-    stdoutbuf.truncate(0);
+ 
+     if ( !appendToLastLine( sline ) )
+         m_directoryStatusFilter.processLine( sline );
++    stdoutbuf.truncate(0);
+ }
+ 
+ void MakeWidget::insertStderrLine( const QCString& line )
+ {
+     QString sline;
+     bool forceCLocale = KConfigGroup( kapp->config(), "MakeOutputWidget" ).readBoolEntry( "ForceCLocale", true );
++    
+     if( forceCLocale ) {
+         sline = QString( stderrbuf+line );
+     }
+     else
+         sline = QString::fromLocal8Bit( stderrbuf+line );
++    
++    if ( !appendToLastLine( sline ) )
++        m_errorFilter.processLine( sline );
+     stderrbuf.truncate(0);
+-    if ( !appendToLastLine( line ) )
+-        m_errorFilter.processLine( line );
+ }
+ 
+ void MakeWidget::slotProcessExited(KProcess *)
+@@ -832,7 +835,7 @@
+ 
+ void MakeWidget::storePartialStdoutLine(const QCString & line)
+ {
+-    stderrbuf += line;
++    stdoutbuf += line;
+ }
+ 
+ #include "makewidget.moc"
+
+Zmiany atrybutów dla: .
+___________________________________________________________________
+Nazwa: svn:mergeinfo
+   - 
+Nazwa: svn:externals
+   + admin https://svn.kde.org/home/kde/branches/KDE/3.5/kde-common/admin
+
+
