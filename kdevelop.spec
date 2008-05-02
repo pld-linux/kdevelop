@@ -13,7 +13,7 @@ Summary(pt_BR.UTF-8):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN.UTF-8):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	3.5.1
-Release:	4
+Release:	5
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
@@ -35,6 +35,7 @@ BuildRequires:	flex
 %{?with_ada:BuildRequires:gcc-ada}
 BuildRequires:	gettext-devel
 BuildRequires:	kdelibs-devel >= %{_minbaseevr}
+BuildRequires:	kdesdk-libcvsservice-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
