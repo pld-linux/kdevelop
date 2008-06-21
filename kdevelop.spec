@@ -12,14 +12,13 @@ Summary(pl.UTF-8):	Zintegrowane środowisko programisty dla KDE
 Summary(pt_BR.UTF-8):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN.UTF-8):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.5.1
-Release:	5
+Version:	3.5.2
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/kdevelop-%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	80d2216a0089fe142735d34ae8de6a0c
-Patch100:	%{name}-branch.diff
+Source0:	ftp://ftp.kde.org/pub/kde/stable/apps/KDE3.x/ide/%{name}-%{version}.tar.bz2
+# Source0-md5:	21c5085a4af3577d1d15fd169eb672a2
 Patch0:		kde-common-PLD.patch
 Patch1:		%{name}-am.patch
 Patch2:		kde-ac260-lt.patch
@@ -109,7 +108,6 @@ własnych potrzeb.
 
 %prep
 %setup -q
-%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -204,8 +202,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kconf_update_bin/kdev-gen-settings-kconf_update
 %{_datadir}/apps/kconf_update/kdev-gen-settings.upd
 %{_datadir}/apps/kdevabbrev
+%if %{with ada}
 %{_datadir}/apps/kdevadaproject
 %{_datadir}/apps/kdevadasupport
+%endif
 %{_datadir}/apps/kdevantproject
 %{_datadir}/apps/kdevappoutputview
 %{_datadir}/apps/kdevappwizard
