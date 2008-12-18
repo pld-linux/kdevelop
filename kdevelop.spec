@@ -12,14 +12,14 @@ Summary(pl.UTF-8):	Zintegrowane środowisko programisty dla KDE
 Summary(pt_BR.UTF-8):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN.UTF-8):	KDE C/C++集成开发环境
 Name:		kdevelop
-Version:	3.5.3
-Release:	2
+Version:	3.5.4
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
-Source0:	ftp://ftp.kde.org/pub/kde/stable/apps/KDE3.x/ide/%{name}-%{version}.tar.bz2
-# Source0-md5:	a2cdb5f71952386798175f8ce5a3e196
-Patch0:		kde-common-PLD.patch
+Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kdever}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	06aa12a89b2c09968a92e1d8b575819c
+Patch0:		kde-common-PLD-nopython.patch
 Patch1:		%{name}-am.patch
 Patch2:		kde-ac260-lt.patch
 Patch3:		%{name}-ncurses.patch
