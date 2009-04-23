@@ -1,92 +1,2391 @@
+Index: buildtools/script/kdevscriptproject.desktop
+===================================================================
+--- buildtools/script/kdevscriptproject.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ buildtools/script/kdevscriptproject.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -18,6 +18,7 @@
+ Comment[is]=Skriftumálsverkefni
+ Comment[it]=Progetto con linguaggio di scripting
+ Comment[ja]=スクリプト言語プロジェクト
++Comment[ms]=Projek Bahasa Penskrip
+ Comment[nds]=Skriptspraak-Projekt
+ Comment[ne]=स्क्रिप्टिङ भाषा परियोजना
+ Comment[nl]=Scripttaal-project
+Index: buildtools/autotools/autoprojectpart.cpp
+===================================================================
+--- buildtools/autotools/autoprojectpart.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ buildtools/autotools/autoprojectpart.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -404,15 +404,15 @@
+         TargetItem* titem = m_widget->activeTarget();
+ 
+         if ( !titem ) {
+-            KMessageBox::error( m_widget, i18n("There's no active target!\n"
+-                                "Unable to determine the main program"), i18n("No active target found") );
++            KMessageBox::error( m_widget, i18n("There is no active target.\n"
++                                "Unable to determine the main program."), i18n("No active target found") );
+             kdDebug ( 9020 ) << k_funcinfo << "Error! : There's no active target! -> Unable to determine the main program in AutoProjectPart::mainProgram()" << endl;
+             return QString::null;
+         }
+ 
+         if ( titem->primary != "PROGRAMS" ) {
+-            KMessageBox::error( m_widget, i18n("Active target \"%1\" isn't binary ( %2 ) !\n"
+-                                "Unable to determine the main program. If you want this\n"
++            KMessageBox::error( m_widget, i18n("Active target \"%1\" is not binary ( %2 ).\n"
++                                "Unable to determine the main program.  If you want this\n"
+                                 "to be the active target, set a main program under\n"
+                                 "Project -> Project Options -> Run Options").arg(titem->name).arg(titem->primary), i18n("Active target is not a library") );
+             kdDebug ( 9020 ) << k_funcinfo << "Error! : Active target isn't binary (" << titem->primary << ") ! -> Unable to determine the main program in AutoProjectPart::mainProgram()" << endl;
+@@ -792,7 +792,7 @@
+                     tdir += dependency.left(pos+1);
+                     tname = dependency.mid(pos+1);
+                 }
+-                KMessageBox::error( 0, i18n("Found a circular dependecy in the project, between this target and %1.\nCan't build this project until this is resolved").arg(tname), i18n("Circular Dependecy found") );
++                KMessageBox::error( 0, i18n("Found a circular dependency in the project, between this target and %1.\nCannot build this project until this is resolved.").arg(tname), i18n("Circular Dependency found") );
+                 return false;
+             }
+         }
+@@ -1163,12 +1163,12 @@
+     QString program = environString();
+ 
+     if ( !titem ) {
+-        KMessageBox::error( m_widget, i18n("There's no active target!\n"
++        KMessageBox::error( m_widget, i18n("There is no active target.\n"
+                                 "Unable to determine the main program"), i18n("No active target found") );
+         kdDebug ( 9020 ) << k_funcinfo << "Error! : There's no active target! -> Unable to determine the main program in AutoProjectPart::mainProgram()" << endl;
+         program += titem->name;
+     }else if ( titem->primary != "PROGRAMS" ) {
+-        KMessageBox::error( m_widget, i18n("Active target \"%1\" isn't binary ( %2 ) !\n"
++        KMessageBox::error( m_widget, i18n("Active target \"%1\" is not binary ( %2 ).\n"
+                                 "Unable to determine the main program. If you want this\n"
+                                 "to be the active target, set a main program under\n"
+                                 "Project -> Project Options -> Run Options").arg(titem->name).arg(titem->primary), i18n("Active target is not a library") );
+Index: buildtools/autotools/configureoptionswidgetbase.ui
+===================================================================
+--- buildtools/autotools/configureoptionswidgetbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ buildtools/autotools/configureoptionswidgetbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -149,10 +149,10 @@
+                             <cstring>configargs_edit</cstring>
+                         </property>
+                         <property name="toolTip" stdset="0">
+-                            <string>Options to pass to configure. eg. --prefix=&lt;install dir&gt;</string>
++                            <string>Options to pass to configure, e.g. --prefix=&lt;install dir&gt;</string>
+                         </property>
+                         <property name="whatsThis" stdset="0">
+-                            <string>Options to pass to configure. eg. --prefix=&lt;install dir&gt;</string>
++                            <string>Options to pass to configure, e.g. --prefix=&lt;install dir&gt;</string>
+                         </property>
+                     </widget>
+                     <widget class="QLabel" row="3" column="0" rowspan="1" colspan="5">
+Index: buildtools/custommakefiles/customprojectpart.cpp
+===================================================================
+--- buildtools/custommakefiles/customprojectpart.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ buildtools/custommakefiles/customprojectpart.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -78,7 +78,7 @@
+ 
+     action = new KAction( i18n( "Re-Populate Project" ), 0, this, SLOT( populateProject() ), actionCollection(), "repopulate_project" );
+     action->setToolTip( i18n( "Re-Populate Project" ) );
+-    action->setWhatsThis( i18n( "<b>Re-Populate Project</b><p>Re-Populate's the project, searches through the project directory and adds all files that match one of the wildcards set in the custom manager options to the project filelist." ) );
++    action->setWhatsThis( i18n( "<b>Re-Populate Project</b><p>Re-Populates the project, searching through the project directory and adding all files that match one of the wildcards set in the custom manager options of the project filelist." ) );
+ 
+     action = new KAction( i18n( "&Build Project" ), "make_kdevelop", Key_F8,
+                           this, SLOT( slotBuild() ),
+@@ -260,7 +260,7 @@
+                                     this, SLOT( slotChangeBlacklist() ) );
+             popup->setWhatsThis( id, i18n( "<b>Remove from blacklist</b><p>"
+                                            "Removes the given file or directory from the "
+-                                           "blacklist if its already in it.<br>The blacklist contains files and"
++                                           "blacklist if it is already in it.<br>The blacklist contains files and"
+                                            " directories that should be ignored even if they match a project filetype "
+                                            "pattern" ) );
+         }
+@@ -318,14 +318,14 @@
+     {
+         int id = popup->insertItem( i18n( "Add Selected File/Dir(s) to Project" ),
+                                     this, SLOT( slotAddToProject() ) );
+-        popup->setWhatsThis( id, i18n( "<b>Add to project</b><p>Adds selected file/dir(s) to the list of files in project. "
+-                                       "Note that the files should be manually added to corresponding makefile or build.xml." ) );
++        popup->setWhatsThis( id, i18n( "<b>Add to project</b><p>Adds selected file/dir(s) to the list of files in the project. "
++                                       "Note that the files should be manually added to the corresponding makefile or build.xml." ) );
+         if ( dirAddRecursive )
+         {
+             int id = popup->insertItem( i18n( "Add Selected Dir(s) to Project (recursive)" ),
+                                         this, SLOT( slotAddToProjectRecursive() ) );
+-            popup->setWhatsThis( id, i18n( "<b>Add to project</b><p>Recursively adds selected dir(s) to the list of files in project. "
+-                                           "Note that the files should be manually added to corresponding makefile or build.xml." ) );
++            popup->setWhatsThis( id, i18n( "<b>Add to project</b><p>Recursively adds selected dir(s) to the list of files in the project. "
++                                           "Note that the files should be manually added to the corresponding makefile or build.xml." ) );
+         }
+     }
+ 
+@@ -333,15 +333,15 @@
+     {
+         int id = popup->insertItem( i18n( "Remove Selected File/Dir(s) From Project" ),
+                                     this, SLOT( slotRemoveFromProject() ) );
+-        popup->setWhatsThis( id, i18n( "<b>Remove from project</b><p>Removes selected file/dir(s) from the list of files in project. "
+-                                       "Note that the files should be manually excluded from corresponding makefile or build.xml." ) );
++        popup->setWhatsThis( id, i18n( "<b>Remove from project</b><p>Removes selected file/dir(s) from the list of files in the project. "
++                                       "Note that the files should be manually excluded from the corresponding makefile or build.xml." ) );
+ 
+         if ( dirDelRecursive )
+         {
+             int id = popup->insertItem( i18n( "Remove Selected Dir(s) From Project (recursive)" ),
+                                         this, SLOT( slotRemoveFromProjectRecursive() ) );
+-            popup->setWhatsThis( id, i18n( "<b>Remove from project</b><p>Recursively removes selected dir(s) from the list of files in project. "
+-                                           "Note that the files should be manually excluded from corresponding makefile or build.xml." ) );
++            popup->setWhatsThis( id, i18n( "<b>Remove from project</b><p>Recursively removes selected dir(s) from the list of files in the project. "
++                                           "Note that the files should be manually excluded from the corresponding makefile or build.xml." ) );
+         }
+     }
+ }
+@@ -526,7 +526,29 @@
+         }
+         else if ( QFileInfo( absoluteEntry ).isDir() )
+         {
+-            findNewFiles( absoluteEntry, filelist );
++            bool searchRecursive = true;
++            QFileInfo fi( absoluteEntry );
++            if( fi.isSymLink() )
++            {
++                QString realDir = fi.readLink(); 
++                if( QFileInfo( realDir ).exists() )
++                {
++                    for( QStringList::const_iterator it = filelist.constBegin(); it != filelist.constEnd(); ++it )
++                    {
++
++                        if( QFileInfo(projectDirectory()+"/"+*it).absFilePath().startsWith( realDir ) )
++                        {
++                            searchRecursive = false;
++                        }
++                    }
++                } else {
++                    searchRecursive = false;
++                }
++            }
++            if( searchRecursive )
++            {
++                findNewFiles( absoluteEntry, filelist );
++            }
+         }
+     }
+ }
+@@ -862,7 +884,7 @@
+         environstr += " ";
+     }
+ 
+-    KConfigGroup grp( kapp->config(), "MakeOutputWidget" );
++    KConfigGroup grp( kapp->config(), "MakeOutputView" );
+     if( grp.readBoolEntry( "ForceCLocale", true ) )
+         environstr += "LC_MESSAGES=" + EnvVarTools::quote( "C" )+" "+" "+"LC_CTYPE="+EnvVarTools::quote("C")+" ";
+ 
+Index: buildtools/qmake/qmakeoptionswidgetbase.ui
+===================================================================
+--- buildtools/qmake/qmakeoptionswidgetbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ buildtools/qmake/qmakeoptionswidgetbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -103,7 +103,7 @@
+                         <cstring>radioNeverSave</cstring>
+                     </property>
+                     <property name="text">
+-                        <string>&amp;Never Save (!Warning: This can lead to loss of setting changes)</string>
++                        <string>&amp;Never Save (Warning: This can lead to loss of setting changes)</string>
+                     </property>
+                     <property name="toolTip" stdset="0">
+                         <string>Never save the configuration when changing the project.</string>
+@@ -123,10 +123,10 @@
+                         <bool>true</bool>
+                     </property>
+                     <property name="toolTip" stdset="0">
+-                        <string>Ask wether the configuration should be saved when switching the project.</string>
++                        <string>Ask whether the configuration should be saved when switching the project.</string>
+                     </property>
+                     <property name="whatsThis" stdset="0">
+-                        <string>Always ask wether the configuration should be saved when selecting another subproject..</string>
++                        <string>Always ask whether the configuration should be saved when selecting another subproject.</string>
+                     </property>
+                 </widget>
+             </vbox>
+Index: buildtools/qmake/trollprojectpart.cpp
+===================================================================
+--- buildtools/qmake/trollprojectpart.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ buildtools/qmake/trollprojectpart.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -144,7 +144,7 @@
+                           this, SLOT(slotBuildAndExecuteProject()),
+                           actionCollection(), "build_execute_project" );
+     action->setToolTip(i18n("Execute main program"));
+-    action->setWhatsThis(i18n("<b>Execute program</b><p>Executes the currently selected subproject if its an application or the program specified in project settings, <b>Run Options</b> tab."));
++    action->setWhatsThis(i18n("<b>Execute program</b><p>Executes the currently selected subproject if it is an application or the program specified in project settings, <b>Run Options</b> tab."));
+ 
+     action = new KAction( i18n("&Build Subproject"), "make_kdevelop", Key_F7,
+                           m_widget, SLOT(slotBuildTarget()),
+@@ -169,7 +169,7 @@
+                           actionCollection(),"build_install_target"  );
+     action->setToolTip(i18n("Install subproject"));
+     action->setWhatsThis(i18n("<b>Install subproject</b><p>Runs <b>make install</b> from the current subproject directory. "
+-                              "Current subproject is a subproject selected in <b>QMake manager</b> 'overview' window.<br>"
++                              "The current subproject is the subproject selected in the <b>QMake manager</b> 'overview' window.<br>"
+                               "Environment variables and make arguments can be specified "
+                               "in the project settings dialog, <b>Make Options</b> tab."));
+ 
+@@ -178,7 +178,7 @@
+                           actionCollection(), "build_clean_target" );
+     action->setToolTip(i18n("Clean subproject"));
+     action->setWhatsThis(i18n("<b>Clean subproject</b><p>Runs <b>make clean</b> from the current subproject directory. "
+-                              "Current subproject is a subproject selected in <b>QMake manager</b> 'overview' window.<br>"
++                              "The current subproject is the subproject selected in the <b>QMake manager</b> 'overview' window.<br>"
+                               "Environment variables and make arguments can be specified "
+                               "in the project settings dialog, <b>Make Options</b> tab."));
+ 
+@@ -187,7 +187,7 @@
+                           actionCollection(), "build_distclean_target" );
+     action->setToolTip(i18n("Dist-Clean subproject"));
+     action->setWhatsThis(i18n("<b>Dist-Clean subproject</b><p>Runs <b>make distclean</b> from the current"
+-                              " subproject directory. Current subproject is a subproject selected in <b>QMake manager</b> 'overview' window.<br>"
++                              " subproject directory. The current subproject is the subproject selected in the <b>QMake manager</b> 'overview' window.<br>"
+                               "Environment variables and make arguments can be specified "
+                               "in the project settings dialog, <b>Make Options</b> tab."));
+ 
+@@ -330,7 +330,7 @@
+             }else
+             {
+                 if( KMessageBox::warningYesNo( m_widget,
+-                                               i18n("You didn't specify a Qt directory, the project might not "
++                                               i18n("You did not specify a Qt directory, and the project might not "
+                                                    "work properly without one.\nDo you want to try setting a Qt"
+                                                    " directory again?"),
+                                                i18n("No Qt directory given"))
+@@ -379,7 +379,7 @@
+             }else
+             {
+                 if( KMessageBox::warningYesNo( m_widget,
+-                                               i18n("You didn't specify a QMake binary, the project might not "
++                                               i18n("You did not specify a QMake binary, and the project might not "
+                                                    "work properly without one.\nDo you want to try setting a QMake"
+                                                    " binary again?"),
+                                                i18n("No QMake binary given"))
+Index: buildtools/qmake/kdevtrollproject.desktop
+===================================================================
+--- buildtools/qmake/kdevtrollproject.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ buildtools/qmake/kdevtrollproject.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -19,6 +19,7 @@
+ Comment[is]=QMake verkefni
+ Comment[it]=Progetto per QMake
+ Comment[ja]=QMake プロジェクト
++Comment[ms]=Projek QMake
+ Comment[nds]=QMake-Projekt
+ Comment[ne]=QMake परियोजना
+ Comment[nl]=QMake-project
+@@ -67,6 +68,7 @@
+ GenericName[hu]=QMake-projekt
+ GenericName[it]=Progetto per QMake
+ GenericName[ja]=QMake プロジェクト
++GenericName[ms]=Projek QMake
+ GenericName[nds]=QMake-Projekt
+ GenericName[ne]=QMake परियोजना
+ GenericName[nl]=QMake-project
 Index: buildtools/qmake/projectconfigurationdlg.cpp
 ===================================================================
---- buildtools/qmake/projectconfigurationdlg.cpp	(.../tags/KDE/3.5.9/kdevelop)	(wersja 781012)
-+++ buildtools/qmake/projectconfigurationdlg.cpp	(.../branches/KDE/3.5/kdevelop)	(wersja 781012)
-@@ -319,8 +319,8 @@
-     }
-     else
+--- buildtools/qmake/projectconfigurationdlg.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ buildtools/qmake/projectconfigurationdlg.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -137,7 +137,7 @@
+             case TrollProjectWidget::Ask:
+                 if ( !buttonApply->isEnabled() )
+                     break;
+-                if ( KMessageBox::questionYesNo( 0, i18n( "Save the current subprojects configuration?" ),
++                if ( KMessageBox::questionYesNo( 0, i18n( "Save the current subproject's configuration?" ),
+                                                  i18n( "Save Configuration?" ) ) == KMessageBox::Yes )
+                     apply();
+                 break;
+Index: buildtools/qmake/trollprojectwidget.cpp
+===================================================================
+--- buildtools/qmake/trollprojectwidget.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ buildtools/qmake/trollprojectwidget.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -930,8 +930,8 @@
+ //             newitem->moveItem( lastitem );
+     }else
      {
--        myProjectItem->addValue( "CONFIG", "warn_on" );
--        myProjectItem->removeValue( "CONFIG", "warn_off" );
-+        myProjectItem->addValue( "CONFIG", "warn_off" );
-+        myProjectItem->removeValue( "CONFIG", "warn_on" );
+-        KMessageBox::error(this, i18n("Couldn't create subproject. This means that either the project you wanted"
+-                                      " to add a subproject isn't parsed correctly or it's not a"
++        KMessageBox::error(this, i18n("Could not create subproject. This means that either the project you wanted"
++                                      " to add a subproject to is not parsed correctly, or it is not a"
+                                       " subdirs-project."), i18n("Subproject creation failed") );
      }
-     if ( checkWindows->isChecked() )
-         myProjectItem->addValue( "CONFIG", "windows" );
+     spitem->scope->saveToFile();
+@@ -953,8 +953,8 @@
+             delsubdir = true;
+         if( !spitem->scope->deleteSubProject( m_shownSubproject->scope->getNum(), delsubdir ) )
+         {
+-            KMessageBox::error(this, i18n("Couldn't delete subproject.\nThis is an internal error, please write a"
+-                                          " bugreport to bugs.kde.org and include the output of kdevelop when run"
++            KMessageBox::error(this, i18n("Could not delete subproject.\nThis is an internal error, please write a"
++                                          " bug report to bugs.kde.org and include the output of kdevelop when run"
+                                           "from a shell."),i18n("Subproject Deletion failed"));
+             return;
+         }
+@@ -1017,7 +1017,7 @@
+         idQmake = popup.insertItem( SmallIcon( "qmakerun" ), i18n( "Run qmake" ) );
+         popup.setWhatsThis( idQmake, i18n( "<b>Run qmake</b><p>Runs <b>qmake</b> from the selected subproject directory. This creates or regenerates Makefile." ) );
+         idQmakeRecursive = popup.insertItem( SmallIcon( "qmakerun" ), i18n( "Run qmake recursively" ) );
+-        popup.setWhatsThis( idQmakeRecursive, i18n( "<b>Run qmake recursively</b><p>Runs <b>qmake</b> from the selected"
++        popup.setWhatsThis( idQmakeRecursive, i18n( "<b>Run qmake recursively</b><p>Runs <b>qmake</b> from the selected "
+                             "subproject directory and recurses into all subproject directories. "
+                             "This creates or regenerates Makefile." ) );
+ 
+@@ -1049,12 +1049,12 @@
+         popup.insertSeparator();
+         idAddSubproject = popup.insertItem( SmallIcon( "folder_new" ), i18n( "Add Subproject..." ) );
+         popup.setWhatsThis( idAddSubproject, i18n( "<b>Add subproject</b><p>Creates a <i>new</i> or adds an <i>existing</i> subproject to the currently selected scope. "
+-                            "This action is allowed only if a type of the subproject is 'subdirectories'. The type of the subproject can be "
+-                            "defined in <b>Subproject Settings</b> dialog (open it from the subproject context menu)." ) );
++                            "This action is allowed only if the type of the subproject is 'subdirectories'. The type of the subproject can be "
++                            "defined in the <b>Subproject Settings</b> dialog (open it from the subproject context menu)." ) );
+         if ( spitem->scope->variableValues( "TEMPLATE" ).findIndex( "subdirs" ) == -1 )
+             popup.setItemEnabled( idAddSubproject, false );
+         idDisableSubproject = popup.insertItem( SmallIcon( "remove_subdir" ), i18n( "Disable Subproject..." ) );
+-        popup.setWhatsThis( idRemoveSubproject, i18n( "<b>Disable subproject</b><p>Disables the currently selected subproject when this scope is active. Does not delete the directory from disk. Deleted subproject can be later added by calling 'Add Subproject' action." ) );
++        popup.setWhatsThis( idRemoveSubproject, i18n( "<b>Disable subproject</b><p>Disables the currently selected subproject when this scope is active. Does not delete the directory from disk. The deleted subproject can be later added by using the 'Add Subproject' action." ) );
+         if( spitem->scope->variableValues( "TEMPLATE" ).findIndex( "subdirs" ) == -1 && spitem->scope->parent()->variableValues( "TEMPLATE" ).findIndex( "subdirs" ) == -1 )
+             popup.setItemEnabled( idDisableSubproject, false );
+         popup.insertSeparator();
+@@ -1188,7 +1188,7 @@
+             }
+             else
+             {
+-                KMessageBox::error( this, i18n("You didn't select a subproject to add the file to or selected a subproject that has subdirs."), i18n( "File adding aborted" ) );
++                KMessageBox::error( this, i18n("You did not select a subproject to add the file to, or select a subproject that has subdirs."), i18n( "File adding aborted" ) );
+             }
+         }
+ 
+@@ -1794,7 +1794,7 @@
+         if ( !( gitem->groupType == GroupItem::InstallObject ) )
+         {
+             idRemoveFile = popup.insertItem( SmallIconSet( "editdelete" ), i18n( "Remove File" ) );
+-            popup.setWhatsThis( idRemoveFile, i18n( "<b>Remove file</b><p>Removes file from a current group. For sources also removes the subclassing information." ) );
++            popup.setWhatsThis( idRemoveFile, i18n( "<b>Remove file</b><p>Removes file from a current group. For sources, this also removes the subclassing information." ) );
+             idFileProperties = popup.insertItem( SmallIconSet( "configure_file" ), i18n( "Exclude File" ) );
+             popup.setWhatsThis( idFileProperties, i18n( "<b>Exclude File</b><p>Excludes the file from this Scope. Does not touch subclassing information" ) );
+         }
+@@ -2273,7 +2273,7 @@
+                 case Scope::FunctionScope:
+                     if( !pitem->scope->deleteFunctionScope( spitem->scope->getNum() ) )
+                     {
+-                        KMessageBox::error(this, i18n("Couldn't delete Function Scope.\nThis is an internal error, please write a bugreport to bugs.kde.org and include the output of kdevelop when run from a shell."),i18n("Function Scope Deletion failed"));
++                        KMessageBox::error(this, i18n("Could not delete Function Scope.\nThis is an internal error, please write a bug report to bugs.kde.org and include the output of kdevelop when run from a shell."),i18n("Function Scope Deletion failed"));
+                         return;
+                     }
+                     //                     pitem->scopes.remove( spitem );
+@@ -2281,7 +2281,7 @@
+                 case Scope::IncludeScope:
+                     if( !pitem->scope->deleteIncludeScope( spitem->scope->getNum() ) )
+                     {
+-                        KMessageBox::error(this, i18n("Couldn't delete Include Scope.\nThis is an internal error, please write a bugreport to bugs.kde.org and include the output of kdevelop when run from a shell."),i18n("Include Scope Deletion failed"));
++                        KMessageBox::error(this, i18n("Could not delete Include Scope.\nThis is an internal error, please write a bug report to bugs.kde.org and include the output of kdevelop when run from a shell."),i18n("Include Scope Deletion failed"));
+                         return;
+                     }
+                     //                     pitem->scopes.remove( spitem );
+@@ -2293,7 +2293,7 @@
+                 case Scope::SimpleScope:
+                     if( !pitem->scope->deleteSimpleScope( spitem->scope->getNum() ) )
+                     {
+-                        KMessageBox::error(this, i18n("Couldn't delete Scope.\nThis is an internal error, please write a bugreport to bugs.kde.org and include the output of kdevelop when run from a shell."),i18n("Scope Deletion failed"));
++                        KMessageBox::error(this, i18n("Could not delete Scope.\nThis is an internal error, please write a bug report to bugs.kde.org and include the output of kdevelop when run from a shell."),i18n("Scope Deletion failed"));
+                         return;
+                     }
+                     //                     pitem->scopes.remove( spitem );
+@@ -2459,7 +2459,7 @@
+ void TrollProjectWidget::slotProjectDirty(const QString& path)
+ {
+     kdDebug(9024) << "File is dirty:" << path << " using method " << endl;
+-    if( KMessageBox::warningYesNo(this, i18n("The project file \"%1\" has changed on disk\n(Or you have \"%2\" opened in the editor, which also triggers a reload when you change something in the QMake Manager).\n\nDo you want to reload the it?").arg(path).arg(path), i18n("Project File Changed"), i18n("Reload"), i18n("Do Not Reload"), "trollproject_reload_project_file" ) != KMessageBox::No )
++    if( KMessageBox::warningYesNo(this, i18n("The project file \"%1\" has changed on disk\n(Or you have \"%2\" opened in the editor, which also triggers a reload when you change something in the QMake Manager).\n\nDo you want to reload it?").arg(path).arg(path), i18n("Project File Changed"), i18n("Reload"), i18n("Do Not Reload"), "trollproject_reload_project_file" ) != KMessageBox::No )
+     {
+         m_part->dirWatch()->stopScan();
+         QListViewItemIterator it(m_rootSubproject);
+Index: buildtools/qmake/kdevtmakeproject.desktop
+===================================================================
+--- buildtools/qmake/kdevtmakeproject.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ buildtools/qmake/kdevtmakeproject.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -66,6 +66,7 @@
+ GenericName[hu]=TMake-projekt
+ GenericName[it]=Progetto per TMake
+ GenericName[ja]=TMake プロジェクト
++GenericName[ms]=Projek TMake
+ GenericName[nds]=TMake-Projekt
+ GenericName[ne]=TMake परियोजना
+ GenericName[nl]=TMake-project
+Index: buildtools/qmake/scope.cpp
+===================================================================
+--- buildtools/qmake/scope.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ buildtools/qmake/scope.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -158,8 +158,8 @@
+         if( DomUtil::readBoolEntry( *m_part->projectDom(),
+             "/kdevtrollproject/qmake/showParseErrors", true ) )
+         {
+-            KMessageBox::error( 0, i18n( "Couldn't parse project file: %1" ).arg( filename ),
+-                    i18n( "Couldn't parse project file" ) );
++            KMessageBox::error( 0, i18n( "Could not parse project file: %1" ).arg( filename ),
++                    i18n( "Could not parse project file" ) );
+         }
+         m_root = 0;
+         return false;
+@@ -198,8 +198,8 @@
+         file.close();
+     }else
+     {
+-        KMessageBox::error( 0, i18n( "Couldn't write project file: %1" ).arg( filename ),
+-                i18n( "Couldn't write project file" ) );
++        KMessageBox::error( 0, i18n( "Could not write project file: %1" ).arg( filename ),
++                i18n( "Could not write project file" ) );
+     }
+ #ifdef DEBUG
+     Scope::PrintAST pa;
+Index: kdevelop_ruby.desktop
+===================================================================
+--- kdevelop_ruby.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ kdevelop_ruby.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -29,6 +29,7 @@
+ GenericName[hu]=Fejlesztőkörnyezet a Rubyhoz
+ GenericName[it]=IDE per Ruby
+ GenericName[ja]=Ruby のための統合開発環境
++GenericName[ms]=IDE untuk Ruby
+ GenericName[nds]=Ruby-Programmsmeed
+ GenericName[ne]=रूबीका लागि आईडी ई
+ GenericName[nl]=IDE voor Ruby
+Index: kdevelop_c_cpp.desktop
+===================================================================
+--- kdevelop_c_cpp.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ kdevelop_c_cpp.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -28,6 +28,7 @@
+ GenericName[hu]=C/C++ fejlesztőkörnyezet
+ GenericName[it]=IDE per C/C++
+ GenericName[ja]=C/C++ のための統合開発環境
++GenericName[ms]=IDE untuk C/C++
+ GenericName[nds]=C/C++-Programmsmeed
+ GenericName[ne]=C/C++ का लागि आईडी ई
+ GenericName[nl]=IDE voor C/C++
+Index: x-kdevelop.desktop
+===================================================================
+--- x-kdevelop.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ x-kdevelop.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -22,7 +22,7 @@
+ Comment[nl]=KDevelop projectbestand
+ Comment[pl]=Plik projektu KDevelopa
+ Comment[pt]=Ficheiro de Projecto do KDevelop
+-Comment[pt_BR]=Arquivo de Projeto do KDevelop
++Comment[pt_BR]=Ficheiro de Projecto do KDevelop
+ Comment[ru]=Файл проекта KDevelop
+ Comment[sk]=KDevelop projekt
+ Comment[sl]=Projektna datoteka KDevelop
+Index: src/settingswidget.ui
+===================================================================
+--- src/settingswidget.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ src/settingswidget.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -494,7 +494,7 @@
+                         <cstring>forceCLocaleRadio</cstring>
+                     </property>
+                     <property name="text">
+-                        <string>Force english compiler output</string>
++                        <string>Force English compiler output</string>
+                     </property>
+                 </widget>
+                 <widget class="QRadioButton">
+Index: parts/partexplorer/kdevpartexplorer.desktop
+===================================================================
+--- parts/partexplorer/kdevpartexplorer.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/partexplorer/kdevpartexplorer.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -51,6 +51,7 @@
+ GenericName[hu]=Objektumböngésző
+ GenericName[it]=Strumento per l'esplorazione di componenti
+ GenericName[ja]=部分調査ツール
++GenericName[ms]=Alat Penjelajah Bahagian
+ GenericName[nds]=Kiekwarktüüch för Komponenten
+ GenericName[ne]=भाग एक्सप्लोरर उपकरण
+ GenericName[nl]=Part Explorer gereedschap
+Index: parts/bookmarks/kdevbookmarks.desktop
+===================================================================
+--- parts/bookmarks/kdevbookmarks.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/bookmarks/kdevbookmarks.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -15,12 +15,13 @@
+ Comment[hu]=Bővítőmodul a forrásfájlok könyvjelzőinek áttekintéséhez, eltárolásához
+ Comment[it]=Plugin che offre la navigazione e l'anteprima dei segnalibri nel codice attivo e rimane nelle varie sessioni.
+ Comment[ja]=セッション間でアクティブなソースのブックマークや主張の外観やナビゲーションを提供するプラグイン。
++Comment[ms]=Plugin yang menyediakan pengemudian dan pandangan umum bagi tandalaman sumber aktif dan mengekalkan mereka antara sesi.
+ Comment[nds]=En Moduul, wat dat Stüern twischen un de Översicht över Borntext-Leestekens praatstellt, un disse över Törns wohrt.
+ Comment[ne]=प्लगइनले सक्रिय स्रोत पुस्तकचिनोको नेभिगेसन र समिक्षा प्रदान गर्दछ र सत्रहरू बिच तिनीहरूलाई राख्दछ ।
+ Comment[nl]=Plugin die bladwijzers biedt die ook blijven bestaan tussen opeenvolgende sessies.
+ Comment[pl]=Wtyczka umożliwiająca nawigację i uzyskiwanie informacji na temat aktywnych zakładek w kodzie oraz przenoszenie ich między sesjami.
+ Comment[pt]=Um 'plugin' que oferece uma navegação e uma vista geral sobre os favoritos de código activos, mantendo-os persistentes entre sessões.
+-Comment[pt_BR]=Plugin que fornece navegação e uma visão geral dos marcadores de código ativos e persiste entre sessões.
++Comment[pt_BR]=Plug-in que fornece navegação e uma visão geral dos marcadores de código ativos e persiste entre sessões.
+ Comment[ru]=Модуль, который обеспечивает навигацию и просмотр активных закладок в коде, а также их сохранение в проекте.
+ Comment[sk]=Modul proskytuje navigáciu a prehľad aktívnych zdrojových záložiek a ich pretrvanie medzi sedeniami.
+ Comment[sr]=Прикључак који обезбеђује навигацију и преглед активних маркера изворног кôда и одржава их између сесија.
+@@ -58,6 +59,7 @@
+ GenericName[hu]=Könyvjelzők
+ GenericName[it]=Segnalibri
+ GenericName[ja]=ブックマーク
++GenericName[ms]=Tandabuku
+ GenericName[nds]=Leestekens-Ünnerstütten
+ GenericName[ne]=पुस्तकचिनो
+ GenericName[nl]=Bladwijzers
+Index: parts/distpart/kdevdistpart.desktop
+===================================================================
+--- parts/distpart/kdevdistpart.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/distpart/kdevdistpart.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -16,7 +16,7 @@
+ Comment[nl]=Helpt bij het bouwen en publiceren van het uiteindelijke project. Ondersteunt het aanmaken van RPM-pakketten of broncodepakketten.
+ Comment[pl]=Pomoc w budowaniu i publikowaniu projektu. Obsługuje tworzenie pakietów RPM i paczek ze źródłami.
+ Comment[pt]=Ajuda na construção e publicação do projecto final. Suporta a criação de pacotes RPM ou pacotes com código-fonte.
+-Comment[pt_BR]=Ajuda na construção e publicação do projecto final. Suporta a criação de pacotes RPM ou pacotes com código-fonte.
++Comment[pt_BR]=Auxilia na compilação e publicação do projeto final. Suporta a criação de pacotes RPM ou pacotes fontes.
+ Comment[ru]=Помощник по сборке и распространению окончательных версий проекта. Поддерживает создание пакетов RPM или пакетов с исходным кодом.
+ Comment[sk]=Pomáha pri vytváraní a publikovaní finálneho projektu. Podporované sú RPM a zdrojové balíčky.
+ Comment[sr]=Помаже у грађењу и објављивању коначног пројекта. За сада је подржано стварање RPM и изворних пакета.
+Index: parts/openwith/kdevopenwith.desktop
+===================================================================
+--- parts/openwith/kdevopenwith.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/openwith/kdevopenwith.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -21,7 +21,7 @@
+ Comment[nl]=Deze plugin biedt extra "open"-alternatieven in verschillende contextmenus in KDevelop.
+ Comment[pl]=Ta wtyczka umożliwia dodanie dodatkowych możliwości otwierania plików w menu kontekstowych KDevelopa.
+ Comment[pt]=Este 'plugin' oferece várias alternativas adicionais e "abertas" para vários menus de contexto no KDevelop.
+-Comment[pt_BR]=Este plugin fornece alternativas adicionais de "abrir" para vários menus de contetxo do KDevelop.
++Comment[pt_BR]=Este plug-in fornece alternativas adicionais de "abrir" para vários menus de contetxo do KDevelop.
+ Comment[ru]=Этот модуль предоставляет различные возможности открытия файлов, используя контекстные меню KDevelop.
+ Comment[sk]=Modul poskytuje dodatočné "Otvoriť pomocou" alternatívy pre rôzne kontextové menu v KDevelop.
+ Comment[sr]=Овај прикључак обезбеђује додатне алтернативе за „отвори“ за различите контекстне меније у kdevelop-у.
+Index: parts/tools/kdevtools.desktop
+===================================================================
+--- parts/tools/kdevtools.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/tools/kdevtools.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -21,7 +21,7 @@
+ Comment[nl]=Met deze plugin kunt u op eenvoudige wijze externe toepassingen aan het menu Gereedschap en de werkbalk toevoegen.
+ Comment[pl]=Ta wtyczka umożliwia łatwe dodawanie zewnętrznych programów do menu Narzędzia i do paska narzędzi.
+ Comment[pt]=Este 'plugin' oferece uma forma simples de adicionar as aplicações externas ao menu Ferramentas e à barra de ferramentas.
+-Comment[pt_BR]=Este plugin fornece uma maneira fácil de adicionar aplicativos externos ao menu Ferramentas e barra de ferramentas.
++Comment[pt_BR]=Este plug-in fornece uma maneira fácil de adicionar aplicativos externos ao menu Ferramentas e barra de ferramentas.
+ Comment[ru]=Предоставляет возможности добавления в меню пунктов вызова внешних приложений.
+ Comment[sk]=Modul poskytuje jednoduchý spôsob ako pridať externú aplikáciu do menu Nástroje a do panelu nástrojov.
+ Comment[sl]=Ta vstavek omogoča preprost način dodajanja zunanjih programov v meni Orodja in v orodjarno.
+Index: parts/tools/tools_part.cpp
+===================================================================
+--- parts/tools/tools_part.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/tools/tools_part.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -37,6 +37,8 @@
+ static const KDevPluginInfo data("kdevtools");
+ K_EXPORT_COMPONENT_FACTORY( libkdevtools, ToolsFactory( data ) )
+ 
++QMap<int, QString> externalToolMenuEntries;
++
+ ToolsPart::ToolsPart(QObject *parent, const char *name, const QStringList &)
+ 	: KDevPlugin( &data, parent, name ? name : "ToolsPart")
+ {
+@@ -169,6 +171,7 @@
+     config->setGroup("External Tools");
+     QStringList l = config->readListEntry("Tool Menu");
+ 
++
+     QPtrList<KAction> actions;
+     QStringList::ConstIterator it;
+     for (it = l.begin(); it != l.end(); ++it) {
+@@ -199,6 +202,7 @@
+     const FileContext *fcontext = static_cast<const FileContext*>(context);
+     m_contextPopup = popup;
+     m_contextFileName = fcontext->urls().first().path();
++    externalToolMenuEntries.clear();
+     
+     KConfig *config = ToolsFactory::instance()->config();
+     config->setGroup("External Tools");
+@@ -208,25 +212,25 @@
+         QStringList l = config->readListEntry("Dir Context");
+         QStringList::ConstIterator it;
+         for (it = l.begin(); it != l.end(); ++it)
+-            popup->insertItem( (*it), this, SLOT(dirContextActivated(int)) );
++            externalToolMenuEntries.insert( popup->insertItem( (*it), this, SLOT(dirContextActivated(int)) ), (*it) );
+     } else {
+         QStringList l = config->readListEntry("File Context");
+         QStringList::ConstIterator it;
+         for (it = l.begin(); it != l.end(); ++it)
+-            popup->insertItem( (*it), this, SLOT(fileContextActivated(int))  );
++            externalToolMenuEntries.insert( popup->insertItem( (*it), this, SLOT(fileContextActivated(int))  ), (*it) );
+     }
+ }
+ 
+ 
+ void ToolsPart::toolsMenuActivated()
+ {
+-    QString menutext = QString::fromUtf8(sender()->name());
++    QString menutext = sender()->name();
+     KConfig *config = ToolsFactory::instance()->config();
+     config->setGroup("Tool Menu " + menutext);
+     QString cmdline = config->readPathEntry("CommandLine");
+     bool isdesktopfile = config->readBoolEntry("DesktopFile");
+     bool captured = config->readBoolEntry("Captured");
+-    kdDebug() << "activating " << menutext
++    kdDebug() << "tools:" << "activating " << menutext
+               << "with cmdline " << cmdline
+               << "and desktopfile " << isdesktopfile << endl;
+     if (isdesktopfile)
+@@ -238,13 +242,13 @@
+ 
+ void ToolsPart::fileContextActivated(int id)
+ {
+-    QString menutext = m_contextPopup->text(id);
+-    
++    QString menutext = externalToolMenuEntries[ id ];
++
+     KConfig *config = ToolsFactory::instance()->config();
+     config->setGroup("File Context " + menutext);
+     QString cmdline = config->readPathEntry("CommandLine");
+     bool captured = config->readBoolEntry("Captured");
+-    kdDebug() << "activating " << menutext
++    kdDebug() << "filecontext:" << "activating " << menutext
+               << " with cmdline " << cmdline
+               << " on file " << m_contextFileName << endl;
+     startCommand(cmdline, captured, m_contextFileName);
+@@ -253,13 +257,13 @@
+ 
+ void ToolsPart::dirContextActivated(int id)
+ {
+-    QString menutext = m_contextPopup->text(id);
++    QString menutext = externalToolMenuEntries[ id ];
+ 
+     KConfig *config = ToolsFactory::instance()->config();
+     config->setGroup("Dir Context " + menutext);
+     QString cmdline = config->readPathEntry("CommandLine");
+     bool captured = config->readBoolEntry("Captured");
+-    kdDebug() << "activating " << menutext
++    kdDebug() << "dircontext:" << "activating " << menutext
+               << "with cmdline " << cmdline
+               << " on directory " << m_contextFileName << endl;
+     startCommand(cmdline, captured, m_contextFileName);
+Index: parts/classview/kdevclassview.desktop
+===================================================================
+--- parts/classview/kdevclassview.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/classview/kdevclassview.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -21,7 +21,7 @@
+ Comment[nl]=Deze plugin toont een grafische weergave van alle klassen in een project, compleet met methoden en attributen, en biedt directe navigatie hiertussen.
+ Comment[pl]=Ta wtyczka pokazuje graficzny widok wszystkich klas w projekcie z metodami i atrybutami oraz umożliwia bezpośrednią nawigację w kodzie źródłowym..
+ Comment[pt]=Este 'plugin' mostra uma vista gráfica de todas as classes no projecto, completas com os métodos e atributos, oferecendo uma forma de navegação directa sobre o código.
+-Comment[pt_BR]=Este plugin exibe uma visão gráfica de todas as classes no projeto, juntamente com métodos e atributos, e fornece uma maneira de navegar diretamente no código.
++Comment[pt_BR]=Este plug-in exibe uma visão gráfica de todas as classes no projeto, juntamente com métodos e atributos, e fornece uma maneira de navegar diretamente no código.
+ Comment[ru]=Этот модуль показывает список классов в проекте, включая методы и атрибуты, а также предоставляет возможности навигации по коду.
+ Comment[sk]=Modul zobrazí grafický pohľad na triedy v projekte, spolu s metódami a atribútmi, a umožní priamy prístup k zdrojovému kódu.
+ Comment[sr]=Овај прикључак приказује графички изглед свих класа у пројекту, заједно са методама и атрибутима, и обезбеђује начин директне навигације кроз изворни кôд.
+Index: parts/scripting/kdevscripting.desktop
+===================================================================
+--- parts/scripting/kdevscripting.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/scripting/kdevscripting.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -52,7 +52,7 @@
+ Comment[nl]=De scripting-plugin maakt KScript gebaseerde scripting van de KDevelop-toepassing mogelijk.
+ Comment[pl]=Wtyczka skrypty pozwala ja skrypty oparte o KScript w programie KDevelop
+ Comment[pt]=O 'plugin' de 'scripting' oferece funcionalidade de 'scripting' da aplicação KDevelop baseados no KScript
+-Comment[pt_BR]=O plugin de scripting oferece scripts baseados no KScript do aplicativo KDevelop
++Comment[pt_BR]=O plug-in de scripting oferece scripts baseados no KScript do aplicativo KDevelop
+ Comment[ru]=Модуль сценариев позволяет автоматизировать работу с помощью KScript
+ Comment[sk]=Modul poskytuje KScript skriptovanie KDevelop aplikácie
+ Comment[sr]=Прикључак за скриптовање нуди скриптовање помоћу KScript-а за KDevelop
+Index: parts/valgrind/kdevvalgrind.desktop
+===================================================================
+--- parts/valgrind/kdevvalgrind.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/valgrind/kdevvalgrind.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -17,7 +17,7 @@
+ Comment[nl]=Valgrind is een hulpprogramma dat u helpt bij het opsporen van geheugenproblemen in programma's. http://valgrind.org/
+ Comment[pl]=Valgrind jest narzędziem pomagającym znaleźć w programach problemy z zarządzaniem pamięcią. http://valgrind.org/
+ Comment[pt]=O Valgrind é uma ferramenta que o ajuda a descobrir os problemas de gestão de memória nos programas. http://www.valgrind.org/
+-Comment[pt_BR]=O Valgrind é uma ferramenta que o ajuda a descobrir os problemas de gestão de memória nos programas. http://www.valgrind.org/
++Comment[pt_BR]=Valgrind é uma ferramenta ajuda você a encontrar problemas de gerenciamento de memória nos programas. http://www.valgrind.org/
+ Comment[ru]=Valgrind - средство нахождения проблем управления памятью в программах. http://valgrind.org/
+ Comment[sk]=Valgrind je nástroj, ktorý pomáha nájsť problémy so správou pamäte v programoch. http://valgrind.org/
+ Comment[sr]=Valgrind је алат који вам помаже да нађете проблеме са употребом меморије у програмима. http://valgrind.org/
+Index: parts/replace/kdevreplace.desktop
+===================================================================
+--- parts/replace/kdevreplace.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/replace/kdevreplace.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -22,7 +22,7 @@
+ Comment[nl]=Deze plugin biedt een interactieve, projectbrede "zoek en vervang"-tool. U kunt zoeken naar tekens of reguliere expressies en de vervanging kan in een dialoog worden bekeken voordat deze wordt uitgevoerd. Verschijnt in het menu Bewerken.
+ Comment[pl]=Wtyczka działającego w całym projekcie narzędzia "Znajdź i zamień". Wyszukiwanie odbywa się za pomocą porównywania ciągów lub wyrażen regularnych, a wybór zamienników może być dokonywany przy włączonym podglądzie. Po wczytaniu pojawia się w menu Edycja.
+ Comment[pt]=Este 'plugin' é uma ferramenta interactiva ao nível do projecto de "Procurar e Substituir". Pode procurar por texto ou por uma expressão regular e seleccionar as substituições a serem feitas, a partir de uma antevisão, antes de a acção terminar. Quando é carregado, aparece no menu Editar.
+-Comment[pt_BR]=Este plugin é uma ferramenta interativa de "Procurar e Substituir" por todo o projeto. Procura usando um string ou regexp correspondente, e seleciona as substituições a serem feitas de uma previsão antes da ação ser finalizada. Quando carregado ele aparece no menu Editar.
++Comment[pt_BR]=Este plug-in é uma ferramenta interativa de "Procurar e Substituir" por todo o projeto. Procura usando um string ou regexp correspondente, e seleciona as substituições a serem feitas de uma previsão antes da ação ser finalizada. Quando carregado ele aparece no menu Editar.
+ Comment[ru]=Этот модуль предоставляет интерактивные возможности поиска и замены по файлам в проекте. Сначала проводится поиск по строке или регулярному выражению, далее выбор с предпросмотром и применение замен из списка доступных вариантов.
+ Comment[sk]=Modul poskytuje interaktívny nástroj pre "Nájsť a Zameniť" v celom projekte.Vyhľadávanie pomocou regexp výrazov a výber nového reťazca z náhľadu pred samotnou zámenou. Po načítaní sa objaví v menu Edit.
+ Comment[sr]=Овај прикључак је интерактивни „пронађи и замени“ алат широм пројекта. Тражите користећи знаковни низ или рег.из. поклапање, и из прегледа одаберите измене које ће бити извршене пре него што се акција заврши. Када је учитан појављује се у менију „Измени“.
+Index: parts/doxygen/config.cpp
+===================================================================
+--- parts/doxygen/config.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/doxygen/config.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -2947,7 +2947,7 @@
+     config_err("Warning: No output formats selected! Set at least one of the main GENERATE_* options to YES.\n");
+   }
+ 
+-  // you can't generate HTMLHELP without HTML enabled!
++  // check HTMLHELP creation requirements
+   if (!Config_getBool("GENERATE_HTML") && 
+       Config_getBool("GENERATE_HTMLHELP"))
+   {
+@@ -2963,6 +2963,46 @@
+ #define PUTENV putenv
+ #define SEP ":"
+ #endif
++  // check QHP creation requirements
++  if (Config_getBool("GENERATE_QHP"))
++  {
++    bool quit = false;
++    if (!Config_getBool("GENERATE_HTML"))
++    {
++      config_err("Warning: GENERATE_QHP=YES requires GENERATE_HTML=YES.\n");
++      quit = true;
++    }
++
++    if (Config_getString("QHP_NAMESPACE").isEmpty())
++    {
++      config_err("Warning: GENERATE_QHP=YES requires QHP_NAMESPACE to be set.\n");
++      quit = true;
++    }
++
++    if (Config_getString("QHP_VIRTUAL_FOLDER").isEmpty())
++    {
++      config_err("Warning: GENERATE_QHP=YES requires QHP_VIRTUAL_FOLDER to be set.\n");
++      quit = true;
++    }
++
++    if (quit)
++    {
++      exit(1);
++    }
++  }
++
++  // check QCH creation requirements
++  if (!Config_getString("QHG_LOCATION").isEmpty() &&
++      !Config_getBool("GENERATE_QHP"))
++  {
++    config_err("Warning: Specifying QHG_LOCATION requires GENERATE_QHP=YES.\n");
++  }
++  if (!Config_getString("QCH_FILE").isEmpty() &&
++      Config_getString("QHG_LOCATION").isEmpty())
++  {
++    config_err("Warning: Specifying QCH_FILE requires QHG_LOCATION to be set.\n");
++  }
++
+   if (Config_getBool("HAVE_DOT")) 
+   {
+     char *curFontPath = getenv("DOTFONTPATH");
+@@ -3344,15 +3384,15 @@
+ 		    "description. Set this tag to YES if you prefer the old behaviour instead. \n",
+                     FALSE
+                  );
++  //cb = addBool(
++  //                  "DETAILS_AT_TOP",
++  //                  "If the DETAILS_AT_TOP tag is set to YES then Doxygen \n"
++  //                  "will output the detailed description near the top, like JavaDoc.\n"
++  //                  "If set to NO, the detailed description appears after the member \n"
++  //                  "documentation. \n",
++  //                  FALSE
++  //               );
+   cb = addBool(
+-                    "DETAILS_AT_TOP",
+-                    "If the DETAILS_AT_TOP tag is set to YES then Doxygen \n"
+-                    "will output the detailed description near the top, like JavaDoc.\n"
+-                    "If set to NO, the detailed description appears after the member \n"
+-                    "documentation. \n",
+-                    FALSE
+-                 );
+-  cb = addBool(
+                     "INHERIT_DOCS",
+                     "If the INHERIT_DOCS tag is set to YES (the default) then an undocumented \n"
+                     "member inherits the documentation from any documented member that it \n"
+@@ -3411,6 +3451,16 @@
+ 		    "VHDL. \n",
+                     FALSE
+                  );
++  cl = addList(     "EXTENSION_MAPPING",
++                    "Doxygen selects the parser to use depending on the extension of the files it parses. \n"
++		    "With this tag you can assign which parser to use for a given extension. \n"
++		    "Doxygen has a built-in mapping, but you can override or extend it using this tag. \n"
++		    "The format is ext=language, where ext is a file extension, and language is one of \n"
++		    "the parsers supported by doxygen: IDL, Java, Javascript, C#, C, C++, D, PHP, \n"
++		    "Objective-C, Python, Fortran, VHDL, C, C++. For instance to make doxygen treat \n"
++		    ".inc files as Fortran files (default is PHP), and .f files as C (default is Fortran), \n"
++		    "use: inc=Fortran f=C\n"
++                 );
+   cb = addBool(  
+                     "BUILTIN_STL_SUPPORT",
+ 		    "If you use STL classes (i.e. std::string, std::vector, etc.) but do not want \n"
+@@ -3434,15 +3484,15 @@
+ 		    "instead of private inheritance when no explicit protection keyword is present. \n",
+                     FALSE
+                  );
+-  cb = addBool(    "IDL_PROPERTY_SUPPORT",
+-                   "For Microsoft's IDL there are propget and propput attributes to indicate getter \n"
+-		   "and setter methods for a property. Setting this option to YES (the default) \n"
+-		   "will make doxygen to replace the get and set methods by a property in the \n"
+-		   "documentation. This will only work if the methods are indeed getting or \n"
+-		   "setting a simple type. If this is not the case, or you want to show the \n"
+-		   "methods anyway, you should set this option to NO. \n",
+-		   TRUE
+-		  );
++  cb = addBool(     "IDL_PROPERTY_SUPPORT",
++                    "For Microsoft's IDL there are propget and propput attributes to indicate getter \n"
++		    "and setter methods for a property. Setting this option to YES (the default) \n"
++		    "will make doxygen to replace the get and set methods by a property in the \n"
++		    "documentation. This will only work if the methods are indeed getting or \n"
++		    "setting a simple type. If this is not the case, or you want to show the \n"
++		    "methods anyway, you should set this option to NO. \n",
++		    TRUE
++		 );
+   cb = addBool(
+                     "DISTRIBUTE_GROUP_DOC",
+                     "If member grouping is used in the documentation and the DISTRIBUTE_GROUP_DOC \n"
+@@ -3722,6 +3772,17 @@
+ 		   "is used as the file version. See the manual for examples. \n"
+               );
+   cs->setWidgetType(ConfigString::File);
++  cs = addString(  "LAYOUT_FILE",
++                   "The LAYOUT_FILE tag can be used to specify a layout file which will be parsed by \n"
++		   "doxygen. The layout file controls the global structure of the generated output files \n"
++		   "in an output format independent way. The create the layout file that represents \n"
++		   "doxygen's defaults, run doxygen with the -l option. You can optionally specify a \n"
++		   "file name after the option, if omitted DoxygenLayout.xml will be used as the name \n"
++		   "of the layout file.\n"
++	      );
++  cs->setWidgetType(ConfigString::File);
++  addObsolete("DETAILS_AT_TOP");
++
+   
+   //-----------------------------------------------------------------------------------------------
+   addInfo(  "Messages","configuration options related to warning and progress messages");
+@@ -4050,14 +4111,20 @@
+                  );
+   cb->addDependency("GENERATE_HTML");
+   cb = addBool(
+-                    "GENERATE_HTMLHELP",
+-                    "If the GENERATE_HTMLHELP tag is set to YES, additional index files \n"
+-                    "will be generated that can be used as input for tools like the \n"
+-                    "Microsoft HTML help workshop to generate a compiled HTML help file (.chm) \n"
+-                    "of the generated HTML documentation. \n",
++                    "HTML_DYNAMIC_SECTIONS",
++                    "If the HTML_DYNAMIC_SECTIONS tag is set to YES then the generated HTML \n"
++		    "documentation will contain sections that can be hidden and shown after the \n"
++		    "page has loaded. For this to work a browser that supports \n"
++                    "JavaScript and DHTML is required (for instance Mozilla 1.0+, Firefox \n"
++		    "Netscape 6.0+, Internet explorer 5.0+, Konqueror, or Safari). \n",
+                     FALSE
+                  );
+   cb->addDependency("GENERATE_HTML");
++
++  /////////////////////////////////////////////////////////
++  // Docsets //////////////////////////////////////////////
++  /////////////////////////////////////////////////////////
++
+   cb = addBool( "GENERATE_DOCSET",
+                     "If the GENERATE_DOCSET tag is set to YES, additional index files \n"
+                     "will be generated that can be used as input for Apple's Xcode 3 \n"
+@@ -4091,13 +4158,16 @@
+   cs->setDefaultValue("org.doxygen.Project");
+   cs->addDependency("GENERATE_DOCSET");
+ 
++  /////////////////////////////////////////////////////////
++  // HTMLHELP /////////////////////////////////////////////
++  /////////////////////////////////////////////////////////
++
+   cb = addBool(
+-                    "HTML_DYNAMIC_SECTIONS",
+-                    "If the HTML_DYNAMIC_SECTIONS tag is set to YES then the generated HTML \n"
+-		    "documentation will contain sections that can be hidden and shown after the \n"
+-		    "page has loaded. For this to work a browser that supports \n"
+-                    "JavaScript and DHTML is required (for instance Mozilla 1.0+, Firefox \n"
+-		    "Netscape 6.0+, Internet explorer 5.0+, Konqueror, or Safari). \n",
++                    "GENERATE_HTMLHELP",
++                    "If the GENERATE_HTMLHELP tag is set to YES, additional index files \n"
++                    "will be generated that can be used as input for tools like the \n"
++                    "Microsoft HTML help workshop to generate a compiled HTML help file (.chm) \n"
++                    "of the generated HTML documentation. \n",
+                     FALSE
+                  );
+   cb->addDependency("GENERATE_HTML");
+@@ -4119,6 +4189,7 @@
+                    );
+   cs->setWidgetType(ConfigString::File);
+   cs->addDependency("GENERATE_HTML");
++#if 0
+   cs = addString(
+                     "QTHELP_FILE",
+                     "If the GENERATE_HTMLHELP tag is set to YES, the QTHELP_FILE tag can \n"
+@@ -4144,6 +4215,10 @@
+                    );
+   cs->setWidgetType(ConfigString::File);
+   cs->addDependency("GENERATE_HTML");
++#endif
++  addObsolete("QTHELP_FILE");
++  addObsolete("QTHELP_CONFIG");
++  addObsolete("DOXYGEN2QTHELP_LOC");
+   cb = addBool(
+                     "GENERATE_CHI",
+                     "If the GENERATE_HTMLHELP tag is set to YES, the GENERATE_CHI flag \n"
+@@ -4174,7 +4249,83 @@
+                     FALSE
+                  );
+   cb->addDependency("GENERATE_HTML");
++
++  /////////////////////////////////////////////////////////
++  // QT HELP //////////////////////////////////////////////
++  /////////////////////////////////////////////////////////
++
+   cb = addBool(
++                    "GENERATE_QHP",
++                    "If the GENERATE_QHP tag is set to YES and both QHP_NAMESPACE and QHP_VIRTUAL_FOLDER \n"
++                    "are set, an additional index file will be generated that can be used as input for \n"
++                    "Qt's qhelpgenerator to generate a Qt Compressed Help (.qch) of the generated \n"
++                    "HTML documentation. \n",
++                    FALSE
++                 );
++  cb->addDependency("GENERATE_HTML");
++  cs = addString(
++                    "QCH_FILE",
++                    "If the QHG_LOCATION tag is specified, the QCH_FILE tag can \n"
++                    "be used to specify the file name of the resulting .qch file. \n"
++                    "The path specified is relative to the HTML output folder. \n"
++                   );
++  cs->setWidgetType(ConfigString::File);
++  cs->addDependency("GENERATE_QHP");
++  cs = addString(
++                    "QHP_NAMESPACE",
++                    "The QHP_NAMESPACE tag specifies the namespace to use when generating \n"
++                    "Qt Help Project output. For more information please see \n"
++                    "http://doc.trolltech.com/qthelpproject.html#namespace \n"
++                   );
++  cs->addDependency("GENERATE_QHP");
++  cs = addString(
++                    "QHP_VIRTUAL_FOLDER",
++                    "The QHP_VIRTUAL_FOLDER tag specifies the namespace to use when generating \n"
++                    "Qt Help Project output. For more information please see \n"
++                    "http://doc.trolltech.com/qthelpproject.html#virtual-folders \n"
++                   );
++  cs->setDefaultValue("doc");
++  cs->addDependency("GENERATE_QHP");
++
++  cs = addString(
++                    "QHP_CUSTOM_FILTER_NAME",
++                    "If QHP_CUSTOM_FILTER_NAME is set, it specifies the name of a custom filter to add. \n"
++                    "For more information please see \n"
++                    "http://doc.trolltech.com/qthelpproject.html#custom-filters \n"
++                   );
++  cs->addDependency("GENERATE_QHP");
++
++  cs = addString(
++                    "QHP_CUST_FILTER_ATTRS",
++                    "The QHP_CUST_FILT_ATTRS tag specifies the list of the attributes of the custom filter to add."
++                    "For more information please see \n"
++                    "<a href=\"http://doc.trolltech.com/qthelpproject.html#custom-filters\">Qt Help Project / Custom Filters</a>. \n"
++                   );
++  cs->addDependency("GENERATE_QHP");
++
++  cs = addString(
++                    "QHP_SECT_FILTER_ATTRS",
++                    "The QHP_SECT_FILTER_ATTRS tag specifies the list of the attributes this project's \n"
++                    "filter section matches. \n"
++                    "<a href=\"http://doc.trolltech.com/qthelpproject.html#filter-attributes\">Qt Help Project / Filter Attributes</a>. \n"
++                   );
++  cs->addDependency("GENERATE_QHP");
++
++  cs = addString(
++                    "QHG_LOCATION",
++                    "If the GENERATE_QHP tag is set to YES, the QHG_LOCATION tag can \n"
++                    "be used to specify the location of Qt's qhelpgenerator. \n"
++                    "If non-empty doxygen will try to run qhelpgenerator on the generated \n"
++                    ".qhp file .\n"
++                   );
++  cs->setWidgetType(ConfigString::File);
++  cs->addDependency("GENERATE_QHP");
++
++  /////////////////////////////////////////////////////////
++  // MISC /////////////////////////////////////////////////
++  /////////////////////////////////////////////////////////
++
++  cb = addBool(
+                     "DISABLE_INDEX",
+                     "The DISABLE_INDEX tag can be used to turn on/off the condensed index at \n"
+                     "top of each HTML page. The value NO (the default) enables the index and \n"
+@@ -4200,7 +4351,7 @@
+ 		    "Netscape 6.0+, Internet explorer 5.0+, or Konqueror). Windows users are \n"
+ 		    "probably better off using the HTML help feature. Other possible values \n"
+ 		    "for this tag are: HIERARCHIES, which will generate the Groups, Directories,\n"
+-                    "and Class Hiererachy pages using a tree view instead of an ordered list;\n"
++                    "and Class Hierarchy pages using a tree view instead of an ordered list;\n"
+                     "ALL, which combines the behavior of FRAME and HIERARCHIES; and NONE, which\n"
+                     "disables this behavior completely. For backwards compatibility with previous\n"
+                     "releases of Doxygen, the values YES and NO are equivalent to FRAME and NONE\n"
+@@ -4714,12 +4865,20 @@
+ 		    "containing the font. \n"
+                  );
+   cs->setDefaultValue("FreeSans");
++  cb->addDependency("HAVE_DOT");
++  ci = addInt(      "DOT_FONTSIZE",
++                    "The DOT_FONTSIZE tag can be used to set the size of the font of dot graphs. \n"
++		    "The default size is 10pt. \n",
++		    4,24,10
++	     );
++  ci->addDependency("HAVE_DOT");
+   cs = addString(   "DOT_FONTPATH",
+       		    "By default doxygen will tell dot to use the output directory to look for the \n"
+ 		    "FreeSans.ttf font (which doxygen will put there itself). If you specify a \n"
+ 		    "different font using DOT_FONTNAME you can set the path where dot \n"
+ 		    "can find it using this tag. \n"
+                 );
++  cs->addDependency("HAVE_DOT");
+   cb = addBool(
+                     "CLASS_GRAPH",
+                     "If the CLASS_GRAPH and HAVE_DOT tags are set to YES then doxygen \n"
+@@ -4806,12 +4965,12 @@
+                  );
+   cb->addDependency("HAVE_DOT");
+   cb = addBool(    
+-                    "DIRECTORY_GRAPH",
+-		    "If the DIRECTORY_GRAPH, SHOW_DIRECTORIES and HAVE_DOT tags are set to YES \n"
+-		    "then doxygen will show the dependencies a directory has on other directories \n"
+-		    "in a graphical way. The dependency relations are determined by the #include\n"
+-		    "relations between the files in the directories.\n",
+-                    TRUE
++                  "DIRECTORY_GRAPH",
++  		  "If the DIRECTORY_GRAPH, SHOW_DIRECTORIES and HAVE_DOT tags are set to YES \n"
++  	 	  "then doxygen will show the dependencies a directory has on other directories \n"
++       	          "in a graphical way. The dependency relations are determined by the #include\n"
++  		  "relations between the files in the directories.\n",
++                  TRUE
+                );
+   cb->addDependency("HAVE_DOT");
+   ce = addEnum(
+@@ -4869,11 +5028,11 @@
+   cb = addBool(
+                     "DOT_TRANSPARENT",
+ 		    "Set the DOT_TRANSPARENT tag to YES to generate images with a transparent \n"
+-		    "background. This is enabled by default, which results in a transparent \n"
+-		    "background. Warning: Depending on the platform used, enabling this option \n"
+-		    "may lead to badly anti-aliased labels on the edges of a graph (i.e. they \n"
+-		    "become hard to read). \n",
+-		    TRUE
++		    "background. This is disabled by default, because dot on Windows does not \n"
++		    "seem to support this out of the box. Warning: Depending on the platform used, \n"
++		    "enabling this option may lead to badly anti-aliased labels on the edges of \n"
++		    "a graph (i.e. they become hard to read). \n",
++		    FALSE
+               );
+   cb->addDependency("HAVE_DOT");
+   cb = addBool(
+Index: parts/doxygen/kdevdoxygen.desktop
+===================================================================
+--- parts/doxygen/kdevdoxygen.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/doxygen/kdevdoxygen.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -21,7 +21,7 @@
+ Comment[nl]=De doxygen-plugin biedt hulp bij het vervaardigen van documentatie voor een project, gebaseerd op documentatie in de broncode. Om deze functie te kunnen gebruiken dient u doxygen te hebben geïnstalleerd. Meer info: http://www.doxygen.org/
+ Comment[pl]=Wtyczka doxygena pozwala kontrolować generację dokumentacji projektu, bazując na zawartości kodu źródłowego. Aby użyć tej opcji trzeba mieć zainstalowany doxygen. Więcej informacji można uzyskać na http://www.doxygen.org
+ Comment[pt]=O 'plugin' do doxygen oferece uma forma de especificar e controlar a geração de documentação de um projecto, baseada no conteúdo do código-fonte. Você necessita de ter o 'doxygen' instalado para poder usar isto. Para obter mais informações vá a http://www.doxygen.org
+-Comment[pt_BR]=O plugin do doxygen fornece uma maneira de especificar e controlar a geração de documentação para um projeto, baseado no conteúdo do código fonte. Você precisa ter o doxygen instalado para poder usar isto. Para mais informações vá em http://www.doxygen.org
++Comment[pt_BR]=O plug-in do doxygen fornece uma maneira de especificar e controlar a geração de documentação para um projeto, baseado no conteúdo do código fonte. Você precisa ter o doxygen instalado para poder usar isto. Para mais informações vá em http://www.doxygen.org
+ Comment[ru]=Модуль поддержки doxygen предоставляет возможности контроля генерации проектной документации на основе содержимого исходных файлов. Для использования необходим doxygen. Подробнее об этом смотрите на http://www.doxygen.org.
+ Comment[sk]=Doxygen modul proskytuje spôsob ako špecifikovať a generovať projektovú dokumentáciu na základe obsahu zdrojového kódu. Potrebujete mať nainštalovaný doxygen. Pre viac informácií pozrite http://www.doxygen.org
+ Comment[sr]=Doxygen прикључак обезбеђује начин да се прецизира и контролише документација за пројекат, на основу садржаја изворног кôда. Потребно је да имате инсталиран doxygen да бисте били у могућности да користите ово. За више информација идите на http://www.doxygen.org
+Index: parts/doxygen/version.cpp
+===================================================================
+--- parts/doxygen/version.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/doxygen/version.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -1 +1 @@
+-char versionString[]="1.5.6-KDevelop";
++char versionString[]="1.5.7.1-KDevelop";
+Index: parts/snippet/snippetdlg.ui.h
+===================================================================
+--- parts/snippet/snippetdlg.ui.h	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/snippet/snippetdlg.ui.h	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -17,5 +17,5 @@
+ 
+ void SnippetDlg::slotHelp()
+ {
+-    KMessageBox::information(this, i18n("To use variables in a snippet, you just have to enclose the variablename with $-characters. When you use the snippet, you will then be asked for a value for this variable. \nExample snippet: This is a $VAR$\nWhen you use this snippet you will be prompted for a value for the variable $VAR$. Any occourences of $VAR$ will then be replaced with whatever you've entered.\nIf you need a single $-character in a snippet, which is not used to enclose a variable, type $$(two dollar characters) instead. They will automatically be replaced with a single $-character when you use the snippet.\nIf you want to change the default delimiter to anything different, please use the settings dialog to do so."), i18n("Snippet help"));
++    KMessageBox::information(this, i18n("To use variables in a snippet, you just have to enclose the variablename with $-characters. When you use the snippet, you will then be asked for a value for this variable. \nExample snippet: This is a $VAR$\nWhen you use this snippet you will be prompted for a value for the variable $VAR$. Any occurrences of $VAR$ will then be replaced with whatever you have entered.\nIf you need a single $-character in a snippet, which is not used to enclose a variable, type $$ (two dollar characters) instead. They will automatically be replaced with a single $-character when you use the snippet.\nIf you want to change the default delimiter to anything different, please use the settings dialog to do so."), i18n("Snippet help"));
+ }
+Index: parts/astyle/astyleconfig.ui
+===================================================================
+--- parts/astyle/astyleconfig.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/astyle/astyleconfig.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -262,15 +262,15 @@
+                                     <enum>WidgetWidth</enum>
+                                 </property>
+                                 <property name="toolTip" stdset="0">
+-                                    <string>Set the file extensions for what the
++                                    <string>Set the extensions of files that the
+ formatter will try to reformat. Use a
+-space seperated list. eg. *.cpp *.hpp
++space separated list, e.g. *.cpp *.hpp.
+ Can use * on its own for any file.</string>
+                                 </property>
+                                 <property name="whatsThis" stdset="0">
+-                                    <string>Set the file extensions for what the
++                                    <string>Set the extensions of files that the
+ formatter will try to reformat. Use a
+-space seperated list. eg. *.cpp *.hpp
++space separated list, e.g. *.cpp *.hpp.
+ Can use * on its own for any file.</string>
+                                 </property>
+                             </widget>
+@@ -930,7 +930,7 @@
+                                     <string>&amp;Keep one-line statements</string>
+                                 </property>
+                                 <property name="toolTip" stdset="0">
+-                                    <string>Don't break lines containing multiple statements into
++                                    <string>Do not break lines containing multiple statements into
+ multiple single-statement lines.</string>
+                                 </property>
+                             </widget>
+@@ -942,7 +942,7 @@
+                                     <string>Keep o&amp;ne-line blocks</string>
+                                 </property>
+                                 <property name="toolTip" stdset="0">
+-                                    <string>Don't break blocks residing completely on one line.</string>
++                                    <string>Do not break blocks residing completely on one line.</string>
+                                 </property>
+                             </widget>
+                         </vbox>
+Index: parts/astyle/kdevastyle.desktop
+===================================================================
+--- parts/astyle/kdevastyle.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/astyle/kdevastyle.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -15,12 +15,13 @@
+ Comment[hu]=Bővítőmodul forráskód formázásához, megadott szabályok alapján. Az Eszközök menüből érhető el, ha be van töltve.
+ Comment[it]=Un plugin per formattare il codice sorgente secondo uno specifico insieme di regole. Quando sarà caricato lo troverai nel menu Strumenti.
+ Comment[ja]=指定された規則にソースコードを書式化するためのプラグイン。読み込まれるとツールメニューで見つかります。
++Comment[ms]=Plugin untuk memformat kod sumber mengikut set peraturan yang ditetapkan. Apabila dimuatkan ia berada di menu Alatan.
+ Comment[nds]=En Moduul för't Borntextformateren na angeven Regeln. Wenn dat Moduul laadt is, lett sik dat binnen dat Warktüüchmenü finnen.
+ Comment[ne]=नियमको निर्दिष्ट सेट अनुसार स्रोतसङ्केतको ढाँचाबद्धताका लागि प्लगइन । लोड भएपछि यो उपकरण मेनुमा फेला पार्न सकिन्छ ।
+ Comment[nl]=Een plugin om broncode te formatteren volgens een speciale set regels. Te vinden onder het menu Gereedschap.
+ Comment[pl]=Wtyczka do formatowania kodu źródłowego zgodnie z podanymi zasadami. Po wczytaniu pojawia się w menu Narzędzia.
+ Comment[pt]=Um 'plugin' para a formatação do código-fonte de acordo com um conjunto específico de regras. Quando é carregado, encontrar-se-á no menu Ferramentas.
+-Comment[pt_BR]=Um plugin para formatação do código fonte de acordo com um conjunto específico de regras. Quando carregado é encontrado no menu Ferramentas.
++Comment[pt_BR]=Um plug-in para formatação do código fonte de acordo com um conjunto específico de regras. Quando carregado é encontrado no menu Ferramentas.
+ Comment[ru]=Модуль для форматирования кода по установленным правилам.
+ Comment[sk]=Modul pre formátovanie zdrojového kódu podľa špecifických pravidiel.Po načítaní ho nájdete v menu Nástroje.
+ Comment[sr]=Прикључак за форматирање изворног кôда према прецизираном скупу правила. Када је учитан, налази се у менију „Алати“.
+@@ -55,6 +56,7 @@
+ GenericName[hu]=Forráskód-formázó
+ GenericName[it]=Formattatore del codice sorgente
+ GenericName[ja]=ソースコードフォーマッタ
++GenericName[ms]=Pemformat Kod Sumber
+ GenericName[nds]=Borntext-Formateren
+ GenericName[ne]=स्रोत सङ्केत ढाँचाबद्धक
+ GenericName[nl]=Broncode formatteren
+Index: parts/appwizard/kdevappwizard.desktop
+===================================================================
+--- parts/appwizard/kdevappwizard.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/appwizard/kdevappwizard.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -18,6 +18,7 @@
+ Comment[hu]=Alkalmazásvarázsló
+ Comment[it]=Procedura guidata applicazione
+ Comment[ja]=アプリケーションウィザード
++Comment[ms]=Wizard Aplikasi
+ Comment[nds]=Programm-Hölper
+ Comment[ne]=अनुप्रयोग विजार्ड
+ Comment[nl]=Toepassingassistent
+@@ -61,6 +62,7 @@
+ GenericName[hu]=Alkalmazásvarázsló
+ GenericName[it]=Procedura guidata applicazione
+ GenericName[ja]=アプリケーションウィザード
++GenericName[ms]=Wizard Aplikasi
+ GenericName[nds]=Programm-Hölper
+ GenericName[ne]=अनुप्रयोग विजार्ड
+ GenericName[nl]=Toepassingassistent
+Index: parts/appwizard/common/dockbook.kdevtemplate
+===================================================================
+--- parts/appwizard/common/dockbook.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/appwizard/common/dockbook.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -16,6 +16,7 @@
+ Comment[hu]=DocBook-alapú dokumentációsablonok telepítése.
+ Comment[it]=Installa modelli di documentazione docbook.
+ Comment[ja]=Docbook ドキュメントテンプレートをインストール
++Comment[ms]=Pasang templat dokumentasi Docbook.
+ Comment[nds]= Docbook-Dokmentatschoonvörlagen installeren
+ Comment[ne]= डकबुक मिसिलीकरण टेम्प्लेट स्थापना गर्नुहोस्
+ Comment[nl]=Installeert Docbook-documentatie-sjablonen.
+Index: parts/abbrev/kdevabbrev.desktop
+===================================================================
+--- parts/abbrev/kdevabbrev.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/abbrev/kdevabbrev.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -17,6 +17,7 @@
+ Comment[hu]=Lehetővé teszi különféle rövidítések használatát (rövid kifejezések kódstruktúrává kibontását)
+ Comment[it]=Offre il supporto per le abbreviazioni personalizzate - brevi parole che vengono espanse in strutture di codice richieste comunemente.
+ Comment[ja]=短い単語を一般に必要とされるコードに展開する、カスタマイズ可能な略語のサポートを提供します。
++Comment[ms]=Menyediakan sokongan untuk kependekan boleh ditetapkan - perkataan pendek yang berkembang kepada struktur kod yang biasa diperlukan.
+ Comment[nds]=Ünnerstütten för egen Afkörten - Kortwöör, de na faken bruukt Kodestrukturen utfooldt warrt.
+ Comment[ne]=साझा आवश्यक सङ्केत बनावटमा विस्तार गरिने छोटो शब्द - अनुकूलन संक्षिप्त रूपका लागि समर्थन प्रदान गर्दछ ।
+ Comment[nl]=Biedt ondersteuning voor afkortingen - korte stukjes tekst die expanderen tot veelgebruikte codestructuren.
+@@ -57,6 +58,7 @@
+ GenericName[hu]=Rövidítéskezelő
+ GenericName[it]=Espansione delle abbreviazioni
+ GenericName[ja]=略語拡張
++GenericName[ms]=Pengembang Kependekan
+ GenericName[nds]=Afkörtenutfoolden
+ GenericName[ne]=संक्षिप्त रूप विस्तार
+ GenericName[nl]=Afkortingen expanderen
+Index: parts/documentation/interfaces/kdevelopdocumentationplugins.desktop
+===================================================================
+--- parts/documentation/interfaces/kdevelopdocumentationplugins.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/interfaces/kdevelopdocumentationplugins.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -22,7 +22,7 @@
+ Name[nl]=KDevelop Documentatie Plugin Interface
+ Name[pl]=Interfejs do wtyczki dokumentacji dla KDevelop
+ Name[pt]=Interface de 'Plugin' de Documentação do KDevelop
+-Name[pt_BR]=Interface de Plugin de Documentação do KDevelop
++Name[pt_BR]=Interface de Plug-in de Documentação do KDevelop
+ Name[ru]=Интерфейс для модулей документации KDevelop
+ Name[sk]=KDevelop rozhranie pre dokumentačný modul
+ Name[sl]=Vmesnik vstavka dokumentacije v KDevelopu
+Index: parts/documentation/plugins/kdevtoc/dockdevtocplugin.desktop
+===================================================================
+--- parts/documentation/plugins/kdevtoc/dockdevtocplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/plugins/kdevtoc/dockdevtocplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -27,7 +27,7 @@
+ Comment[nl]=Documentatie plugin for KDevelopTOC documentatie
+ Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie KDevelopTOC
+ Comment[pt]='Plugin' para documentação KDevelopTOC
+-Comment[pt_BR]=Plugin de documentação para document TOC do KDevelop
++Comment[pt_BR]=Plug-in de documentação para document TOC do KDevelop
+ Comment[ru]=Модуль для просмотра KDevelopTOC
+ Comment[sk]=Dokumentačný modul pre KDevelopTOC dokumentáciu
+ Comment[sr]=Документациони прикључак за KDevelopTOC документацију
+Index: parts/documentation/plugins/qt/docqtplugin.desktop
+===================================================================
+--- parts/documentation/plugins/qt/docqtplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/plugins/qt/docqtplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -27,7 +27,7 @@
+ Comment[nl]=Documentatie plugin voor Qt DCF documentatie
+ Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie Qt DCF
+ Comment[pt]='Plugin' para documentação Qt DCF
+-Comment[pt_BR]=Plugin de documentação para documento DCF do Qt
++Comment[pt_BR]=Plug-in de documentação para documento DCF do Qt
+ Comment[ru]=Модуль для просмотра Qt DCF
+ Comment[sk]=Dokumentačný modul pre Qt DCF dokumentáciu
+ Comment[sl]=Vstavek dokumentacije za Qt DCF
+Index: parts/documentation/plugins/pdb/docpdbplugin.desktop
+===================================================================
+--- parts/documentation/plugins/pdb/docpdbplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/plugins/pdb/docpdbplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -27,7 +27,7 @@
+ Comment[nl]=Documentatie plugin voor Palmdoc documentatie
+ Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie Palmdoc
+ Comment[pt]='Plugin' para documentação no formato Palmdoc
+-Comment[pt_BR]=Plugin de documentação para o formato Palmdoc
++Comment[pt_BR]=Plug-in de documentação para o formato Palmdoc
+ Comment[ru]=Модуль для просмотра документации в формате Palmdoc
+ Comment[sk]=Dokumentačný modul pre Palmdoc formát
+ Comment[sr]=Документациони прикључак за Palmdoc формат
+Index: parts/documentation/plugins/chm/docchmplugin.desktop
+===================================================================
+--- parts/documentation/plugins/chm/docchmplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/plugins/chm/docchmplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -28,7 +28,7 @@
+ Comment[nl]=Documentatie plugin voor CHM documentatie
+ Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie CHM
+ Comment[pt]='Plugin' para documentação CHM
+-Comment[pt_BR]=Plugin de documentação para documento CHM
++Comment[pt_BR]=Plug-in de documentação para documento CHM
+ Comment[ru]=Модуль для просмотра документации в файлах CHM
+ Comment[sk]=Dokumentačný modul pre CHM dokumentáciu
+ Comment[sr]=Документациони прикључак за CHM документацију
+Index: parts/documentation/plugins/devhelp/docdevhelpplugin.desktop
+===================================================================
+--- parts/documentation/plugins/devhelp/docdevhelpplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/plugins/devhelp/docdevhelpplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -26,7 +26,7 @@
+ Comment[nl]=Documentatie plugin fvoor DevHelp documentatie
+ Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie DevHelp
+ Comment[pt]='Plugin' para documentação DevHelp
+-Comment[pt_BR]=Plugin de documentação para documento DevHelp
++Comment[pt_BR]=Plug-in de documentação para documento DevHelp
+ Comment[ru]=Модуль для просмотра документации DevHelp
+ Comment[sk]=Dokumentačný modul pre DevHelp dokumentáciu
+ Comment[sl]=Dokumentacijski vstavek za dokumentacijo DevHelp
+Index: parts/documentation/plugins/devhelp/docdevhelpplugin.cpp
+===================================================================
+--- parts/documentation/plugins/devhelp/docdevhelpplugin.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/plugins/devhelp/docdevhelpplugin.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -219,7 +219,7 @@
+ void DocDevHelpPlugin::scanDevHelpDir(const QString &path)
+ {
+     QDir d(path);
+-    if (! d.exists())
++    if (! d.exists() || !d.isReadable())
+         return;
+     
+     d.setFilter(QDir::Files);
+Index: parts/documentation/plugins/djvu/docdjvuplugin.desktop
+===================================================================
+--- parts/documentation/plugins/djvu/docdjvuplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/plugins/djvu/docdjvuplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -28,7 +28,7 @@
+ Comment[nl]=Documentatie plugin voor het djvu-formaat
+ Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie djvu
+ Comment[pt]='Plugin' para documentação no formato djvu
+-Comment[pt_BR]=Plugin de documentação para o formato djvu
++Comment[pt_BR]=Plug-in de documentação para o formato djvu
+ Comment[ru]=Модуль для просмотра документации в формате DJVU
+ Comment[sk]=Dokumentačný modul pre Djvu dokumentáciu
+ Comment[sr]=Документациони прикључак за djvu формат
+Index: parts/documentation/plugins/pdf/docpdfplugin.desktop
+===================================================================
+--- parts/documentation/plugins/pdf/docpdfplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/plugins/pdf/docpdfplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -27,7 +27,7 @@
+ Comment[nl]=Documentatie plugin voor PDF documentatie
+ Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie PDF
+ Comment[pt]='Plugin' para documentação no formato PDF
+-Comment[pt_BR]=Plugin de documentação para o formato PDF
++Comment[pt_BR]=Plug-in de documentação para o formato PDF
+ Comment[ru]=Модуль для просмотра PDF
+ Comment[sk]=Dokumentačný modul pre PDF formát
+ Comment[sr]=Документациони прикључак за PDF формат
+Index: parts/documentation/plugins/custom/doccustomplugin.desktop
+===================================================================
+--- parts/documentation/plugins/custom/doccustomplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/plugins/custom/doccustomplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -27,7 +27,7 @@
+ Comment[nl]=Documentatie plugin voor alle typen documentatie
+ Comment[pl]=Wtyczka dokumentacji dla wszystkich typów dokumentacji
+ Comment[pt]='Plugin' para documentação de todos os tipos
+-Comment[pt_BR]=Plugin de documentação para todos os tipos de documentação
++Comment[pt_BR]=Plug-in de documentação para todos os tipos de documentação
+ Comment[ru]=Модуль для работы с документацией
+ Comment[sk]=Dokumentačný modul pre všetky typy dokumentácie
+ Comment[sl]=Dokumentacijski vstavek za vse vrste dokumentacije
+Index: parts/documentation/plugins/doxygen/docdoxygenplugin.desktop
+===================================================================
+--- parts/documentation/plugins/doxygen/docdoxygenplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/plugins/doxygen/docdoxygenplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -28,7 +28,7 @@
+ Comment[nl]=Documentatie plugin voor Doxygen documentatie
+ Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie Doxygen
+ Comment[pt]='Plugin' para documentação Doxygen
+-Comment[pt_BR]=Plugin de documentação para documento Doxygen
++Comment[pt_BR]=Plug-in de documentação para documento Doxygen
+ Comment[ru]=Модуль для просмотра документации Doxygen
+ Comment[sk]=Dokumentačný modul pre Doxygen dokumentáciu
+ Comment[sl]=Dokumentacijski vstavek za dokumentacijo Doxygen
 Index: parts/documentation/kdevdocumentation.desktop
 ===================================================================
---- parts/documentation/kdevdocumentation.desktop	(.../tags/KDE/3.5.9/kdevelop)	(wersja 781012)
-+++ parts/documentation/kdevdocumentation.desktop	(.../branches/KDE/3.5/kdevelop)	(wersja 781012)
-@@ -15,6 +15,7 @@
- Comment[gl]=A extensión de documentación ofrece navegación e búsqueda en documentación local e en liña con soporte para múltiples sistemas de documentación.
- Comment[hu]=Dokumentációmegjelenítő elem helyi és távoli dokumentáció böngészéséhez, keresési lehetőséggel. Többféle formátumot támogat.
- Comment[it]=Il plugin di documentazione offre navigazione e ricerca in locale e documentazione in linea con supporto per sistemi di documentazione multipla.
-+Comment[ms]=Plugin dokumentasi menawarkan pelungsuran dan pencarian dalam dokumentasi tempatan dan dalam talian dengan sokongan untuk pelbagai sistem dokumentasi.
- Comment[nds]=Mit dat Dokmentatschoon-Moduul kannst Du lokale un Tokoppel-Dokmentatschoon dörkieken un -söken, mehr Dokmentatschoonsystemen warrt ünnerstütt.
- Comment[ne]=मिसिलीकरण प्लगइनले बहुविध मिसिलीकरण प्रणालीको समर्थनसँग अनलाइन मिसिलीकरण र स्थानीय रूपमा ब्राउज र खोजी गर्न दिन्छ ।
+--- parts/documentation/kdevdocumentation.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/documentation/kdevdocumentation.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -20,7 +20,7 @@
  Comment[nl]=De documentatieplugin welke het mogelijk maakt om door lokale documentatie en documentatie op afstand te bladeren en te zoeken. Met ondersteuning voor verschillende documentatiesystemen.
-@@ -55,6 +56,7 @@
- GenericName[hu]=Dokumentáció
- GenericName[it]=Documentazione
- GenericName[ja]=ドキュメンテーション
-+GenericName[ms]=Dokumentasi
- GenericName[nds]=Dokmentatschoon
- GenericName[ne]=मिसिलीकरण
- GenericName[nl]=Documentatie
-Index: parts/outputviews/makewidget.cpp
+ Comment[pl]=Kontrola dokumentacji z obsługą przeglądania i wyszukiwania w różnych plikach pomocy i systemach dokumentacji.
+ Comment[pt]=O 'plugin' de documentação oferece navegação e procura em documentação local e em rede com suporte para vários sistemas de documentação.
+-Comment[pt_BR]=A documentação do plugin oferece navegação e busca na documentação local e online com suporte para diversos sistemas de documentação.
++Comment[pt_BR]=A documentação do plug-in oferece navegação e busca na documentação local e online com suporte para diversos sistemas de documentação.
+ Comment[ru]=Модуль документации позволяет упростить работу с документацией.
+ Comment[sk]=Dokumentačný modul proskytuje prehliadanie a vyhľadávanie v lokálnej a online dokumentácie s podporou viacerých dokumentačných systémov.
+ Comment[sr]=Прикључак за документацију са подршком за прегледање и тражење у локалној и документацији на вези, за више документационих система.
+Index: parts/konsole/kdevkonsoleview.desktop
 ===================================================================
---- parts/outputviews/makewidget.cpp	(.../tags/KDE/3.5.9/kdevelop)	(wersja 781012)
-+++ parts/outputviews/makewidget.cpp	(.../branches/KDE/3.5/kdevelop)	(wersja 781012)
-@@ -532,28 +532,31 @@
- {
-     QString sline;
-     bool forceCLocale = KConfigGroup( kapp->config(), "MakeOutputWidget" ).readBoolEntry( "ForceCLocale", true );
-+    
-     if( forceCLocale )
-         sline = QString::fromAscii( stdoutbuf+line );
-     else
-         sline = QString::fromLocal8Bit( stdoutbuf+line );
--    stdoutbuf.truncate(0);
+--- parts/konsole/kdevkonsoleview.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ parts/konsole/kdevkonsoleview.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -21,7 +21,7 @@
+ Comment[nl]=Deze plugin geeft KDevelop een ingebedde Konsole voor snelle toegang tot de commandoregel.
+ Comment[pl]=Ta wtyczka dodaje do KDevelopa wbudowaną konsolę umożliwiając szybki i łatwy dostęp do linii komend.
+ Comment[pt]=Este 'plugin' dá ao KDevelop um Konsole incorporado para um acesso rápido e simples à linha de comandos.
+-Comment[pt_BR]=Este plugin fornece ao KDevelop um konsole embutido para acesso rápido e fácil à linha de comando.
++Comment[pt_BR]=Este plug-in fornece ao KDevelop um konsole embutido para acesso rápido e fácil à linha de comando.
+ Comment[ru]=Предоставляет встроенную консоль для быстрого вызова командной строки.
+ Comment[sk]=Modul vložiteľnej konzoly do Kdevelop pre rýchly a jednoduchý prístup k príkazovému riadku.
+ Comment[sr]=Овај прикључак даје KDevelop-у уграђену конзолу за брз и лак приступ командној линији.
+Index: kdevassistant.desktop
+===================================================================
+--- kdevassistant.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ kdevassistant.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -18,6 +18,7 @@
+ Name[fr]=Assistant de KDevelop
+ Name[it]=Assistente di KDevelop
+ Name[ja]=KDevelop アシスタント
++Name[ms]=Pembantu KDevelop
+ Name[nds]=KDevelop-Hölper
+ Name[ne]=केडीई विकास सहायक
+ Name[nl]=KDevelop Assistent
+@@ -49,6 +50,7 @@
+ GenericName[hu]=Dokumentációmegjelenítő
+ GenericName[it]=Visualizzatore documentazione
+ GenericName[ja]=ドキュメンテーションビューア
++GenericName[ms]=Pelihat Dokumentasi
+ GenericName[nds]=Dokmentatschoonkieker
+ GenericName[ne]=मिलिसीकरण दृश्यकर्ता
+ GenericName[nl]=Documentatie Browser
+Index: lib/cppparser/lexer.cpp
+===================================================================
+--- lib/cppparser/lexer.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ lib/cppparser/lexer.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -212,7 +212,7 @@
+     int op = 0;
  
-     if ( !appendToLastLine( sline ) )
-         m_directoryStatusFilter.processLine( sline );
-+    stdoutbuf.truncate(0);
- }
- 
- void MakeWidget::insertStderrLine( const QCString& line )
- {
-     QString sline;
-     bool forceCLocale = KConfigGroup( kapp->config(), "MakeOutputWidget" ).readBoolEntry( "ForceCLocale", true );
-+    
-     if( forceCLocale ) {
-         sline = QString( stderrbuf+line );
+     if( m_size == (int)m_tokens.size() ){
+-	m_tokens.resize( m_tokens.size() + 5000 );
++	m_tokens.resize( m_tokens.size() + 5000 + 1 );
      }
-     else
-         sline = QString::fromLocal8Bit( stderrbuf+line );
-+    
-+    if ( !appendToLastLine( sline ) )
-+        m_errorFilter.processLine( sline );
-     stderrbuf.truncate(0);
--    if ( !appendToLastLine( line ) )
--        m_errorFilter.processLine( line );
+ 
+     readWhiteSpaces( !stopOnNewline );
+@@ -241,7 +241,7 @@
+         m_startLine = false;
+         int ppe = preprocessorEnabled();
+ 	setPreprocessorEnabled( false );
+-	while( currentChar() && currentChar() != '\n' ){
++	while( !currentChar().isNull() && currentChar() != '\n' ){
+             Token tok(m_source);
+             nextToken( tok, true );
+         }
+Index: lib/interfaces/kdevelopplugin.desktop
+===================================================================
+--- lib/interfaces/kdevelopplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ lib/interfaces/kdevelopplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -22,7 +22,7 @@
+ Name[ne]=केडीई विकास प्लगइन
+ Name[pl]=Wtyczka do KDevelopa
+ Name[pt]='Plugin' do KDevelop
+-Name[pt_BR]=Plugin do KDevelop
++Name[pt_BR]=Plug-in do KDevelop
+ Name[ru]=Модуль KDevelop
+ Name[sk]=KDevelop modul
+ Name[sl]=Vstavek za KDevelop
+Index: kdevdesigner/src/kdevdesigner.desktop
+===================================================================
+--- kdevdesigner/src/kdevdesigner.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ kdevdesigner/src/kdevdesigner.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -9,6 +9,7 @@
+ Name[ga]=Dearthóir KDevelop
+ Name[it]=Designer di KDevelop
+ Name[ja]=KDevelop デザイナー
++Name[ms]=Pereka KDevelop
+ Name[nds]=KDevelop-Maker
+ Name[ne]=केडीई विकास डिजाइनर
+ Name[pl]=Projektant KDevelop
+@@ -38,6 +39,7 @@
+ GenericName[it]=Interfaccia del Designer
+ GenericName[ja]=インターフェースデザイナー
+ GenericName[lt]=Sąsajos redaktorius
++GenericName[ms]=Pereka Antaramuka
+ GenericName[nds]=Böversietmaker
+ GenericName[ne]=इन्टरफेस डिजाइनर
+ GenericName[pl]=Projektowanie interfejsu
+@@ -72,6 +74,7 @@
+ Comment[hu]=Qt/KDE felülettervező
+ Comment[it]=Designer di GUI per Qt/KDE
+ Comment[ja]=Qt/KDE のための GUI デザイナー
++Comment[ms]=Pereka GUI untuk Qt/KDE
+ Comment[nds]=Böversietmaker för Qt/KDE
+ Comment[ne]=Qt/KDE का लागि जी यू आई डिजाइनर
+ Comment[nl]=GUI Designer voor Qt/KDE
+Index: mimetypes/x-fortran.desktop
+===================================================================
+--- mimetypes/x-fortran.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ mimetypes/x-fortran.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -17,6 +17,7 @@
+ Comment[is]=Fortran frumkóðaskrá
+ Comment[it]=File sorgente per Fortran
+ Comment[ja]=Fortran ソースファイル
++Comment[ms]=Fail Sumber Fortran
+ Comment[nds]=Fortran-Borntextdatei
+ Comment[ne]=फोर्ट्रान स्रोत फाइल
+ Comment[nl]=Fortran Bronbestand
+Index: kdevelop.desktop
+===================================================================
+--- kdevelop.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ kdevelop.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -21,6 +21,7 @@
+ Name[hu]=KDevelop: nyelvtámogatás
+ Name[it]=KDevelop: multilinguaggio
+ Name[ja]=KDevelop: 多言語
++Name[ms]=KDevelop: Pelbagai bahasa
+ Name[nds]=KDevelop - Verscheden Spraken
+ Name[ne]=केडीई विकास: बहुभाषा
+ Name[nl]=KDevelop: meertalig
+Index: embedded/visualboyadvance/kdevvisualboyadvance.desktop
+===================================================================
+--- embedded/visualboyadvance/kdevvisualboyadvance.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ embedded/visualboyadvance/kdevvisualboyadvance.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -18,6 +18,7 @@
+ Comment[is]=VisualBoyAdvance er GameBoyAdvance hermir. http://vboy.emuhq.com/
+ Comment[it]=VisualBoyAdvance è un emulatore per GameBoyAdvance. http://vboy.emuhq.com/
+ Comment[ja]=VisualBoyAdvance は、ゲームボーイアドバンスエミュレータです。http://vboy.emuhq.com/
++Comment[ms]=VisualBoyAdvance adalah emulator GameBoyAdvance. http://vboy.emuhq.com/
+ Comment[nds]=VisualBoy Advance is en GameBoy-Advance-Emulator (http://vboy.emuhq.com/)
+ Comment[ne]=VisualBoyAdvance एउटा GameBoyAdvance इमुलेटर हो । http://vboy.emuhq.com/
+ Comment[nl]=VisualBoyAdvance is een GameBoyAdvance-emulator (http://vboy.emuhq.com/
+@@ -58,6 +59,7 @@
+ GenericName[hu]=VisualBoyAdvance-támogatás
+ GenericName[it]=Supporto per VisualBoyAdvance
+ GenericName[ja]=VisualBoyAdvance サポート
++GenericName[ms]=Sokongan VisualBoyAdvance
+ GenericName[nds]=Unnerstütten för VisualBoy Advance
+ GenericName[ne]=VisualBoyAdvance समर्थन
+ GenericName[nl]=Ondersteuning voor VisualBoyAdvance
+Index: vcs/subversion/subversion_core.cpp
+===================================================================
+--- vcs/subversion/subversion_core.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ vcs/subversion/subversion_core.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -506,9 +506,9 @@
+         job->showErrorDialog( m_part->mainWindow()->main() );
+         if( job->error() == ERR_CANNOT_LAUNCH_PROCESS )
+             KMessageBox::error( m_part->mainWindow()->main(),
+-                                i18n("If you just have installed new version of KDevelop,"
+-                                     " and if the error message was unknown protocol kdevsvn+*,"
+-                                     " try to restart KDE"
++                                i18n("If you have just have installed a new version of KDevelop,"
++                                     " and the error message was 'unknown protocol kdevsvn+*',"
++                                     " try restarting KDE."
+                                     ) );
+         return;
+     }
+@@ -535,9 +535,9 @@
+ 		job->showErrorDialog( m_part->mainWindow()->main() );
+         if( job->error() == ERR_CANNOT_LAUNCH_PROCESS )
+             KMessageBox::error( m_part->mainWindow()->main(),
+-                                i18n("If you just have installed new version of KDevelop,"
+-                                    " and if the error message was unknown protocol kdevsvn+*,"
+-                                    " try to restart KDE"
++                                i18n("If you have just have installed a new version of KDevelop,"
++                                     " and the error message was 'unknown protocol kdevsvn+*',"
++                                     " try restarting KDE."
+                                     ) );
+ 		return;
+ 	}
+@@ -595,9 +595,9 @@
+         job->showErrorDialog( m_part->mainWindow()->main() );
+         if( job->error() == ERR_CANNOT_LAUNCH_PROCESS )
+             KMessageBox::error( m_part->mainWindow()->main(),
+-                                i18n("If you just have installed new version of KDevelop,"
+-                                     " and if the error message was unknown protocol kdevsvn+*,"
+-                                     " try to restart KDE"
++                                i18n("If you have just have installed a new version of KDevelop,"
++                                     " and the error message was 'unknown protocol kdevsvn+*',"
++                                     " try restarting KDE."
+                                     ) );
+         return;
+     }
+@@ -665,9 +665,9 @@
+ 		job->showErrorDialog( m_part->mainWindow()->main() );
+ 		if( job->error() == ERR_CANNOT_LAUNCH_PROCESS )
+ 			KMessageBox::error( m_part->mainWindow()->main(),
+-								i18n("If you just have installed new version of KDevelop,"
+-									" and if the error message was unknown protocol kdevsvn+*,"
+-									" try to restart KDE"
++                                                                i18n("If you have just have installed a new version of KDevelop,"
++                                                                        " and the error message was 'unknown protocol kdevsvn+*',"
++                                                                        " try restarting KDE."
+ 									) );
+ 		return;
+ 	}
+@@ -700,7 +700,7 @@
+ 			p->start();
+ 			
+ 		} else { //else do it with message box
+-			KMessageBox::information( NULL, i18n("You don't have kompare installed. We recommend you to install kompare to view difference graphically") + "\nhttp://www.caffeinated.me.uk/kompare/" , QString::null , "userDoesNotWantKompare" );
++			KMessageBox::information( NULL, i18n("You do not have kompare installed. We recommend you install kompare to view differences graphically.") + "\nhttp://www.caffeinated.me.uk/kompare/" , QString::null , "userDoesNotWantKompare" );
+ 			Subversion_Diff df;
+ 			for ( QStringList::Iterator it2 = diffList.begin();it2 != diffList.end() ; ++it2 ) {
+ 				df.text->append( *it2 );
+Index: vcs/subversion/svn_kio.cpp
+===================================================================
+--- vcs/subversion/svn_kio.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ vcs/subversion/svn_kio.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -1695,7 +1695,7 @@
+ 	QCString replyType;
+ 	QDataStream arg(params, IO_WriteOnly);
+ 
+-	arg << i18n( "This certificate from server could not be trusted automatically. Will you trust this certificate? " );
++	arg << i18n( "The certificate from the server could not be trusted automatically.  Do you want to trust this certificate? " );
+ 	arg << QString::fromLocal8Bit(ci->hostname);
+ 	arg << QString::fromLocal8Bit(ci->fingerprint);
+ 	arg << QString::fromLocal8Bit(ci->valid_from) << QString::fromLocal8Bit(ci->valid_until);
+Index: vcs/subversion/integrator/svnintegratordlgbase.ui
+===================================================================
+--- vcs/subversion/integrator/svnintegratordlgbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ vcs/subversion/integrator/svnintegratordlgbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -84,14 +84,14 @@
+ repository and checks it out as a working copy.
+ 
+ NOTE: The repository has to exist.
+-eg. been created with 'svnadmin'</string>
++e.g. has been created with 'svnadmin'</string>
+                     </property>
+                     <property name="whatsThis" stdset="0">
+                         <string>Creates project, imports it into the subversion
+ repository and checks it out as a working copy.
+ 
+ NOTE: The repository has to exist.
+-eg. been created with 'svnadmin'</string>
++e.g. has been created with 'svnadmin'</string>
+                     </property>
+                 </widget>
+                 <widget class="QLabel">
+@@ -132,7 +132,7 @@
+                             <property name="toolTip" stdset="0">
+                                 <string>Subversion repository location.
+ The repository has to exist -
+-eg. been created with 'svnadmin'</string>
++e.g. has been created with 'svnadmin'</string>
+                             </property>
+                             <property name="whatsThis" stdset="0">
+                                 <string>Subversion repository location. This should include the subdirectory for the project in the repository. The project subdirectory and further subdirectories will be created. 
+Index: vcs/subversion/integrator/svnintegratordlg.cpp
+===================================================================
+--- vcs/subversion/integrator/svnintegratordlg.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ vcs/subversion/integrator/svnintegratordlg.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -70,7 +70,7 @@
+         s << cmd << list;
+         KIO::SimpleJob* job = KIO::special( protocolUrl, parms, true );
+         if( !NetAccess::synchronousRun( job, 0 ) ){
+-            KMessageBox::error( this, i18n("Fail to create project directories on repository") );
++            KMessageBox::error( this, i18n("Unable to create project directories on repository") );
+             return;
+         }
+ 
+@@ -81,7 +81,7 @@
+         s2 << cmd << servURL << KURL::fromPathOrURL( m_projectLocation );
+         KIO::SimpleJob* importJob = KIO::special( protocolUrl, parms2, true );
+         if( !NetAccess::synchronousRun( importJob, 0 ) ){
+-            KMessageBox::error( this, i18n("Fail to import into repository.") );
++            KMessageBox::error( this, i18n("Unable to import into repository.") );
+             return;
+         }
+     }
+@@ -103,7 +103,7 @@
+     SimpleJob *job2 = KIO::special( protocolUrl, parms3, true );
+     if( ! NetAccess::synchronousRun( job2, 0 ) ){
+         // Checkout failed
+-        KMessageBox::error(this, i18n("Fail to checkout from repository.") );
++        KMessageBox::error(this, i18n("Unable to checkout from repository.") );
+         return;
+     }
+ }
+Index: vcs/clearcase/kdevclearcase.desktop
+===================================================================
+--- vcs/clearcase/kdevclearcase.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ vcs/clearcase/kdevclearcase.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -21,7 +21,7 @@
+ Comment[nl]=Een plugin die ondersteuning biedt voor Rational ClearCase, een omvangrijk versiebeheer en buildmanagement-systeem. Zie http://www.rational.com/products/clearcase/index.jsp
+ Comment[pl]=Wtyczka udostępniająca obsługę Rational ClearCase, dużego systemu kontroli wersji i zarządzania budowaniem. http://www.rational.com/products/clearcase/index.jsp
+ Comment[pt]=Um 'plugin' que oferece o suporte para o ClearCase da Rational, um sistema grande de controlo de versões e de gestão de compilações. http://www.rational.com/products/clearcase/index.jsp
+-Comment[pt_BR]=Um plugin que fornece suporte para o Rational ClearCase, um grande sistema de controle de versão e gerenciamento de compilação. http://www.rational.com/products/clearcase/index.jsp
++Comment[pt_BR]=Um plug-in que fornece suporte para o Rational ClearCase, um grande sistema de controle de versão e gerenciamento de compilação. http://www.rational.com/products/clearcase/index.jsp
+ Comment[ru]=Модуль поддержки Rational ClearCase, мощной системы контроля версий и управления проектом. http://www.rational.com/products/clearcase/index.jsp
+ Comment[sk]=Modul poskytuje podporu pre Rational ClearCase, riadenie verzií a projektový manažment.
+ Comment[sl]=Vstavek, ki omogoča podporo za Rational ClearCase, velik sistem za upravljanje z različicami in grajenjem. http://www.rational.com/products/clearcase/index.jsp
+Index: configure.in.in
+===================================================================
+--- configure.in.in	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ configure.in.in	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -1,6 +1,6 @@
+ #MIN_CONFIG(3.3.0)
+ 
+-AM_INIT_AUTOMAKE(kdevelop, 3.5.3)
++AM_INIT_AUTOMAKE(kdevelop, 3.5.4)
+ KDEV_CHECK_KDE_VERSION
+ KDE_NEED_FLEX
+ 
+Index: kdevelop.lsm
+===================================================================
+--- kdevelop.lsm	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ kdevelop.lsm	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -1,7 +1,7 @@
+ Begin4
+ Title:          kdevelop
+-Version:        3.5.3
+-Entered-date:   2008-08-20
++Version:        3.5.4
++Entered-date:   2008-12-18
+ Description:    Integrated Development Environment for KDE
+ Keywords:       KDE X11 desktop Qt 
+ Author:         http://bugs.kde.org/ (KDE Bugtracking System)
+Index: kdevelop_scripting.desktop
+===================================================================
+--- kdevelop_scripting.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ kdevelop_scripting.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -19,6 +19,7 @@
+ Name[hu]=KDevelop: Szkriptkészítő
+ Name[it]=KDevelop: scripting
+ Name[ja]=KDevelop: スクリプティング
++Name[ms]=KDevelop: Penskriptan
+ Name[nds]=KDevelop - Skripten
+ Name[ne]=केडीई विकास: स्क्रिप्टिङ
+ Name[pl]=KDevelop: Skrypty
+Index: languages/java/app_templates/javahello/javahello.kdevtemplate
+===================================================================
+--- languages/java/app_templates/javahello/javahello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/java/app_templates/javahello/javahello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -23,7 +23,7 @@
+ Name[nl]=Toepassing
+ Name[pl]=Program
+ Name[pt]=Aplicação
+-Name[pt_BR]=Aplicação
++Name[pt_BR]=Aplicativo
+ Name[ru]=Приложение
+ Name[rw]=Porogaramu
+ Name[sk]=Aplikácia
+Index: languages/ruby/debugger/kdevrbdebugger.desktop
+===================================================================
+--- languages/ruby/debugger/kdevrbdebugger.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/ruby/debugger/kdevrbdebugger.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -20,7 +20,7 @@
+ Comment[nl]=Deze plugin biedt een grafische schil voor de broncode-debugger voor Ruby.
+ Comment[pl]=Ta wtyczka udostępnia interfejs do debugera poziomu źródłowego dla języka Ruby.
+ Comment[pt]=Este 'plugin' oferece uma interface o depurador ao nível do código para Ruby.
+-Comment[pt_BR]=Este plugin fornece uma interface para o depurador a nível de código para Ruby.
++Comment[pt_BR]=Este plug-in fornece uma interface para o depurador a nível de código para Ruby.
+ Comment[ru]=Этот модуль предоставляет интерфейс к отладчику исходного кода для Ruby.
+ Comment[sk]=Modul pre rozhranie debugera pre Ruby.
+ Comment[sr]=Овај прикључак обезбеђује интерфејс за исправљач на нивоу изворног кода за Ruby.
+Index: languages/ruby/app_templates/dcopservice/dcopserviceruby.kdevtemplate
+===================================================================
+--- languages/ruby/app_templates/dcopservice/dcopserviceruby.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/ruby/app_templates/dcopservice/dcopserviceruby.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -20,7 +20,7 @@
+ Name[nl]=DCOP-service
+ Name[pl]=Usługa DCOP
+ Name[pt]=Serviço de DCOP
+-Name[pt_BR]=Serviço de DCOP
++Name[pt_BR]=Serviço DCOP
+ Name[ru]=Сервис DCOP
+ Name[sk]=DCOP služba
+ Name[sr]=DCOP сервис
+Index: languages/ruby/app_templates/qtrubyapp/qtrubyapp.kdevtemplate
+===================================================================
+--- languages/ruby/app_templates/qtrubyapp/qtrubyapp.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/ruby/app_templates/qtrubyapp/qtrubyapp.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -20,7 +20,7 @@
+ Name[nl]=QtRuby-toepassing
+ Name[pl]=Program w QtRuby
+ Name[pt]=Aplicação em QtRuby
+-Name[pt_BR]=Aplicação em QtRuby
++Name[pt_BR]=Aplicativo QtRuby
+ Name[ru]=Приложение QtRuby
+ Name[sk]=QtRuby Aplikácia
+ Name[sr]=QtRuby програм
+@@ -51,7 +51,7 @@
+ Comment[nl]=Genereert een QtRuby-toepassing (crossplatform compatible)
+ Comment[pl]=Generuj program używający QtRuby (wieloplatformowy)
+ Comment[pt]=Gera uma aplicação baseada em QtRuby (compatível com várias plataformas)
+-Comment[pt_BR]=Gera uma aplicação baseada em QtRuby (compatível com várias plataformas)
++Comment[pt_BR]=Gera um aplicativo baseado no QtRuby (compatível com várias plataformas)
+ Comment[ru]=Создание кроссплатформенного приложения на QtRuby
+ Comment[sk]=Vygeneruje QtRuby aplikáciu (multiplatformovo kompatibilnú)
+ Comment[sr]=Прави програм на основу QtRuby-ја (прекоплатформски компатибилан)
+Index: languages/ruby/app_templates/qtruby4app/qtruby4app.kdevtemplate
+===================================================================
+--- languages/ruby/app_templates/qtruby4app/qtruby4app.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/ruby/app_templates/qtruby4app/qtruby4app.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -13,7 +13,7 @@
+ Name[nl]=QtRuby4-programma
+ Name[pl]=Program w QtRuby
+ Name[pt]=Aplicação em QtRuby4
+-Name[pt_BR]=Aplicação em QtRuby4
++Name[pt_BR]=Aplicativo QtRuby4
+ Name[ru]=Приложение QtRuby4
+ Name[sk]=QtRuby4 Aplikácia
+ Name[sr]=QtRuby4 програм
+Index: languages/cpp/cppcodecompletion.cpp
+===================================================================
+--- languages/cpp/cppcodecompletion.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/cppcodecompletion.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -1723,7 +1723,7 @@
+ 
+ 
+     } else {
+-      addStatusText( i18n( "Type of \"%1\" could not be evaluated! Tried to evaluate expression as \"%2\"" ).arg( type.expr.expr() ).arg( type.expr.typeAsString() ), 2 * timeout );
++      addStatusText( i18n( "Type of \"%1\" could not be evaluated: tried to evaluate expression as \"%2\"" ).arg( type.expr.expr() ).arg( type.expr.typeAsString() ), 2 * timeout );
+     }
+   }
+ 
+Index: languages/cpp/pcsimporter/kdelibsimporter/settingsdialog.cpp
+===================================================================
+--- languages/cpp/pcsimporter/kdelibsimporter/settingsdialog.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/pcsimporter/kdelibsimporter/settingsdialog.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -89,7 +89,7 @@
+ 	}
+ 	else
+ 	{
+-		KMessageBox::error( this, i18n("This doesn't appear to be a valid KDE include directory.\nPlease select a different directory."), i18n("Invalid Directory") );
++		KMessageBox::error( this, i18n("This does not appear to be a valid KDE include directory.\nPlease select a different directory."), i18n("Invalid Directory") );
+ 	}
  }
  
- void MakeWidget::slotProcessExited(KProcess *)
-@@ -832,7 +835,7 @@
+Index: languages/cpp/pcsimporter/qtimporter/settingsdialog.cpp
+===================================================================
+--- languages/cpp/pcsimporter/qtimporter/settingsdialog.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/pcsimporter/qtimporter/settingsdialog.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -112,7 +112,7 @@
+ 	}
+ 	else
+ 	{
+-		KMessageBox::error( this, i18n("This doesn't appear to be a valid Qt3 include directory.\nPlease select a different directory."), i18n("Invalid Directory") );
++		KMessageBox::error( this, i18n("This does not appear to be a valid Qt3 include directory.\nPlease select a different directory."), i18n("Invalid Directory") );
+ 	}
  
- void MakeWidget::storePartialStdoutLine(const QCString & line)
+ }
+Index: languages/cpp/pcsimporter/qtimporter/settingsdialogbase.ui
+===================================================================
+--- languages/cpp/pcsimporter/qtimporter/settingsdialogbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/pcsimporter/qtimporter/settingsdialogbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -70,7 +70,7 @@
+                         </sizepolicy>
+                     </property>
+                     <property name="whatsThis" stdset="0">
+-                        <string>Select the Qt configuration to create a Code Completion database for. If you don't know what this option does, just go with the default.</string>
++                        <string>Select the Qt configuration for which to create a Code Completion database. If you do not know what this option does, accept the default.</string>
+                     </property>
+                 </widget>
+             </hbox>
+Index: languages/cpp/pcsimporter/qt4importer/settingsdialog.cpp
+===================================================================
+--- languages/cpp/pcsimporter/qt4importer/settingsdialog.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/pcsimporter/qt4importer/settingsdialog.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -104,7 +104,7 @@
+ 	}
+ 	else
+ 	{
+-		KMessageBox::error( this, i18n("This doesn't appear to be a valid Qt4 include directory.\nPlease select a different directory."), i18n("Invalid Directory") );
++		KMessageBox::error( this, i18n("This does not appear to be a valid Qt4 include directory.\nPlease select a different directory."), i18n("Invalid Directory") );
+ 	}
+ }
+ 
+Index: languages/cpp/simpletype.cpp
+===================================================================
+--- languages/cpp/simpletype.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/simpletype.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -27,14 +27,14 @@
+   m_types["signed char" ] =  i18n("signed character, 1 byte, ranged -128 to 127");
+   m_types["unsigned char"] = i18n("unsigned character, 1 byte, ranged 0 to 255");
+   m_types["wchar_t"] = i18n("wide character, 2 bytes, ranged 0 to 65.535");
+-  m_types["long"] = m_types["long int"] = m_types["int"] = m_types["signed int"] = i18n("signed interger, 4 bytes, ranged -2.147.483.648 to 2.147.483.647");
++  m_types["long"] = m_types["long int"] = m_types["int"] = m_types["signed int"] = i18n("signed integer, 4 bytes, ranged -2.147.483.648 to 2.147.483.647");
+   m_types["unsigned"] = m_types["unsigned int"] = i18n("unsigned integer, 4 bytes, ranged 0 to 4.294.967.295");
+   m_types["short"] = m_types["short int"] = i18n("short integer, 2 bytes, ranged -32.768 to 32.768");
+   m_types["unsigned short int"] = i18n("unsigned short integer, 2 bytes, ranged 0 to 65.535");
+-  m_types["float"] = i18n("floating point value, 4 bytes, ranged ca. -3,4E+38 to 3.4E+38");
+-  m_types["double"] = i18n("double floating point value, 8 bytes, ranged ca. -1.8E+308 to 1.8E+308");
+-  m_types["long double"] = i18n("double long floating point value, 10 bytes, ranged ca. -3.4E+4932 to 3.4E+4932");
+-  m_types["size_t"] = i18n("unsigned integer, byte-count depending on operating-system" );
++  m_types["float"] = i18n("floating point value, 4 bytes, ranged ca. -3,4E+38 to 3,4E+38");
++  m_types["double"] = i18n("double floating point value, 8 bytes, ranged ca. -1,8E+308 to 1,8E+308");
++  m_types["long double"] = i18n("double long floating point value, 10 bytes, ranged ca. -3,4E+4932 to 3,4E+4932");
++  m_types["size_t"] = i18n("unsigned integer, byte-count dependent on operating-system" );
+    
+ }
+ 
+Index: languages/cpp/debugger/gdboutputwidget.cpp
+===================================================================
+--- languages/cpp/debugger/gdboutputwidget.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/debugger/gdboutputwidget.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -333,7 +333,7 @@
+         i18n(
+             "Controls if commands issued internally by KDevelop "
+             "will be shown or not.<br>"
+-            "This option will affect only future commands, it won't "
++            "This option will affect only future commands, it will not "
+             "add or remove already issued commands from the view."));
+ 
+     popup->insertItem(i18n("Copy All"),
+Index: languages/cpp/debugger/framestackwidget.h
+===================================================================
+--- languages/cpp/debugger/framestackwidget.h	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/debugger/framestackwidget.h	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -84,7 +84,6 @@
+ 
+ /***************************************************************************/
+ /***************************************************************************/
+-/***************************************************************************/
+ 
+ /**
+  * @author John Birch
+@@ -155,6 +154,7 @@
+ private:
+   QListViewItem* findItemWhichBeginsWith(const QString& text) const;
+ #endif
++  virtual void showEvent(QShowEvent*);
+ 
+ private:
+ 
+@@ -171,6 +171,8 @@
+     int maxFrame_;
+     bool has_more_frames;
+ 
++    bool mayUpdate_;
++
+     friend class FrameStackItem;
+ 
+     static const int frameChunk_ = 5;
+Index: languages/cpp/debugger/gdbcontroller.cpp
+===================================================================
+--- languages/cpp/debugger/gdbcontroller.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/debugger/gdbcontroller.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -1155,9 +1155,9 @@
+                 KMessageBox::error(
+                     0,
+                     i18n("<b>Application does not exist</b>"
+-                         "<p>The application you're trying to debug,<br>"
++                         "<p>The application you are trying to debug,<br>"
+                          "    %1\n"
+-                         "<br>does not exist. Check that you've specified "
++                         "<br>does not exist. Check that you have specified "
+                          "the right application in the debugger configuration."
+                         ).arg(app.fileName()),
+                     i18n("Application does not exist"));
+@@ -1587,8 +1587,8 @@
+             KMessageBox::detailedSorry(
+                 0,
+                 i18n("<b>Internal debugger error</b>",
+-                     "<p>The debugger component encountered internal error while "
+-                     "processing reply from gdb. Please submit a bug report."),
++                     "<p>The debugger component encountered an internal error while "
++                     "processing a reply from gdb. Please submit a bug report."),
+                 i18n("The exception is: %1\n"
+                      "The MI response is: %2").arg(e.what()).arg(reply),
+                 i18n("Internal debugger error"));
+Index: languages/cpp/debugger/framestackwidget.cpp
+===================================================================
+--- languages/cpp/debugger/framestackwidget.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/debugger/framestackwidget.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -43,7 +43,8 @@
+                                    const char *name, WFlags f)
+         : QListView(parent, name, f),
+           viewedThread_(0),
+-          controller_(controller)
++          controller_(controller),
++          mayUpdate_( false )
  {
--    stderrbuf += line;
-+    stdoutbuf += line;
+     setRootIsDecorated(true);
+     setSorting(-1);
+@@ -135,9 +136,14 @@
+             kdDebug(9012) << "Clearning framestack\n";
+             clear();
+ 
+-            controller_->addCommand(
+-                new GDBCommand("-thread-list-ids",
+-                               this, &FramestackWidget::handleThreadList));
++            if ( isVisible() )
++            {
++               controller_->addCommand(
++                   new GDBCommand("-thread-list-ids",
++                                  this, &FramestackWidget::handleThreadList));
++               mayUpdate_ = false;
++            }
++            else mayUpdate_ = true;
+ 
+             break;
+             
+@@ -180,6 +186,22 @@
+     }
  }
  
- #include "makewidget.moc"
++void FramestackWidget::showEvent(QShowEvent*)
++{
++   if (controller_->stateIsOn(s_appRunning|s_dbgBusy|s_dbgNotStarted|s_shuttingDown))
++      return;
++
++   if ( mayUpdate_ )
++   {
++      clear();
++
++      controller_->addCommand(
++          new GDBCommand( "-thread-list-ids", this, &FramestackWidget::handleThreadList ) );
++
++      mayUpdate_ = false;
++   }
++}
++
+ void FramestackWidget::getBacktrace(int min_frame, int max_frame)
+ {
+     minFrame_ = min_frame;
+@@ -619,6 +641,5 @@
+ 
+ /***************************************************************************/
+ /***************************************************************************/
+-/***************************************************************************/
+ 
+ #include "framestackwidget.moc"
+Index: languages/cpp/debugger/kdevdebugger.desktop
+===================================================================
+--- languages/cpp/debugger/kdevdebugger.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/debugger/kdevdebugger.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -22,7 +22,7 @@
+ Comment[nl]=Deze plugin biedt een grafische schil voor GDB, een broncode-debugger voor C, C++ en meer. http://sources.redhat.com/gdb/
+ Comment[pl]=Ta wtyczka udostępnia interfejs do GDB, debugera poziomu źródłowego dla C, C++ i innych. http://sources.redhat.com/gdb/
+ Comment[pt]=Este 'plugin' oferece uma interface para o GDB, um depurador ao nível do código para C, C++ entre outros. http://sources.redhat.com/gdb/
+-Comment[pt_BR]=Este plugin fornece um frontend para o GDB, um depurador a nível de código para C, C++ e mais. http://sources.redhat.com/gdb/
++Comment[pt_BR]=Este plug-in fornece um frontend para o GDB, um depurador a nível de código para C, C++ e mais. http://sources.redhat.com/gdb/
+ Comment[ru]=Этот модуль предоставляет интерфейс к GDB, отладчику исходного кода для C, C++ и других языков. http://sources.redhat.com/gdb/
+ Comment[sk]=Tento modul poskytuje rozhranie pre GDB, debuger pre C, C++ a ďalšie. http://sources.redhat.com/gdb/
+ Comment[sl]=Ta vstavek omogoča vmesnik za GDB, razhroščevalnik na ravni izvorne kode za C, C++ in več. http://sourcs.redhat.com/gdb/
+Index: languages/cpp/debugger/dbgpsdlg.cpp
+===================================================================
+--- languages/cpp/debugger/dbgpsdlg.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/debugger/dbgpsdlg.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -170,7 +170,7 @@
+                     this, 
+                     // FIXME: probably should XML-escape 'item' before passing it
+                     // to 'arg'.
+-                    i18n("<b>Could not parse output from the <tt>ps</tt> command!</b>"
++                    i18n("<b>Could not parse output from the <tt>ps</tt> command.</b>"
+                          "<p>The following line could not be parsed:"
+                          "<b><tt>%1</tt>").arg(item),
+                     i18n("Internal error"), "gdb_error" );
+Index: languages/cpp/configproblemreporter.ui
+===================================================================
+--- languages/cpp/configproblemreporter.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/configproblemreporter.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -133,7 +133,7 @@
+                 <string>Special &amp;Headers</string>
+             </property>
+             <property name="whatsThis" stdset="0">
+-                <string>Often a macro that the C++ parser must understand in order to correctly parse a piece of code is defined somewhere in some far off header file that the parser doesn't look at. This textbox can be used to define those macros locally so that the C++ parser to understand them.</string>
++                <string>Often a macro that the C++ parser must understand in order to correctly parse a piece of code is defined somewhere in a non-standard header file that the parser does not look at. This textbox can be used to define those macros locally so that the C++ parser can understand them.</string>
+             </property>
+             <vbox>
+                 <property name="name">
+Index: languages/cpp/compiler/gccoptions/gccoptionsplugin.cpp
+===================================================================
+--- languages/cpp/compiler/gccoptions/gccoptionsplugin.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/compiler/gccoptions/gccoptionsplugin.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -478,7 +478,7 @@
+ 	new FlagListItem( wrestBox,
+ 	                  "-Wdisabled-optimization", i18n( "<qt>Warn if a requested optimization pass is disabled</qt>" ) );
+ 	new FlagListItem( wrestBox,
+-	                  "-Wno-div-by-zero", i18n( "<qt>Don't warn if there is a division by zero</qt>" ) );
++	                  "-Wno-div-by-zero", i18n( "<qt>Do not warn if there is a division by zero</qt>" ) );
+ 
+ 	if ( type == GccOptionsPlugin::GCC )
+ 	{
+Index: languages/cpp/ccconfigwidgetbase.ui
+===================================================================
+--- languages/cpp/ccconfigwidgetbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/ccconfigwidgetbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -512,7 +512,7 @@
+                                     <string>src;</string>
+                                 </property>
+                                 <property name="toolTip" stdset="0">
+-                                    <string>A semicolon-seperated list of include-paths to be used while searching for headers. 
++                                    <string>A semicolon-separated list of include-paths to be used while searching for headers. 
+ Paths not starting with '/' will be interpreted as relative to the project-folder.</string>
+                                 </property>
+                             </widget>
+@@ -524,7 +524,7 @@
+                                     <string>std=_GLIBCXX_STD</string>
+                                 </property>
+                                 <property name="toolTip" stdset="0">
+-                                    <string>This line may contain a semicolon-seperated list of namespace-aliases and namespace-imports. 
++                                    <string>This line may contain a semicolon-separated list of namespace-aliases and namespace-imports. 
+ example: "std&lt;&lt;_GLIBCXX_STD;NewNamespaceName=OldNamespaceName; &lt;&lt; SomeGloballyImportedNamespace" (without paratheses). 
+ "&lt;&lt;" means that the right namespace is imported into the left, while "=" means that both namespaces are treated as
+ if they were one("a=b" is equivalent to "a&lt;&lt;b;b&lt;&lt;a")</string>
+@@ -1113,7 +1113,7 @@
+                                     <string>&amp;Use KDevelop's embedded designer</string>
+                                 </property>
+                                 <property name="toolTip" stdset="0">
+-                                    <string>Start KDevelop own designer embedded within KDevelop</string>
++                                    <string>Start KDevelop's own designer embedded within KDevelop</string>
+                                 </property>
+                                 <property name="whatsThis" stdset="0">
+                                     <string>KDevelop comes with its own UI designer that can either be embedded or be run as a separate program. Check this button if you wish to integrate the UI designer into KDevelop.</string>
+@@ -1127,7 +1127,7 @@
+                                     <string>Run &amp;KDevelop's designer as a separate application</string>
+                                 </property>
+                                 <property name="toolTip" stdset="0">
+-                                    <string>Start KDevelop own designer externally</string>
++                                    <string>Start KDevelop's own designer externally</string>
+                                 </property>
+                                 <property name="whatsThis" stdset="0">
+                                     <string>KDevelop comes with its own UI designer that can either be embedded or be run as a separate program. Check this button if you wish to run KDevelop's UI designer as a separate program.</string>
+Index: languages/cpp/app_templates/kateplugin/plugin.desktop
+===================================================================
+--- languages/cpp/app_templates/kateplugin/plugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/app_templates/kateplugin/plugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -26,7 +26,7 @@
+ Name[nl]=Mijn eerste Kate-plugin
+ Name[pl]=Moja pierwsza wtyczka do Kate
+ Name[pt]=O Meu Primeiro 'Plugin' para o Kate
+-Name[pt_BR]=Meu Primeiro Plugin do Kate
++Name[pt_BR]=Meu Primeiro Plug-in do Kate
+ Name[ru]=Мой первый модуль к Kate
+ Name[sk]=Môj prvý Kate modul
+ Name[sl]=Moj prvi vstavek za Kate
+@@ -61,7 +61,7 @@
+ Comment[nl]=Hier kunt u een korte omschrijving opgeven
+ Comment[pl]=Tu powinien się pojawić krótki opis wtyczki
+ Comment[pt]=Aqui deverá colocar uma descrição do 'plugin'
+-Comment[pt_BR]=Sua descrição sumária sobre o plugin vai aqui
++Comment[pt_BR]=Sua descrição sumária sobre o plug-in vai aqui
+ Comment[ru]=Здесь располагается краткое описание модуля
+ Comment[sk]=Sem vložte krátky popis modulu
+ Comment[sl]=Tukaj je kratek opis o vstavku
+Index: languages/cpp/app_templates/kioslave/kioslave.kdevtemplate
+===================================================================
+--- languages/cpp/app_templates/kioslave/kioslave.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/app_templates/kioslave/kioslave.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -18,7 +18,6 @@
+ Name[ne]=KIO स्लेभ
+ Name[nl]=KIO-slave
+ Name[pt]=KIO Slave
+-Name[pt_BR]=KIO Slave
+ Name[sk]=KIO otrok
+ Name[sv]=I/O-slav
+ Icon=kioslave.png
+Index: languages/cpp/app_templates/kdevpart/kdevpart.desktop
+===================================================================
+--- languages/cpp/app_templates/kdevpart/kdevpart.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/app_templates/kdevpart/kdevpart.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -26,7 +26,7 @@
+ GenericName[nl]=%{APPNAME}-plugin
+ GenericName[pl]=Wtyczka %{APPNAME}
+ GenericName[pt]='Plugin' %{APPNAME}
+-GenericName[pt_BR]=Plugin do %{APPNAME}
++GenericName[pt_BR]=Plug-in do %{APPNAME}
+ GenericName[ru]=Модуль %{APPNAME}
+ GenericName[sk]=%{APPNAME} modul
+ GenericName[sl]=Vstavek za %{APPNAME}
+Index: languages/cpp/app_templates/kde4app/kapp4.kcfg
+===================================================================
+--- languages/cpp/app_templates/kde4app/kapp4.kcfg	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/app_templates/kde4app/kapp4.kcfg	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -3,7 +3,7 @@
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+-  <kcfgfile name="KApp4rc"/>
++      <kcfgfile name="%{APPNAMELC}rc"/>
+   <group name="Preferences">
+     <entry name="col_background" type="Color">
+ 	    <label>color of the background</label>
+Index: languages/cpp/app_templates/kscreensaver/kscreensaver.kdevtemplate
+===================================================================
+--- languages/cpp/app_templates/kscreensaver/kscreensaver.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/app_templates/kscreensaver/kscreensaver.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -21,7 +21,7 @@
+ Name[nl]=KDE-schermbeveiliging
+ Name[pl]=Wygaszacz ekranu KDE
+ Name[pt]=Protector de Ecrã do KDE
+-Name[pt_BR]=Protector de Ecrã do KDE
++Name[pt_BR]=Protetor de tela do KDE
+ Name[ru]=Хранитель экрана для KDE
+ Name[sk]=KDE šetrič obrazovky
+ Name[sl]=Ohranjevalnik zaslona za KDE
+Index: languages/cpp/app_templates/chello/chello.kdevtemplate
+===================================================================
+--- languages/cpp/app_templates/chello/chello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/app_templates/chello/chello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -15,6 +15,7 @@
+ Name[hu]=Egyszerű Hello world program
+ Name[it]=Semplice programma di "Hello world"
+ Name[ja]=簡単な Hello world プログラム
++Name[ms]=Program Hello World mudah
+ Name[nds]=En eenfach "Moin Welt"-Programm
+ Name[ne]=साधारण हेल्लो वोल्ड कार्यक्रम
+ Name[nl]=Eenvoudig 'Hello World' programma
+Index: languages/cpp/app_templates/kateplugin2/plugin.desktop
+===================================================================
+--- languages/cpp/app_templates/kateplugin2/plugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/app_templates/kateplugin2/plugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -26,7 +26,7 @@
+ Name[nl]=Mijn eerste Kate-plugin
+ Name[pl]=Moja pierwsza wtyczka do Kate
+ Name[pt]=O Meu Primeiro 'Plugin' para o Kate
+-Name[pt_BR]=Meu Primeiro Plugin do Kate
++Name[pt_BR]=Meu Primeiro Plug-in do Kate
+ Name[ru]=Мой первый модуль к Kate
+ Name[sk]=Môj prvý Kate modul
+ Name[sl]=Moj prvi vstavek za Kate
+@@ -61,7 +61,7 @@
+ Comment[nl]=Hier kunt u een korte omschrijving opgeven
+ Comment[pl]=Tu powinien się pojawić krótki opis wtyczki
+ Comment[pt]=Aqui deverá colocar uma descrição do 'plugin'
+-Comment[pt_BR]=Sua descrição sumária sobre o plugin vai aqui
++Comment[pt_BR]=Sua descrição sumária sobre o plug-in vai aqui
+ Comment[ru]=Здесь располагается краткое описание модуля
+ Comment[sk]=Sem vložte krátky popis modulu
+ Comment[sl]=Tukaj je kratek opis o vstavku
+Index: languages/cpp/app_templates/cpphello/cpphello.kdevtemplate
+===================================================================
+--- languages/cpp/app_templates/cpphello/cpphello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/app_templates/cpphello/cpphello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -15,6 +15,7 @@
+ Name[hu]=Egyszerű Hello world program
+ Name[it]=Semplice programma di "Hello world"
+ Name[ja]=簡単な Hello world プログラム
++Name[ms]=Program Hello World mudah
+ Name[nds]=En eenfach "Moin Welt"-Programm
+ Name[ne]=साधारण हेल्लो वोल्ड कार्यक्रम
+ Name[nl]=Eenvoudig 'Hello World' programma
+Index: languages/cpp/app_templates/kconfig35/kconfig35.kdevtemplate
+===================================================================
+--- languages/cpp/app_templates/kconfig35/kconfig35.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/app_templates/kconfig35/kconfig35.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -28,6 +28,7 @@
+ Comment[da]=Genererer et simpelt KDE-program med en kontrol og en indstillingsdialog der kun er kompatibelt med KDE 3.5
+ Comment[de]=Erstellt eine einfache KDE-Anwendung für KDE 3.5 mit einem Widget und einem Einstellungsdialog.
+ Comment[el]=Δημιουργεί μια απλή εφαρμογή KDE με ένα γραφικό συστατικό, ένα διάλογο ρύθμισης συμβατό μόνο με το KDE 3.5
++Comment[en_GB]=Generates a simple KDE application with one widget and a configuration dialogue compatible with KDE 3.5 only
+ Comment[es]=Genera una sencilla aplicación para KDE con un widget y un diálogo de configuración compatible solo con KDE 3.5
+ Comment[et]=Lihtsa KDE rakenduse loomine ühe vidina ja vaid KDE 3.5-ga ühilduva seadistustedialoogiga.
+ Comment[fr]=Génère une application KDE simple comprenant un seul élément graphique et une boîte de dialogue de configuration compatible avec KDE 3.5 uniquement
+Index: languages/cpp/app_templates/konqnavpanel/konqnavpanel.desktop
+===================================================================
+--- languages/cpp/app_templates/konqnavpanel/konqnavpanel.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/app_templates/konqnavpanel/konqnavpanel.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -22,7 +22,7 @@
+ Comment[nl]=Een konqueror navigatiepaneel-plugin met de naam $NAME$
+ Comment[pl]=Wtyczka do panelu nawigacyjnego Konquerora o nazwie $NAME$
+ Comment[pt]=Um 'plugin' do painel de navegação do konqueror chamado $NAME$
+-Comment[pt_BR]=Um plugin de painel de navegação do konqueror chamado $NAME$
++Comment[pt_BR]=Um plug-in de painel de navegação do konqueror chamado $NAME$
+ Comment[ru]=Модуль панели навигации Konqueror $NAME$
+ Comment[sk]=Modul pre konqueror navigačný panel s menom $NAME$
+ Comment[sl]=Konquerorjev vstavek pulta za navigacijo z imenom $NAME$
+Index: languages/cpp/app_templates/kdevpart2/kdevpart.desktop
+===================================================================
+--- languages/cpp/app_templates/kdevpart2/kdevpart.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/app_templates/kdevpart2/kdevpart.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -26,7 +26,7 @@
+ GenericName[nl]=%{APPNAME}-plugin
+ GenericName[pl]=Wtyczka %{APPNAME}
+ GenericName[pt]='Plugin' %{APPNAME}
+-GenericName[pt_BR]=Plugin do %{APPNAME}
++GenericName[pt_BR]=Plug-in do %{APPNAME}
+ GenericName[ru]=Модуль %{APPNAME}
+ GenericName[sk]=%{APPNAME} modul
+ GenericName[sl]=Vstavek za %{APPNAME}
+Index: languages/cpp/includepathresolver.cpp
+===================================================================
+--- languages/cpp/includepathresolver.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/cpp/includepathresolver.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -382,7 +382,7 @@
+     proc.setUseShell( true );
+     proc << command;
+     if ( !proc.start(KProcess::NotifyOnExit, KProcess::Stdout) ) {
+-      return PathResolutionResult( false, i18n("Couldn't start the make-process") );
++      return PathResolutionResult( false, i18n("Could not start the make-process") );
+     }
+ 
+     output = proc.stdOut();
+Index: languages/pascal/app_templates/fpcsharedlib/fpcsharedlib.kdevtemplate
+===================================================================
+--- languages/pascal/app_templates/fpcsharedlib/fpcsharedlib.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/pascal/app_templates/fpcsharedlib/fpcsharedlib.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -20,7 +20,7 @@
+ Name[nl]=Gedeelde bibliotheek
+ Name[pl]=Biblioteka dzielona
+ Name[pt]=Biblioteca dinâmica
+-Name[pt_BR]=Biblioteca dinâmica
++Name[pt_BR]=Biblioteca compartilhada
+ Name[ru]=Разделяемая библиотека
+ Name[sk]=Zdieľaná knižnica
+ Name[sr]=Дељена библиотека
+Index: languages/pascal/app_templates/pascalhello/pascalhello.kdevtemplate
+===================================================================
+--- languages/pascal/app_templates/pascalhello/pascalhello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/pascal/app_templates/pascalhello/pascalhello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -15,6 +15,7 @@
+ Name[hu]=Egyszerű Hello world program
+ Name[it]=Semplice programma di "Hello world"
+ Name[ja]=簡単な Hello world プログラム
++Name[ms]=Program Hello World mudah
+ Name[nds]=En eenfach "Moin Welt"-Programm
+ Name[ne]=साधारण हेल्लो वोल्ड कार्यक्रम
+ Name[nl]=Eenvoudig 'Hello World' programma
+Index: languages/pascal/app_templates/fpcgtk/fpcgtk.kdevtemplate
+===================================================================
+--- languages/pascal/app_templates/fpcgtk/fpcgtk.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/pascal/app_templates/fpcgtk/fpcgtk.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -20,7 +20,7 @@
+ Name[nl]=GTK+-toepassing
+ Name[pl]=Program GTK+
+ Name[pt]=Aplicação do GTK+
+-Name[pt_BR]=Aplicação do GTK+
++Name[pt_BR]=Aplicativo GTK+
+ Name[ru]=Приложение GTK+
+ Name[sk]=GTK+ aplikácia
+ Name[sr]=GTK+ програм
+Index: languages/ada/kdevadasupport.desktop
+===================================================================
+--- languages/ada/kdevadasupport.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/ada/kdevadasupport.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -18,6 +18,7 @@
+ Comment[is]=Stuðningur við Ada forritunarmálið
+ Comment[it]=Supporto al linguaggio Ada
+ Comment[ja]=Ada 言語サポート
++Comment[ms]=Sokongan Bahasa Ada
+ Comment[nds]=Spraakünnerstütten för Ada
+ Comment[ne]=एडा भाषा समर्थन
+ Comment[nl]=Ondersteuning voor Ada
+@@ -62,6 +63,7 @@
+ GenericName[hu]=Ada-támogatás
+ GenericName[it]=Supporto al linguaggio Ada
+ GenericName[ja]=Ada 言語サポート
++GenericName[ms]=Sokongan Bahasa Ada
+ GenericName[nds]=Ünnerstütten för de Spraak Ada
+ GenericName[ne]=एडा भाषा समर्थन
+ GenericName[nl]=Ondersteuning voor Ada
+Index: languages/ada/app_templates/adahello/adahello.kdevtemplate
+===================================================================
+--- languages/ada/app_templates/adahello/adahello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/ada/app_templates/adahello/adahello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -15,6 +15,7 @@
+ Name[hu]=Egyszerű Hello world program
+ Name[it]=Semplice programma di "Hello world"
+ Name[ja]=簡単な Hello world プログラム
++Name[ms]=Program Hello World mudah
+ Name[nds]=En eenfach "Moin Welt"-Programm
+ Name[ne]=साधारण हेल्लो वोल्ड कार्यक्रम
+ Name[nl]=Eenvoudig 'Hello World' programma
+@@ -47,6 +48,7 @@
+ Comment[hu]=Létrehoz egy egyszerű Hello world programot ADA nyelven
+ Comment[it]=Genera un semplice programma di "Hello world" in Ada
+ Comment[ja]=Ada で簡単な Hello world プログラムを作成します
++Comment[ms]=Menjana program Hello World mudah dalam Ada
+ Comment[nds]=Stellt in Ada en eenfach "Moin Welt"-Programm op
+ Comment[ne]=एडामा साधारण हेल्लो वोल्ड कार्यक्रम उत्पन्न गर्दछ
+ Comment[nl]=Genereert een eenvoudig Hello World programma in Ada
+@@ -112,6 +114,7 @@
+ Comment[hu]=Létrejött egy egyszerű Hello world program ADA nyelven itt: %{dest}
+ Comment[it]=È stato creato un semplice programma di "Hello world" in ADA in %{dest}
+ Comment[ja]=Ada で記述された "Hello world" プログラムを %{dest} に作成しました
++Comment[ms]=Program "Hello World" mudah dalam ada telah dicipta dalam %{dest}
+ Comment[nds]=In %{dest} wöör en eenfach "Moin Welt"-Programm in Ada opstellt
+ Comment[ne]=एउटा साधारण "हेल्लो वोल्ड" कार्यक्रम एडामा %{dest} सिर्जना गरिएको थियो
+ Comment[nl]=Een eenvoudig "Hello World" programma in Ada is aangemaakt in %{dest}
+Index: languages/fortran/app_templates/fortranhello/fortranhello.kdevtemplate
+===================================================================
+--- languages/fortran/app_templates/fortranhello/fortranhello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ languages/fortran/app_templates/fortranhello/fortranhello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -15,6 +15,7 @@
+ Name[hu]=Egyszerű Hello world program
+ Name[it]=Semplice programma di "Hello world"
+ Name[ja]=簡単な Hello world プログラム
++Name[ms]=Program Hello World mudah
+ Name[nds]=En eenfach "Moin Welt"-Programm
+ Name[ne]=साधारण हेल्लो वोल्ड कार्यक्रम
+ Name[nl]=Eenvoudig 'Hello World' programma
+Index: editors/editor-chooser/kdeveditorchooser.desktop
+===================================================================
+--- editors/editor-chooser/kdeveditorchooser.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
++++ editors/editor-chooser/kdeveditorchooser.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+@@ -19,6 +19,7 @@
+ Comment[is]=Útvegar samtalsglugga fyrir val á ritli
+ Comment[it]=Fornisce a una finestra per la selezione dell'editor.
+ Comment[ja]=エディタを選択するためのダイアログを提供します。
++Comment[ms]=Menyediakan dialog untuk pemilihan Penyunting.
+ Comment[nds]=Stellt en Dialoog för de Editor-Utwahl praat.
+ Comment[ne]=सम्पादन चयनका लागि संवाद प्रदान गर्दछ
+ Comment[nl]=Biedt een dialoog om een editor te kiezen.
+@@ -64,6 +65,7 @@
+ GenericName[hu]=Szerkesztőkomponens-választás
+ GenericName[it]=Selezione Editor
+ GenericName[ja]=エディタの選択
++GenericName[ms]=Pemilih Penyunting
+ GenericName[nds]=Editor-Utwahl
+ GenericName[ne]=सम्पादक चयन
+ GenericName[nl]=Editorkiezer
 
-Zmiany atrybutów dla: .
+Property changes on: .
 ___________________________________________________________________
-Nazwa: svn:mergeinfo
-   - 
-Nazwa: svn:externals
+Added: svn:externals
    + admin https://svn.kde.org/home/kde/branches/KDE/3.5/kde-common/admin
 
 
