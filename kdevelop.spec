@@ -19,6 +19,7 @@ License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{_kdever}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	06aa12a89b2c09968a92e1d8b575819c
+Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD-nopython.patch
 Patch1:		%{name}-am.patch
 Patch2:		kde-ac260-lt.patch
@@ -108,6 +109,7 @@ własnych potrzeb.
 
 %prep
 %setup -q
+%patch100 -p0
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
