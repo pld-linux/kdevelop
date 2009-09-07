@@ -1,7 +1,7 @@
 Index: buildtools/script/kdevscriptproject.desktop
 ===================================================================
---- buildtools/script/kdevscriptproject.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ buildtools/script/kdevscriptproject.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- buildtools/script/kdevscriptproject.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ buildtools/script/kdevscriptproject.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -18,6 +18,7 @@
  Comment[is]=Skriftumálsverkefni
  Comment[it]=Progetto con linguaggio di scripting
@@ -12,8 +12,8 @@ Index: buildtools/script/kdevscriptproject.desktop
  Comment[nl]=Scripttaal-project
 Index: buildtools/autotools/autoprojectpart.cpp
 ===================================================================
---- buildtools/autotools/autoprojectpart.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ buildtools/autotools/autoprojectpart.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- buildtools/autotools/autoprojectpart.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ buildtools/autotools/autoprojectpart.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -404,15 +404,15 @@
          TargetItem* titem = m_widget->activeTarget();
  
@@ -60,8 +60,8 @@ Index: buildtools/autotools/autoprojectpart.cpp
                                  "Project -> Project Options -> Run Options").arg(titem->name).arg(titem->primary), i18n("Active target is not a library") );
 Index: buildtools/autotools/configureoptionswidgetbase.ui
 ===================================================================
---- buildtools/autotools/configureoptionswidgetbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ buildtools/autotools/configureoptionswidgetbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- buildtools/autotools/configureoptionswidgetbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ buildtools/autotools/configureoptionswidgetbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -149,10 +149,10 @@
                              <cstring>configargs_edit</cstring>
                          </property>
@@ -77,8 +77,8 @@ Index: buildtools/autotools/configureoptionswidgetbase.ui
                      <widget class="QLabel" row="3" column="0" rowspan="1" colspan="5">
 Index: buildtools/custommakefiles/customprojectpart.cpp
 ===================================================================
---- buildtools/custommakefiles/customprojectpart.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ buildtools/custommakefiles/customprojectpart.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- buildtools/custommakefiles/customprojectpart.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ buildtools/custommakefiles/customprojectpart.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -78,7 +78,7 @@
  
      action = new KAction( i18n( "Re-Populate Project" ), 0, this, SLOT( populateProject() ), actionCollection(), "repopulate_project" );
@@ -178,8 +178,8 @@ Index: buildtools/custommakefiles/customprojectpart.cpp
  
 Index: buildtools/qmake/qmakeoptionswidgetbase.ui
 ===================================================================
---- buildtools/qmake/qmakeoptionswidgetbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ buildtools/qmake/qmakeoptionswidgetbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- buildtools/qmake/qmakeoptionswidgetbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ buildtools/qmake/qmakeoptionswidgetbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -103,7 +103,7 @@
                          <cstring>radioNeverSave</cstring>
                      </property>
@@ -204,8 +204,8 @@ Index: buildtools/qmake/qmakeoptionswidgetbase.ui
              </vbox>
 Index: buildtools/qmake/trollprojectpart.cpp
 ===================================================================
---- buildtools/qmake/trollprojectpart.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ buildtools/qmake/trollprojectpart.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- buildtools/qmake/trollprojectpart.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ buildtools/qmake/trollprojectpart.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -144,7 +144,7 @@
                            this, SLOT(slotBuildAndExecuteProject()),
                            actionCollection(), "build_execute_project" );
@@ -262,8 +262,8 @@ Index: buildtools/qmake/trollprojectpart.cpp
                                                 i18n("No QMake binary given"))
 Index: buildtools/qmake/kdevtrollproject.desktop
 ===================================================================
---- buildtools/qmake/kdevtrollproject.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ buildtools/qmake/kdevtrollproject.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- buildtools/qmake/kdevtrollproject.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ buildtools/qmake/kdevtrollproject.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -19,6 +19,7 @@
  Comment[is]=QMake verkefni
  Comment[it]=Progetto per QMake
@@ -282,8 +282,8 @@ Index: buildtools/qmake/kdevtrollproject.desktop
  GenericName[nl]=QMake-project
 Index: buildtools/qmake/projectconfigurationdlg.cpp
 ===================================================================
---- buildtools/qmake/projectconfigurationdlg.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ buildtools/qmake/projectconfigurationdlg.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- buildtools/qmake/projectconfigurationdlg.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ buildtools/qmake/projectconfigurationdlg.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -137,7 +137,7 @@
              case TrollProjectWidget::Ask:
                  if ( !buttonApply->isEnabled() )
@@ -295,8 +295,8 @@ Index: buildtools/qmake/projectconfigurationdlg.cpp
                  break;
 Index: buildtools/qmake/trollprojectwidget.cpp
 ===================================================================
---- buildtools/qmake/trollprojectwidget.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ buildtools/qmake/trollprojectwidget.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- buildtools/qmake/trollprojectwidget.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ buildtools/qmake/trollprojectwidget.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -930,8 +930,8 @@
  //             newitem->moveItem( lastitem );
      }else
@@ -400,8 +400,8 @@ Index: buildtools/qmake/trollprojectwidget.cpp
          QListViewItemIterator it(m_rootSubproject);
 Index: buildtools/qmake/kdevtmakeproject.desktop
 ===================================================================
---- buildtools/qmake/kdevtmakeproject.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ buildtools/qmake/kdevtmakeproject.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- buildtools/qmake/kdevtmakeproject.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ buildtools/qmake/kdevtmakeproject.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -66,6 +66,7 @@
  GenericName[hu]=TMake-projekt
  GenericName[it]=Progetto per TMake
@@ -412,8 +412,8 @@ Index: buildtools/qmake/kdevtmakeproject.desktop
  GenericName[nl]=TMake-project
 Index: buildtools/qmake/scope.cpp
 ===================================================================
---- buildtools/qmake/scope.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ buildtools/qmake/scope.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- buildtools/qmake/scope.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ buildtools/qmake/scope.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -158,8 +158,8 @@
          if( DomUtil::readBoolEntry( *m_part->projectDom(),
              "/kdevtrollproject/qmake/showParseErrors", true ) )
@@ -438,8 +438,8 @@ Index: buildtools/qmake/scope.cpp
      Scope::PrintAST pa;
 Index: kdevelop_ruby.desktop
 ===================================================================
---- kdevelop_ruby.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ kdevelop_ruby.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- kdevelop_ruby.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ kdevelop_ruby.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -29,6 +29,7 @@
  GenericName[hu]=Fejlesztőkörnyezet a Rubyhoz
  GenericName[it]=IDE per Ruby
@@ -450,8 +450,8 @@ Index: kdevelop_ruby.desktop
  GenericName[nl]=IDE voor Ruby
 Index: kdevelop_c_cpp.desktop
 ===================================================================
---- kdevelop_c_cpp.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ kdevelop_c_cpp.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- kdevelop_c_cpp.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ kdevelop_c_cpp.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -28,6 +28,7 @@
  GenericName[hu]=C/C++ fejlesztőkörnyezet
  GenericName[it]=IDE per C/C++
@@ -462,8 +462,8 @@ Index: kdevelop_c_cpp.desktop
  GenericName[nl]=IDE voor C/C++
 Index: x-kdevelop.desktop
 ===================================================================
---- x-kdevelop.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ x-kdevelop.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- x-kdevelop.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ x-kdevelop.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -22,7 +22,7 @@
  Comment[nl]=KDevelop projectbestand
  Comment[pl]=Plik projektu KDevelopa
@@ -475,8 +475,8 @@ Index: x-kdevelop.desktop
  Comment[sl]=Projektna datoteka KDevelop
 Index: src/settingswidget.ui
 ===================================================================
---- src/settingswidget.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ src/settingswidget.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- src/settingswidget.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ src/settingswidget.ui	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -494,7 +494,7 @@
                          <cstring>forceCLocaleRadio</cstring>
                      </property>
@@ -488,8 +488,8 @@ Index: src/settingswidget.ui
                  <widget class="QRadioButton">
 Index: parts/partexplorer/kdevpartexplorer.desktop
 ===================================================================
---- parts/partexplorer/kdevpartexplorer.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/partexplorer/kdevpartexplorer.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/partexplorer/kdevpartexplorer.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/partexplorer/kdevpartexplorer.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -51,6 +51,7 @@
  GenericName[hu]=Objektumböngésző
  GenericName[it]=Strumento per l'esplorazione di componenti
@@ -500,8 +500,8 @@ Index: parts/partexplorer/kdevpartexplorer.desktop
  GenericName[nl]=Part Explorer gereedschap
 Index: parts/bookmarks/kdevbookmarks.desktop
 ===================================================================
---- parts/bookmarks/kdevbookmarks.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/bookmarks/kdevbookmarks.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/bookmarks/kdevbookmarks.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/bookmarks/kdevbookmarks.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -15,12 +15,13 @@
  Comment[hu]=Bővítőmodul a forrásfájlok könyvjelzőinek áttekintéséhez, eltárolásához
  Comment[it]=Plugin che offre la navigazione e l'anteprima dei segnalibri nel codice attivo e rimane nelle varie sessioni.
@@ -527,8 +527,8 @@ Index: parts/bookmarks/kdevbookmarks.desktop
  GenericName[nl]=Bladwijzers
 Index: parts/distpart/kdevdistpart.desktop
 ===================================================================
---- parts/distpart/kdevdistpart.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/distpart/kdevdistpart.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/distpart/kdevdistpart.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/distpart/kdevdistpart.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -16,7 +16,7 @@
  Comment[nl]=Helpt bij het bouwen en publiceren van het uiteindelijke project. Ondersteunt het aanmaken van RPM-pakketten of broncodepakketten.
  Comment[pl]=Pomoc w budowaniu i publikowaniu projektu. Obsługuje tworzenie pakietów RPM i paczek ze źródłami.
@@ -540,8 +540,8 @@ Index: parts/distpart/kdevdistpart.desktop
  Comment[sr]=Помаже у грађењу и објављивању коначног пројекта. За сада је подржано стварање RPM и изворних пакета.
 Index: parts/openwith/kdevopenwith.desktop
 ===================================================================
---- parts/openwith/kdevopenwith.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/openwith/kdevopenwith.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/openwith/kdevopenwith.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/openwith/kdevopenwith.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -21,7 +21,7 @@
  Comment[nl]=Deze plugin biedt extra "open"-alternatieven in verschillende contextmenus in KDevelop.
  Comment[pl]=Ta wtyczka umożliwia dodanie dodatkowych możliwości otwierania plików w menu kontekstowych KDevelopa.
@@ -553,8 +553,8 @@ Index: parts/openwith/kdevopenwith.desktop
  Comment[sr]=Овај прикључак обезбеђује додатне алтернативе за „отвори“ за различите контекстне меније у kdevelop-у.
 Index: parts/tools/kdevtools.desktop
 ===================================================================
---- parts/tools/kdevtools.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/tools/kdevtools.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/tools/kdevtools.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/tools/kdevtools.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -21,7 +21,7 @@
  Comment[nl]=Met deze plugin kunt u op eenvoudige wijze externe toepassingen aan het menu Gereedschap en de werkbalk toevoegen.
  Comment[pl]=Ta wtyczka umożliwia łatwe dodawanie zewnętrznych programów do menu Narzędzia i do paska narzędzi.
@@ -566,8 +566,8 @@ Index: parts/tools/kdevtools.desktop
  Comment[sl]=Ta vstavek omogoča preprost način dodajanja zunanjih programov v meni Orodja in v orodjarno.
 Index: parts/tools/tools_part.cpp
 ===================================================================
---- parts/tools/tools_part.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/tools/tools_part.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/tools/tools_part.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/tools/tools_part.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -37,6 +37,8 @@
  static const KDevPluginInfo data("kdevtools");
  K_EXPORT_COMPONENT_FACTORY( libkdevtools, ToolsFactory( data ) )
@@ -658,8 +658,8 @@ Index: parts/tools/tools_part.cpp
      startCommand(cmdline, captured, m_contextFileName);
 Index: parts/classview/kdevclassview.desktop
 ===================================================================
---- parts/classview/kdevclassview.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/classview/kdevclassview.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/classview/kdevclassview.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/classview/kdevclassview.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -21,7 +21,7 @@
  Comment[nl]=Deze plugin toont een grafische weergave van alle klassen in een project, compleet met methoden en attributen, en biedt directe navigatie hiertussen.
  Comment[pl]=Ta wtyczka pokazuje graficzny widok wszystkich klas w projekcie z metodami i atrybutami oraz umożliwia bezpośrednią nawigację w kodzie źródłowym..
@@ -671,8 +671,8 @@ Index: parts/classview/kdevclassview.desktop
  Comment[sr]=Овај прикључак приказује графички изглед свих класа у пројекту, заједно са методама и атрибутима, и обезбеђује начин директне навигације кроз изворни кôд.
 Index: parts/scripting/kdevscripting.desktop
 ===================================================================
---- parts/scripting/kdevscripting.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/scripting/kdevscripting.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/scripting/kdevscripting.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/scripting/kdevscripting.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -52,7 +52,7 @@
  Comment[nl]=De scripting-plugin maakt KScript gebaseerde scripting van de KDevelop-toepassing mogelijk.
  Comment[pl]=Wtyczka skrypty pozwala ja skrypty oparte o KScript w programie KDevelop
@@ -684,8 +684,8 @@ Index: parts/scripting/kdevscripting.desktop
  Comment[sr]=Прикључак за скриптовање нуди скриптовање помоћу KScript-а за KDevelop
 Index: parts/valgrind/kdevvalgrind.desktop
 ===================================================================
---- parts/valgrind/kdevvalgrind.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/valgrind/kdevvalgrind.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/valgrind/kdevvalgrind.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/valgrind/kdevvalgrind.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -17,7 +17,7 @@
  Comment[nl]=Valgrind is een hulpprogramma dat u helpt bij het opsporen van geheugenproblemen in programma's. http://valgrind.org/
  Comment[pl]=Valgrind jest narzędziem pomagającym znaleźć w programach problemy z zarządzaniem pamięcią. http://valgrind.org/
@@ -697,8 +697,8 @@ Index: parts/valgrind/kdevvalgrind.desktop
  Comment[sr]=Valgrind је алат који вам помаже да нађете проблеме са употребом меморије у програмима. http://valgrind.org/
 Index: parts/replace/kdevreplace.desktop
 ===================================================================
---- parts/replace/kdevreplace.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/replace/kdevreplace.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/replace/kdevreplace.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/replace/kdevreplace.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -22,7 +22,7 @@
  Comment[nl]=Deze plugin biedt een interactieve, projectbrede "zoek en vervang"-tool. U kunt zoeken naar tekens of reguliere expressies en de vervanging kan in een dialoog worden bekeken voordat deze wordt uitgevoerd. Verschijnt in het menu Bewerken.
  Comment[pl]=Wtyczka działającego w całym projekcie narzędzia "Znajdź i zamień". Wyszukiwanie odbywa się za pomocą porównywania ciągów lub wyrażen regularnych, a wybór zamienników może być dokonywany przy włączonym podglądzie. Po wczytaniu pojawia się w menu Edycja.
@@ -710,8 +710,8 @@ Index: parts/replace/kdevreplace.desktop
  Comment[sr]=Овај прикључак је интерактивни „пронађи и замени“ алат широм пројекта. Тражите користећи знаковни низ или рег.из. поклапање, и из прегледа одаберите измене које ће бити извршене пре него што се акција заврши. Када је учитан појављује се у менију „Измени“.
 Index: parts/doxygen/config.cpp
 ===================================================================
---- parts/doxygen/config.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/doxygen/config.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/doxygen/config.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/doxygen/config.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -2947,7 +2947,7 @@
      config_err("Warning: No output formats selected! Set at least one of the main GENERATE_* options to YES.\n");
    }
@@ -1072,8 +1072,8 @@ Index: parts/doxygen/config.cpp
    cb = addBool(
 Index: parts/doxygen/kdevdoxygen.desktop
 ===================================================================
---- parts/doxygen/kdevdoxygen.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/doxygen/kdevdoxygen.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/doxygen/kdevdoxygen.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/doxygen/kdevdoxygen.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -21,7 +21,7 @@
  Comment[nl]=De doxygen-plugin biedt hulp bij het vervaardigen van documentatie voor een project, gebaseerd op documentatie in de broncode. Om deze functie te kunnen gebruiken dient u doxygen te hebben geïnstalleerd. Meer info: http://www.doxygen.org/
  Comment[pl]=Wtyczka doxygena pozwala kontrolować generację dokumentacji projektu, bazując na zawartości kodu źródłowego. Aby użyć tej opcji trzeba mieć zainstalowany doxygen. Więcej informacji można uzyskać na http://www.doxygen.org
@@ -1085,15 +1085,15 @@ Index: parts/doxygen/kdevdoxygen.desktop
  Comment[sr]=Doxygen прикључак обезбеђује начин да се прецизира и контролише документација за пројекат, на основу садржаја изворног кôда. Потребно је да имате инсталиран doxygen да бисте били у могућности да користите ово. За више информација идите на http://www.doxygen.org
 Index: parts/doxygen/version.cpp
 ===================================================================
---- parts/doxygen/version.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/doxygen/version.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/doxygen/version.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/doxygen/version.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -1 +1 @@
 -char versionString[]="1.5.6-KDevelop";
 +char versionString[]="1.5.7.1-KDevelop";
 Index: parts/snippet/snippetdlg.ui.h
 ===================================================================
---- parts/snippet/snippetdlg.ui.h	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/snippet/snippetdlg.ui.h	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/snippet/snippetdlg.ui.h	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/snippet/snippetdlg.ui.h	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -17,5 +17,5 @@
  
  void SnippetDlg::slotHelp()
@@ -1103,8 +1103,8 @@ Index: parts/snippet/snippetdlg.ui.h
  }
 Index: parts/astyle/astyleconfig.ui
 ===================================================================
---- parts/astyle/astyleconfig.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/astyle/astyleconfig.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/astyle/astyleconfig.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/astyle/astyleconfig.ui	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -262,15 +262,15 @@
                                      <enum>WidgetWidth</enum>
                                  </property>
@@ -1145,8 +1145,8 @@ Index: parts/astyle/astyleconfig.ui
                          </vbox>
 Index: parts/astyle/kdevastyle.desktop
 ===================================================================
---- parts/astyle/kdevastyle.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/astyle/kdevastyle.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/astyle/kdevastyle.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/astyle/kdevastyle.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -15,12 +15,13 @@
  Comment[hu]=Bővítőmodul forráskód formázásához, megadott szabályok alapján. Az Eszközök menüből érhető el, ha be van töltve.
  Comment[it]=Un plugin per formattare il codice sorgente secondo uno specifico insieme di regole. Quando sarà caricato lo troverai nel menu Strumenti.
@@ -1172,8 +1172,8 @@ Index: parts/astyle/kdevastyle.desktop
  GenericName[nl]=Broncode formatteren
 Index: parts/appwizard/kdevappwizard.desktop
 ===================================================================
---- parts/appwizard/kdevappwizard.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/appwizard/kdevappwizard.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/appwizard/kdevappwizard.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/appwizard/kdevappwizard.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -18,6 +18,7 @@
  Comment[hu]=Alkalmazásvarázsló
  Comment[it]=Procedura guidata applicazione
@@ -1192,8 +1192,8 @@ Index: parts/appwizard/kdevappwizard.desktop
  GenericName[nl]=Toepassingassistent
 Index: parts/appwizard/common/dockbook.kdevtemplate
 ===================================================================
---- parts/appwizard/common/dockbook.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/appwizard/common/dockbook.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/appwizard/common/dockbook.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/appwizard/common/dockbook.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -16,6 +16,7 @@
  Comment[hu]=DocBook-alapú dokumentációsablonok telepítése.
  Comment[it]=Installa modelli di documentazione docbook.
@@ -1204,8 +1204,8 @@ Index: parts/appwizard/common/dockbook.kdevtemplate
  Comment[nl]=Installeert Docbook-documentatie-sjablonen.
 Index: parts/abbrev/kdevabbrev.desktop
 ===================================================================
---- parts/abbrev/kdevabbrev.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/abbrev/kdevabbrev.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/abbrev/kdevabbrev.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/abbrev/kdevabbrev.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -17,6 +17,7 @@
  Comment[hu]=Lehetővé teszi különféle rövidítések használatát (rövid kifejezések kódstruktúrává kibontását)
  Comment[it]=Offre il supporto per le abbreviazioni personalizzate - brevi parole che vengono espanse in strutture di codice richieste comunemente.
@@ -1224,8 +1224,8 @@ Index: parts/abbrev/kdevabbrev.desktop
  GenericName[nl]=Afkortingen expanderen
 Index: parts/documentation/interfaces/kdevelopdocumentationplugins.desktop
 ===================================================================
---- parts/documentation/interfaces/kdevelopdocumentationplugins.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/interfaces/kdevelopdocumentationplugins.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/interfaces/kdevelopdocumentationplugins.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/interfaces/kdevelopdocumentationplugins.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -22,7 +22,7 @@
  Name[nl]=KDevelop Documentatie Plugin Interface
  Name[pl]=Interfejs do wtyczki dokumentacji dla KDevelop
@@ -1237,8 +1237,8 @@ Index: parts/documentation/interfaces/kdevelopdocumentationplugins.desktop
  Name[sl]=Vmesnik vstavka dokumentacije v KDevelopu
 Index: parts/documentation/plugins/kdevtoc/dockdevtocplugin.desktop
 ===================================================================
---- parts/documentation/plugins/kdevtoc/dockdevtocplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/plugins/kdevtoc/dockdevtocplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/plugins/kdevtoc/dockdevtocplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/plugins/kdevtoc/dockdevtocplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -27,7 +27,7 @@
  Comment[nl]=Documentatie plugin for KDevelopTOC documentatie
  Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie KDevelopTOC
@@ -1250,8 +1250,8 @@ Index: parts/documentation/plugins/kdevtoc/dockdevtocplugin.desktop
  Comment[sr]=Документациони прикључак за KDevelopTOC документацију
 Index: parts/documentation/plugins/qt/docqtplugin.desktop
 ===================================================================
---- parts/documentation/plugins/qt/docqtplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/plugins/qt/docqtplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/plugins/qt/docqtplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/plugins/qt/docqtplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -27,7 +27,7 @@
  Comment[nl]=Documentatie plugin voor Qt DCF documentatie
  Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie Qt DCF
@@ -1263,8 +1263,8 @@ Index: parts/documentation/plugins/qt/docqtplugin.desktop
  Comment[sl]=Vstavek dokumentacije za Qt DCF
 Index: parts/documentation/plugins/pdb/docpdbplugin.desktop
 ===================================================================
---- parts/documentation/plugins/pdb/docpdbplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/plugins/pdb/docpdbplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/plugins/pdb/docpdbplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/plugins/pdb/docpdbplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -27,7 +27,7 @@
  Comment[nl]=Documentatie plugin voor Palmdoc documentatie
  Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie Palmdoc
@@ -1276,8 +1276,8 @@ Index: parts/documentation/plugins/pdb/docpdbplugin.desktop
  Comment[sr]=Документациони прикључак за Palmdoc формат
 Index: parts/documentation/plugins/chm/docchmplugin.desktop
 ===================================================================
---- parts/documentation/plugins/chm/docchmplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/plugins/chm/docchmplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/plugins/chm/docchmplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/plugins/chm/docchmplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -28,7 +28,7 @@
  Comment[nl]=Documentatie plugin voor CHM documentatie
  Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie CHM
@@ -1289,8 +1289,8 @@ Index: parts/documentation/plugins/chm/docchmplugin.desktop
  Comment[sr]=Документациони прикључак за CHM документацију
 Index: parts/documentation/plugins/devhelp/docdevhelpplugin.desktop
 ===================================================================
---- parts/documentation/plugins/devhelp/docdevhelpplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/plugins/devhelp/docdevhelpplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/plugins/devhelp/docdevhelpplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/plugins/devhelp/docdevhelpplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -26,7 +26,7 @@
  Comment[nl]=Documentatie plugin fvoor DevHelp documentatie
  Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie DevHelp
@@ -1302,8 +1302,8 @@ Index: parts/documentation/plugins/devhelp/docdevhelpplugin.desktop
  Comment[sl]=Dokumentacijski vstavek za dokumentacijo DevHelp
 Index: parts/documentation/plugins/devhelp/docdevhelpplugin.cpp
 ===================================================================
---- parts/documentation/plugins/devhelp/docdevhelpplugin.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/plugins/devhelp/docdevhelpplugin.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/plugins/devhelp/docdevhelpplugin.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/plugins/devhelp/docdevhelpplugin.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -219,7 +219,7 @@
  void DocDevHelpPlugin::scanDevHelpDir(const QString &path)
  {
@@ -1315,8 +1315,8 @@ Index: parts/documentation/plugins/devhelp/docdevhelpplugin.cpp
      d.setFilter(QDir::Files);
 Index: parts/documentation/plugins/djvu/docdjvuplugin.desktop
 ===================================================================
---- parts/documentation/plugins/djvu/docdjvuplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/plugins/djvu/docdjvuplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/plugins/djvu/docdjvuplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/plugins/djvu/docdjvuplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -28,7 +28,7 @@
  Comment[nl]=Documentatie plugin voor het djvu-formaat
  Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie djvu
@@ -1328,8 +1328,8 @@ Index: parts/documentation/plugins/djvu/docdjvuplugin.desktop
  Comment[sr]=Документациони прикључак за djvu формат
 Index: parts/documentation/plugins/pdf/docpdfplugin.desktop
 ===================================================================
---- parts/documentation/plugins/pdf/docpdfplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/plugins/pdf/docpdfplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/plugins/pdf/docpdfplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/plugins/pdf/docpdfplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -27,7 +27,7 @@
  Comment[nl]=Documentatie plugin voor PDF documentatie
  Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie PDF
@@ -1341,8 +1341,8 @@ Index: parts/documentation/plugins/pdf/docpdfplugin.desktop
  Comment[sr]=Документациони прикључак за PDF формат
 Index: parts/documentation/plugins/custom/doccustomplugin.desktop
 ===================================================================
---- parts/documentation/plugins/custom/doccustomplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/plugins/custom/doccustomplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/plugins/custom/doccustomplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/plugins/custom/doccustomplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -27,7 +27,7 @@
  Comment[nl]=Documentatie plugin voor alle typen documentatie
  Comment[pl]=Wtyczka dokumentacji dla wszystkich typów dokumentacji
@@ -1354,8 +1354,8 @@ Index: parts/documentation/plugins/custom/doccustomplugin.desktop
  Comment[sl]=Dokumentacijski vstavek za vse vrste dokumentacije
 Index: parts/documentation/plugins/doxygen/docdoxygenplugin.desktop
 ===================================================================
---- parts/documentation/plugins/doxygen/docdoxygenplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/plugins/doxygen/docdoxygenplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/plugins/doxygen/docdoxygenplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/plugins/doxygen/docdoxygenplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -28,7 +28,7 @@
  Comment[nl]=Documentatie plugin voor Doxygen documentatie
  Comment[pl]=Wtyczka dokumentacji dla dokumentacji w formacie Doxygen
@@ -1367,8 +1367,8 @@ Index: parts/documentation/plugins/doxygen/docdoxygenplugin.desktop
  Comment[sl]=Dokumentacijski vstavek za dokumentacijo Doxygen
 Index: parts/documentation/kdevdocumentation.desktop
 ===================================================================
---- parts/documentation/kdevdocumentation.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/documentation/kdevdocumentation.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/documentation/kdevdocumentation.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/documentation/kdevdocumentation.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -20,7 +20,7 @@
  Comment[nl]=De documentatieplugin welke het mogelijk maakt om door lokale documentatie en documentatie op afstand te bladeren en te zoeken. Met ondersteuning voor verschillende documentatiesystemen.
  Comment[pl]=Kontrola dokumentacji z obsługą przeglądania i wyszukiwania w różnych plikach pomocy i systemach dokumentacji.
@@ -1380,8 +1380,8 @@ Index: parts/documentation/kdevdocumentation.desktop
  Comment[sr]=Прикључак за документацију са подршком за прегледање и тражење у локалној и документацији на вези, за више документационих система.
 Index: parts/konsole/kdevkonsoleview.desktop
 ===================================================================
---- parts/konsole/kdevkonsoleview.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ parts/konsole/kdevkonsoleview.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- parts/konsole/kdevkonsoleview.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ parts/konsole/kdevkonsoleview.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -21,7 +21,7 @@
  Comment[nl]=Deze plugin geeft KDevelop een ingebedde Konsole voor snelle toegang tot de commandoregel.
  Comment[pl]=Ta wtyczka dodaje do KDevelopa wbudowaną konsolę umożliwiając szybki i łatwy dostęp do linii komend.
@@ -1393,8 +1393,8 @@ Index: parts/konsole/kdevkonsoleview.desktop
  Comment[sr]=Овај прикључак даје KDevelop-у уграђену конзолу за брз и лак приступ командној линији.
 Index: kdevassistant.desktop
 ===================================================================
---- kdevassistant.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ kdevassistant.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- kdevassistant.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ kdevassistant.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -18,6 +18,7 @@
  Name[fr]=Assistant de KDevelop
  Name[it]=Assistente di KDevelop
@@ -1413,8 +1413,8 @@ Index: kdevassistant.desktop
  GenericName[nl]=Documentatie Browser
 Index: lib/cppparser/lexer.cpp
 ===================================================================
---- lib/cppparser/lexer.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ lib/cppparser/lexer.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- lib/cppparser/lexer.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ lib/cppparser/lexer.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -212,7 +212,7 @@
      int op = 0;
  
@@ -1435,8 +1435,8 @@ Index: lib/cppparser/lexer.cpp
          }
 Index: lib/interfaces/kdevelopplugin.desktop
 ===================================================================
---- lib/interfaces/kdevelopplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ lib/interfaces/kdevelopplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- lib/interfaces/kdevelopplugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ lib/interfaces/kdevelopplugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -22,7 +22,7 @@
  Name[ne]=केडीई विकास प्लगइन
  Name[pl]=Wtyczka do KDevelopa
@@ -1448,8 +1448,8 @@ Index: lib/interfaces/kdevelopplugin.desktop
  Name[sl]=Vstavek za KDevelop
 Index: kdevdesigner/src/kdevdesigner.desktop
 ===================================================================
---- kdevdesigner/src/kdevdesigner.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ kdevdesigner/src/kdevdesigner.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- kdevdesigner/src/kdevdesigner.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ kdevdesigner/src/kdevdesigner.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -9,6 +9,7 @@
  Name[ga]=Dearthóir KDevelop
  Name[it]=Designer di KDevelop
@@ -1476,8 +1476,8 @@ Index: kdevdesigner/src/kdevdesigner.desktop
  Comment[nl]=GUI Designer voor Qt/KDE
 Index: mimetypes/x-fortran.desktop
 ===================================================================
---- mimetypes/x-fortran.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ mimetypes/x-fortran.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- mimetypes/x-fortran.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ mimetypes/x-fortran.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -17,6 +17,7 @@
  Comment[is]=Fortran frumkóðaskrá
  Comment[it]=File sorgente per Fortran
@@ -1488,8 +1488,8 @@ Index: mimetypes/x-fortran.desktop
  Comment[nl]=Fortran Bronbestand
 Index: kdevelop.desktop
 ===================================================================
---- kdevelop.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ kdevelop.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- kdevelop.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ kdevelop.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -21,6 +21,7 @@
  Name[hu]=KDevelop: nyelvtámogatás
  Name[it]=KDevelop: multilinguaggio
@@ -1500,8 +1500,8 @@ Index: kdevelop.desktop
  Name[nl]=KDevelop: meertalig
 Index: embedded/visualboyadvance/kdevvisualboyadvance.desktop
 ===================================================================
---- embedded/visualboyadvance/kdevvisualboyadvance.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ embedded/visualboyadvance/kdevvisualboyadvance.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- embedded/visualboyadvance/kdevvisualboyadvance.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ embedded/visualboyadvance/kdevvisualboyadvance.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -18,6 +18,7 @@
  Comment[is]=VisualBoyAdvance er GameBoyAdvance hermir. http://vboy.emuhq.com/
  Comment[it]=VisualBoyAdvance è un emulatore per GameBoyAdvance. http://vboy.emuhq.com/
@@ -1520,8 +1520,8 @@ Index: embedded/visualboyadvance/kdevvisualboyadvance.desktop
  GenericName[nl]=Ondersteuning voor VisualBoyAdvance
 Index: vcs/subversion/subversion_core.cpp
 ===================================================================
---- vcs/subversion/subversion_core.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ vcs/subversion/subversion_core.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- vcs/subversion/subversion_core.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ vcs/subversion/subversion_core.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -506,9 +506,9 @@
          job->showErrorDialog( m_part->mainWindow()->main() );
          if( job->error() == ERR_CANNOT_LAUNCH_PROCESS )
@@ -1585,8 +1585,8 @@ Index: vcs/subversion/subversion_core.cpp
  				df.text->append( *it2 );
 Index: vcs/subversion/svn_kio.cpp
 ===================================================================
---- vcs/subversion/svn_kio.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ vcs/subversion/svn_kio.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- vcs/subversion/svn_kio.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ vcs/subversion/svn_kio.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -1695,7 +1695,7 @@
  	QCString replyType;
  	QDataStream arg(params, IO_WriteOnly);
@@ -1598,8 +1598,8 @@ Index: vcs/subversion/svn_kio.cpp
  	arg << QString::fromLocal8Bit(ci->valid_from) << QString::fromLocal8Bit(ci->valid_until);
 Index: vcs/subversion/integrator/svnintegratordlgbase.ui
 ===================================================================
---- vcs/subversion/integrator/svnintegratordlgbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ vcs/subversion/integrator/svnintegratordlgbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- vcs/subversion/integrator/svnintegratordlgbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ vcs/subversion/integrator/svnintegratordlgbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -84,14 +84,14 @@
  repository and checks it out as a working copy.
  
@@ -1628,8 +1628,8 @@ Index: vcs/subversion/integrator/svnintegratordlgbase.ui
                                  <string>Subversion repository location. This should include the subdirectory for the project in the repository. The project subdirectory and further subdirectories will be created. 
 Index: vcs/subversion/integrator/svnintegratordlg.cpp
 ===================================================================
---- vcs/subversion/integrator/svnintegratordlg.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ vcs/subversion/integrator/svnintegratordlg.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- vcs/subversion/integrator/svnintegratordlg.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ vcs/subversion/integrator/svnintegratordlg.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -70,7 +70,7 @@
          s << cmd << list;
          KIO::SimpleJob* job = KIO::special( protocolUrl, parms, true );
@@ -1657,10 +1657,27 @@ Index: vcs/subversion/integrator/svnintegratordlg.cpp
          return;
      }
  }
+Index: vcs/clearcase/clearcasemanipulator.cpp
+===================================================================
+--- vcs/clearcase/clearcasemanipulator.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ vcs/clearcase/clearcasemanipulator.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
+@@ -19,8 +19,11 @@
+ #include <stdlib.h>
+ #include <libgen.h>
+ #include <errno.h>
++#ifdef __NetBSD__
++#include <sys/param.h>
++#endif
+ 
+-#if defined(Q_OS_MACX) || defined(MACOSX) || defined(Q_OS_SOLARIS) || defined(Q_OS_FREEBSD)
++#if defined(Q_OS_MACX) || defined(MACOSX) || defined(Q_OS_SOLARIS) || defined(Q_OS_FREEBSD) || (defined(__NetBSD__) && (__NetBSD_Version__ < 599001500)) || defined(__DragonFly__)
+ //this function is taken from GNU libc
+ //it does not exist on macos
+ int getline(char **lineptr, size_t *n, FILE *stream)
 Index: vcs/clearcase/kdevclearcase.desktop
 ===================================================================
---- vcs/clearcase/kdevclearcase.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ vcs/clearcase/kdevclearcase.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- vcs/clearcase/kdevclearcase.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ vcs/clearcase/kdevclearcase.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -21,7 +21,7 @@
  Comment[nl]=Een plugin die ondersteuning biedt voor Rational ClearCase, een omvangrijk versiebeheer en buildmanagement-systeem. Zie http://www.rational.com/products/clearcase/index.jsp
  Comment[pl]=Wtyczka udostępniająca obsługę Rational ClearCase, dużego systemu kontroli wersji i zarządzania budowaniem. http://www.rational.com/products/clearcase/index.jsp
@@ -1672,8 +1689,8 @@ Index: vcs/clearcase/kdevclearcase.desktop
  Comment[sl]=Vstavek, ki omogoča podporo za Rational ClearCase, velik sistem za upravljanje z različicami in grajenjem. http://www.rational.com/products/clearcase/index.jsp
 Index: configure.in.in
 ===================================================================
---- configure.in.in	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ configure.in.in	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- configure.in.in	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ configure.in.in	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -1,6 +1,6 @@
  #MIN_CONFIG(3.3.0)
  
@@ -1684,8 +1701,8 @@ Index: configure.in.in
  
 Index: kdevelop.lsm
 ===================================================================
---- kdevelop.lsm	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ kdevelop.lsm	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- kdevelop.lsm	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ kdevelop.lsm	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -1,7 +1,7 @@
  Begin4
  Title:          kdevelop
@@ -1698,8 +1715,8 @@ Index: kdevelop.lsm
  Author:         http://bugs.kde.org/ (KDE Bugtracking System)
 Index: kdevelop_scripting.desktop
 ===================================================================
---- kdevelop_scripting.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ kdevelop_scripting.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- kdevelop_scripting.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ kdevelop_scripting.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -19,6 +19,7 @@
  Name[hu]=KDevelop: Szkriptkészítő
  Name[it]=KDevelop: scripting
@@ -1710,8 +1727,8 @@ Index: kdevelop_scripting.desktop
  Name[pl]=KDevelop: Skrypty
 Index: languages/java/app_templates/javahello/javahello.kdevtemplate
 ===================================================================
---- languages/java/app_templates/javahello/javahello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/java/app_templates/javahello/javahello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/java/app_templates/javahello/javahello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/java/app_templates/javahello/javahello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -23,7 +23,7 @@
  Name[nl]=Toepassing
  Name[pl]=Program
@@ -1723,8 +1740,8 @@ Index: languages/java/app_templates/javahello/javahello.kdevtemplate
  Name[sk]=Aplikácia
 Index: languages/ruby/debugger/kdevrbdebugger.desktop
 ===================================================================
---- languages/ruby/debugger/kdevrbdebugger.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/ruby/debugger/kdevrbdebugger.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/ruby/debugger/kdevrbdebugger.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/ruby/debugger/kdevrbdebugger.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -20,7 +20,7 @@
  Comment[nl]=Deze plugin biedt een grafische schil voor de broncode-debugger voor Ruby.
  Comment[pl]=Ta wtyczka udostępnia interfejs do debugera poziomu źródłowego dla języka Ruby.
@@ -1736,8 +1753,8 @@ Index: languages/ruby/debugger/kdevrbdebugger.desktop
  Comment[sr]=Овај прикључак обезбеђује интерфејс за исправљач на нивоу изворног кода за Ruby.
 Index: languages/ruby/app_templates/dcopservice/dcopserviceruby.kdevtemplate
 ===================================================================
---- languages/ruby/app_templates/dcopservice/dcopserviceruby.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/ruby/app_templates/dcopservice/dcopserviceruby.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/ruby/app_templates/dcopservice/dcopserviceruby.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/ruby/app_templates/dcopservice/dcopserviceruby.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -20,7 +20,7 @@
  Name[nl]=DCOP-service
  Name[pl]=Usługa DCOP
@@ -1749,8 +1766,8 @@ Index: languages/ruby/app_templates/dcopservice/dcopserviceruby.kdevtemplate
  Name[sr]=DCOP сервис
 Index: languages/ruby/app_templates/qtrubyapp/qtrubyapp.kdevtemplate
 ===================================================================
---- languages/ruby/app_templates/qtrubyapp/qtrubyapp.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/ruby/app_templates/qtrubyapp/qtrubyapp.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/ruby/app_templates/qtrubyapp/qtrubyapp.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/ruby/app_templates/qtrubyapp/qtrubyapp.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -20,7 +20,7 @@
  Name[nl]=QtRuby-toepassing
  Name[pl]=Program w QtRuby
@@ -1771,8 +1788,8 @@ Index: languages/ruby/app_templates/qtrubyapp/qtrubyapp.kdevtemplate
  Comment[sr]=Прави програм на основу QtRuby-ја (прекоплатформски компатибилан)
 Index: languages/ruby/app_templates/qtruby4app/qtruby4app.kdevtemplate
 ===================================================================
---- languages/ruby/app_templates/qtruby4app/qtruby4app.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/ruby/app_templates/qtruby4app/qtruby4app.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/ruby/app_templates/qtruby4app/qtruby4app.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/ruby/app_templates/qtruby4app/qtruby4app.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -13,7 +13,7 @@
  Name[nl]=QtRuby4-programma
  Name[pl]=Program w QtRuby
@@ -1784,8 +1801,8 @@ Index: languages/ruby/app_templates/qtruby4app/qtruby4app.kdevtemplate
  Name[sr]=QtRuby4 програм
 Index: languages/cpp/cppcodecompletion.cpp
 ===================================================================
---- languages/cpp/cppcodecompletion.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/cppcodecompletion.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/cppcodecompletion.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/cppcodecompletion.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -1723,7 +1723,7 @@
  
  
@@ -1797,8 +1814,8 @@ Index: languages/cpp/cppcodecompletion.cpp
  
 Index: languages/cpp/pcsimporter/kdelibsimporter/settingsdialog.cpp
 ===================================================================
---- languages/cpp/pcsimporter/kdelibsimporter/settingsdialog.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/pcsimporter/kdelibsimporter/settingsdialog.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/pcsimporter/kdelibsimporter/settingsdialog.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/pcsimporter/kdelibsimporter/settingsdialog.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -89,7 +89,7 @@
  	}
  	else
@@ -1810,8 +1827,8 @@ Index: languages/cpp/pcsimporter/kdelibsimporter/settingsdialog.cpp
  
 Index: languages/cpp/pcsimporter/qtimporter/settingsdialog.cpp
 ===================================================================
---- languages/cpp/pcsimporter/qtimporter/settingsdialog.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/pcsimporter/qtimporter/settingsdialog.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/pcsimporter/qtimporter/settingsdialog.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/pcsimporter/qtimporter/settingsdialog.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -112,7 +112,7 @@
  	}
  	else
@@ -1823,8 +1840,8 @@ Index: languages/cpp/pcsimporter/qtimporter/settingsdialog.cpp
  }
 Index: languages/cpp/pcsimporter/qtimporter/settingsdialogbase.ui
 ===================================================================
---- languages/cpp/pcsimporter/qtimporter/settingsdialogbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/pcsimporter/qtimporter/settingsdialogbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/pcsimporter/qtimporter/settingsdialogbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/pcsimporter/qtimporter/settingsdialogbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -70,7 +70,7 @@
                          </sizepolicy>
                      </property>
@@ -1836,8 +1853,8 @@ Index: languages/cpp/pcsimporter/qtimporter/settingsdialogbase.ui
              </hbox>
 Index: languages/cpp/pcsimporter/qt4importer/settingsdialog.cpp
 ===================================================================
---- languages/cpp/pcsimporter/qt4importer/settingsdialog.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/pcsimporter/qt4importer/settingsdialog.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/pcsimporter/qt4importer/settingsdialog.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/pcsimporter/qt4importer/settingsdialog.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -104,7 +104,7 @@
  	}
  	else
@@ -1849,8 +1866,8 @@ Index: languages/cpp/pcsimporter/qt4importer/settingsdialog.cpp
  
 Index: languages/cpp/simpletype.cpp
 ===================================================================
---- languages/cpp/simpletype.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/simpletype.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/simpletype.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/simpletype.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -27,14 +27,14 @@
    m_types["signed char" ] =  i18n("signed character, 1 byte, ranged -128 to 127");
    m_types["unsigned char"] = i18n("unsigned character, 1 byte, ranged 0 to 255");
@@ -1873,8 +1890,8 @@ Index: languages/cpp/simpletype.cpp
  
 Index: languages/cpp/debugger/gdboutputwidget.cpp
 ===================================================================
---- languages/cpp/debugger/gdboutputwidget.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/debugger/gdboutputwidget.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/debugger/gdboutputwidget.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/debugger/gdboutputwidget.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -333,7 +333,7 @@
          i18n(
              "Controls if commands issued internally by KDevelop "
@@ -1886,8 +1903,8 @@ Index: languages/cpp/debugger/gdboutputwidget.cpp
      popup->insertItem(i18n("Copy All"),
 Index: languages/cpp/debugger/framestackwidget.h
 ===================================================================
---- languages/cpp/debugger/framestackwidget.h	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/debugger/framestackwidget.h	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/debugger/framestackwidget.h	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/debugger/framestackwidget.h	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -84,7 +84,6 @@
  
  /***************************************************************************/
@@ -1915,8 +1932,8 @@ Index: languages/cpp/debugger/framestackwidget.h
      static const int frameChunk_ = 5;
 Index: languages/cpp/debugger/gdbcontroller.cpp
 ===================================================================
---- languages/cpp/debugger/gdbcontroller.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/debugger/gdbcontroller.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/debugger/gdbcontroller.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/debugger/gdbcontroller.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -1155,9 +1155,9 @@
                  KMessageBox::error(
                      0,
@@ -1942,8 +1959,8 @@ Index: languages/cpp/debugger/gdbcontroller.cpp
                  i18n("Internal debugger error"));
 Index: languages/cpp/debugger/framestackwidget.cpp
 ===================================================================
---- languages/cpp/debugger/framestackwidget.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/debugger/framestackwidget.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/debugger/framestackwidget.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/debugger/framestackwidget.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -43,7 +43,8 @@
                                     const char *name, WFlags f)
          : QListView(parent, name, f),
@@ -2004,8 +2021,8 @@ Index: languages/cpp/debugger/framestackwidget.cpp
  #include "framestackwidget.moc"
 Index: languages/cpp/debugger/kdevdebugger.desktop
 ===================================================================
---- languages/cpp/debugger/kdevdebugger.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/debugger/kdevdebugger.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/debugger/kdevdebugger.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/debugger/kdevdebugger.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -22,7 +22,7 @@
  Comment[nl]=Deze plugin biedt een grafische schil voor GDB, een broncode-debugger voor C, C++ en meer. http://sources.redhat.com/gdb/
  Comment[pl]=Ta wtyczka udostępnia interfejs do GDB, debugera poziomu źródłowego dla C, C++ i innych. http://sources.redhat.com/gdb/
@@ -2017,8 +2034,8 @@ Index: languages/cpp/debugger/kdevdebugger.desktop
  Comment[sl]=Ta vstavek omogoča vmesnik za GDB, razhroščevalnik na ravni izvorne kode za C, C++ in več. http://sourcs.redhat.com/gdb/
 Index: languages/cpp/debugger/dbgpsdlg.cpp
 ===================================================================
---- languages/cpp/debugger/dbgpsdlg.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/debugger/dbgpsdlg.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/debugger/dbgpsdlg.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/debugger/dbgpsdlg.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -170,7 +170,7 @@
                      this, 
                      // FIXME: probably should XML-escape 'item' before passing it
@@ -2030,8 +2047,8 @@ Index: languages/cpp/debugger/dbgpsdlg.cpp
                      i18n("Internal error"), "gdb_error" );
 Index: languages/cpp/configproblemreporter.ui
 ===================================================================
---- languages/cpp/configproblemreporter.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/configproblemreporter.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/configproblemreporter.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/configproblemreporter.ui	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -133,7 +133,7 @@
                  <string>Special &amp;Headers</string>
              </property>
@@ -2043,8 +2060,8 @@ Index: languages/cpp/configproblemreporter.ui
                  <property name="name">
 Index: languages/cpp/compiler/gccoptions/gccoptionsplugin.cpp
 ===================================================================
---- languages/cpp/compiler/gccoptions/gccoptionsplugin.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/compiler/gccoptions/gccoptionsplugin.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/compiler/gccoptions/gccoptionsplugin.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/compiler/gccoptions/gccoptionsplugin.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -478,7 +478,7 @@
  	new FlagListItem( wrestBox,
  	                  "-Wdisabled-optimization", i18n( "<qt>Warn if a requested optimization pass is disabled</qt>" ) );
@@ -2056,8 +2073,8 @@ Index: languages/cpp/compiler/gccoptions/gccoptionsplugin.cpp
  	{
 Index: languages/cpp/ccconfigwidgetbase.ui
 ===================================================================
---- languages/cpp/ccconfigwidgetbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/ccconfigwidgetbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/ccconfigwidgetbase.ui	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/ccconfigwidgetbase.ui	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -512,7 +512,7 @@
                                      <string>src;</string>
                                  </property>
@@ -2096,8 +2113,8 @@ Index: languages/cpp/ccconfigwidgetbase.ui
                                      <string>KDevelop comes with its own UI designer that can either be embedded or be run as a separate program. Check this button if you wish to run KDevelop's UI designer as a separate program.</string>
 Index: languages/cpp/app_templates/kateplugin/plugin.desktop
 ===================================================================
---- languages/cpp/app_templates/kateplugin/plugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/app_templates/kateplugin/plugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/app_templates/kateplugin/plugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/app_templates/kateplugin/plugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -26,7 +26,7 @@
  Name[nl]=Mijn eerste Kate-plugin
  Name[pl]=Moja pierwsza wtyczka do Kate
@@ -2118,8 +2135,8 @@ Index: languages/cpp/app_templates/kateplugin/plugin.desktop
  Comment[sl]=Tukaj je kratek opis o vstavku
 Index: languages/cpp/app_templates/kioslave/kioslave.kdevtemplate
 ===================================================================
---- languages/cpp/app_templates/kioslave/kioslave.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/app_templates/kioslave/kioslave.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/app_templates/kioslave/kioslave.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/app_templates/kioslave/kioslave.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -18,7 +18,6 @@
  Name[ne]=KIO स्लेभ
  Name[nl]=KIO-slave
@@ -2130,8 +2147,8 @@ Index: languages/cpp/app_templates/kioslave/kioslave.kdevtemplate
  Icon=kioslave.png
 Index: languages/cpp/app_templates/kdevpart/kdevpart.desktop
 ===================================================================
---- languages/cpp/app_templates/kdevpart/kdevpart.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/app_templates/kdevpart/kdevpart.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/app_templates/kdevpart/kdevpart.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/app_templates/kdevpart/kdevpart.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -26,7 +26,7 @@
  GenericName[nl]=%{APPNAME}-plugin
  GenericName[pl]=Wtyczka %{APPNAME}
@@ -2143,8 +2160,8 @@ Index: languages/cpp/app_templates/kdevpart/kdevpart.desktop
  GenericName[sl]=Vstavek za %{APPNAME}
 Index: languages/cpp/app_templates/kde4app/kapp4.kcfg
 ===================================================================
---- languages/cpp/app_templates/kde4app/kapp4.kcfg	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/app_templates/kde4app/kapp4.kcfg	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/app_templates/kde4app/kapp4.kcfg	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/app_templates/kde4app/kapp4.kcfg	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
@@ -2156,8 +2173,8 @@ Index: languages/cpp/app_templates/kde4app/kapp4.kcfg
  	    <label>color of the background</label>
 Index: languages/cpp/app_templates/kscreensaver/kscreensaver.kdevtemplate
 ===================================================================
---- languages/cpp/app_templates/kscreensaver/kscreensaver.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/app_templates/kscreensaver/kscreensaver.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/app_templates/kscreensaver/kscreensaver.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/app_templates/kscreensaver/kscreensaver.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -21,7 +21,7 @@
  Name[nl]=KDE-schermbeveiliging
  Name[pl]=Wygaszacz ekranu KDE
@@ -2169,8 +2186,8 @@ Index: languages/cpp/app_templates/kscreensaver/kscreensaver.kdevtemplate
  Name[sl]=Ohranjevalnik zaslona za KDE
 Index: languages/cpp/app_templates/chello/chello.kdevtemplate
 ===================================================================
---- languages/cpp/app_templates/chello/chello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/app_templates/chello/chello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/app_templates/chello/chello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/app_templates/chello/chello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -15,6 +15,7 @@
  Name[hu]=Egyszerű Hello world program
  Name[it]=Semplice programma di "Hello world"
@@ -2181,8 +2198,8 @@ Index: languages/cpp/app_templates/chello/chello.kdevtemplate
  Name[nl]=Eenvoudig 'Hello World' programma
 Index: languages/cpp/app_templates/kateplugin2/plugin.desktop
 ===================================================================
---- languages/cpp/app_templates/kateplugin2/plugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/app_templates/kateplugin2/plugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/app_templates/kateplugin2/plugin.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/app_templates/kateplugin2/plugin.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -26,7 +26,7 @@
  Name[nl]=Mijn eerste Kate-plugin
  Name[pl]=Moja pierwsza wtyczka do Kate
@@ -2203,8 +2220,8 @@ Index: languages/cpp/app_templates/kateplugin2/plugin.desktop
  Comment[sl]=Tukaj je kratek opis o vstavku
 Index: languages/cpp/app_templates/cpphello/cpphello.kdevtemplate
 ===================================================================
---- languages/cpp/app_templates/cpphello/cpphello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/app_templates/cpphello/cpphello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/app_templates/cpphello/cpphello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/app_templates/cpphello/cpphello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -15,6 +15,7 @@
  Name[hu]=Egyszerű Hello world program
  Name[it]=Semplice programma di "Hello world"
@@ -2215,8 +2232,8 @@ Index: languages/cpp/app_templates/cpphello/cpphello.kdevtemplate
  Name[nl]=Eenvoudig 'Hello World' programma
 Index: languages/cpp/app_templates/kconfig35/kconfig35.kdevtemplate
 ===================================================================
---- languages/cpp/app_templates/kconfig35/kconfig35.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/app_templates/kconfig35/kconfig35.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/app_templates/kconfig35/kconfig35.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/app_templates/kconfig35/kconfig35.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -28,6 +28,7 @@
  Comment[da]=Genererer et simpelt KDE-program med en kontrol og en indstillingsdialog der kun er kompatibelt med KDE 3.5
  Comment[de]=Erstellt eine einfache KDE-Anwendung für KDE 3.5 mit einem Widget und einem Einstellungsdialog.
@@ -2227,8 +2244,8 @@ Index: languages/cpp/app_templates/kconfig35/kconfig35.kdevtemplate
  Comment[fr]=Génère une application KDE simple comprenant un seul élément graphique et une boîte de dialogue de configuration compatible avec KDE 3.5 uniquement
 Index: languages/cpp/app_templates/konqnavpanel/konqnavpanel.desktop
 ===================================================================
---- languages/cpp/app_templates/konqnavpanel/konqnavpanel.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/app_templates/konqnavpanel/konqnavpanel.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/app_templates/konqnavpanel/konqnavpanel.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/app_templates/konqnavpanel/konqnavpanel.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -22,7 +22,7 @@
  Comment[nl]=Een konqueror navigatiepaneel-plugin met de naam $NAME$
  Comment[pl]=Wtyczka do panelu nawigacyjnego Konquerora o nazwie $NAME$
@@ -2240,8 +2257,8 @@ Index: languages/cpp/app_templates/konqnavpanel/konqnavpanel.desktop
  Comment[sl]=Konquerorjev vstavek pulta za navigacijo z imenom $NAME$
 Index: languages/cpp/app_templates/kdevpart2/kdevpart.desktop
 ===================================================================
---- languages/cpp/app_templates/kdevpart2/kdevpart.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/app_templates/kdevpart2/kdevpart.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/app_templates/kdevpart2/kdevpart.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/app_templates/kdevpart2/kdevpart.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -26,7 +26,7 @@
  GenericName[nl]=%{APPNAME}-plugin
  GenericName[pl]=Wtyczka %{APPNAME}
@@ -2253,8 +2270,8 @@ Index: languages/cpp/app_templates/kdevpart2/kdevpart.desktop
  GenericName[sl]=Vstavek za %{APPNAME}
 Index: languages/cpp/includepathresolver.cpp
 ===================================================================
---- languages/cpp/includepathresolver.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/cpp/includepathresolver.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/cpp/includepathresolver.cpp	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/cpp/includepathresolver.cpp	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -382,7 +382,7 @@
      proc.setUseShell( true );
      proc << command;
@@ -2266,8 +2283,8 @@ Index: languages/cpp/includepathresolver.cpp
      output = proc.stdOut();
 Index: languages/pascal/app_templates/fpcsharedlib/fpcsharedlib.kdevtemplate
 ===================================================================
---- languages/pascal/app_templates/fpcsharedlib/fpcsharedlib.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/pascal/app_templates/fpcsharedlib/fpcsharedlib.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/pascal/app_templates/fpcsharedlib/fpcsharedlib.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/pascal/app_templates/fpcsharedlib/fpcsharedlib.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -20,7 +20,7 @@
  Name[nl]=Gedeelde bibliotheek
  Name[pl]=Biblioteka dzielona
@@ -2279,8 +2296,8 @@ Index: languages/pascal/app_templates/fpcsharedlib/fpcsharedlib.kdevtemplate
  Name[sr]=Дељена библиотека
 Index: languages/pascal/app_templates/pascalhello/pascalhello.kdevtemplate
 ===================================================================
---- languages/pascal/app_templates/pascalhello/pascalhello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/pascal/app_templates/pascalhello/pascalhello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/pascal/app_templates/pascalhello/pascalhello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/pascal/app_templates/pascalhello/pascalhello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -15,6 +15,7 @@
  Name[hu]=Egyszerű Hello world program
  Name[it]=Semplice programma di "Hello world"
@@ -2291,8 +2308,8 @@ Index: languages/pascal/app_templates/pascalhello/pascalhello.kdevtemplate
  Name[nl]=Eenvoudig 'Hello World' programma
 Index: languages/pascal/app_templates/fpcgtk/fpcgtk.kdevtemplate
 ===================================================================
---- languages/pascal/app_templates/fpcgtk/fpcgtk.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/pascal/app_templates/fpcgtk/fpcgtk.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/pascal/app_templates/fpcgtk/fpcgtk.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/pascal/app_templates/fpcgtk/fpcgtk.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -20,7 +20,7 @@
  Name[nl]=GTK+-toepassing
  Name[pl]=Program GTK+
@@ -2304,8 +2321,8 @@ Index: languages/pascal/app_templates/fpcgtk/fpcgtk.kdevtemplate
  Name[sr]=GTK+ програм
 Index: languages/ada/kdevadasupport.desktop
 ===================================================================
---- languages/ada/kdevadasupport.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/ada/kdevadasupport.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/ada/kdevadasupport.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/ada/kdevadasupport.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -18,6 +18,7 @@
  Comment[is]=Stuðningur við Ada forritunarmálið
  Comment[it]=Supporto al linguaggio Ada
@@ -2324,8 +2341,8 @@ Index: languages/ada/kdevadasupport.desktop
  GenericName[nl]=Ondersteuning voor Ada
 Index: languages/ada/app_templates/adahello/adahello.kdevtemplate
 ===================================================================
---- languages/ada/app_templates/adahello/adahello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/ada/app_templates/adahello/adahello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/ada/app_templates/adahello/adahello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/ada/app_templates/adahello/adahello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -15,6 +15,7 @@
  Name[hu]=Egyszerű Hello world program
  Name[it]=Semplice programma di "Hello world"
@@ -2352,8 +2369,8 @@ Index: languages/ada/app_templates/adahello/adahello.kdevtemplate
  Comment[nl]=Een eenvoudig "Hello World" programma in Ada is aangemaakt in %{dest}
 Index: languages/fortran/app_templates/fortranhello/fortranhello.kdevtemplate
 ===================================================================
---- languages/fortran/app_templates/fortranhello/fortranhello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ languages/fortran/app_templates/fortranhello/fortranhello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- languages/fortran/app_templates/fortranhello/fortranhello.kdevtemplate	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ languages/fortran/app_templates/fortranhello/fortranhello.kdevtemplate	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -15,6 +15,7 @@
  Name[hu]=Egyszerű Hello world program
  Name[it]=Semplice programma di "Hello world"
@@ -2364,8 +2381,8 @@ Index: languages/fortran/app_templates/fortranhello/fortranhello.kdevtemplate
  Name[nl]=Eenvoudig 'Hello World' programma
 Index: editors/editor-chooser/kdeveditorchooser.desktop
 ===================================================================
---- editors/editor-chooser/kdeveditorchooser.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 958029)
-+++ editors/editor-chooser/kdeveditorchooser.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 958029)
+--- editors/editor-chooser/kdeveditorchooser.desktop	(.../tags/KDE/3.5.10/kdevelop)	(revision 1021035)
++++ editors/editor-chooser/kdeveditorchooser.desktop	(.../branches/KDE/3.5/kdevelop)	(revision 1021035)
 @@ -19,6 +19,7 @@
  Comment[is]=Útvegar samtalsglugga fyrir val á ritli
  Comment[it]=Fornisce a una finestra per la selezione dell'editor.
