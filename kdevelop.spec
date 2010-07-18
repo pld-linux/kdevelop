@@ -79,7 +79,7 @@ individual needs.
 KDevelop ist eine grafische Entwicklungsumgebung für KDE.
 
 Das KDevelop-Projekt wurde 1998 begonnen, um eine einfach zu
-bedienende grafische (integrierte Entwicklungsumgebung) für C++ und C
+bedienende grafische (integrierte) Entwicklungsumgebung für C++ und C
 auf Unix-basierten Betriebssystemen bereitzustellen. Seit damals ist
 die KDevelop-IDE öffentlich unter der GPL erhältlich und unterstützt
 u. a. Qt-, KDE-, GNOME-, C++- und C-Projekte.
