@@ -33,7 +33,7 @@ BuildRequires:	db-devel
 BuildRequires:	doxygen
 BuildRequires:	flex
 %{?with_ada:BuildRequires:gcc-ada}
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	kdelibs-devel >= %{_minbaseevr}
 BuildRequires:	kdesdk-libcvsservice-devel
 BuildRequires:	libjpeg-devel
