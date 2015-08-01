@@ -1,5 +1,5 @@
 # Conditional build:
-%bcond_without	ada	# don't build with ada
+%bcond_with	ada	# don't build with ada
 #
 %define		_state		stable
 %define		_kdever		3.5.10
@@ -13,7 +13,7 @@ Summary(pt_BR.UTF-8):	Ambiente Integrado de Desenvolvimento para o KDE
 Summary(zh_CN.UTF-8):	KDE C/C++集成开发环境
 Name:		kdevelop
 Version:	3.5.4
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Group:		X11/Development/Tools
